@@ -3,4 +3,4 @@ Colección de peticiones HTTP contra la [API REST de ArcGIS](http://resources.ar
 
 Aquí tienes un vídeo de 5 minutos donde puedes ver cómo se usa esta colección:
 
-`<img src="https://i.ytimg.com/vi/jQdFKC2LcSA/hqdefault.jpg">(https://www.youtube.com/watch?v=jQdFKC2LcSA&feature=youtu.be)
+[<img src="https://i.ytimg.com/vi/jQdFKC2LcSA/hqdefault.jpg">](https://www.youtube.com/watch?v=jQdFKC2LcSA&feature=youtu.be)
