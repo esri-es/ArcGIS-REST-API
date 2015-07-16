@@ -329,7 +329,7 @@
 		},
 		{
 			"id": "ef1c9755-864e-3326-8347-e0941bb5a38f",
-			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAccept: */*\n",
 			"url": "http://www.arcgis.com/sharing/rest/content/users/{{username}}/createService",
 			"preRequestScript": "var prScript",
 			"pathVariables": {},
@@ -337,12 +337,12 @@
 			"data": [
 				{
 					"key": "createParameters",
-					"value": "{\"name\":\"EmptyServiceName\",\"serviceDescription\":\"\",\"hasStaticData\":false,\"maxRecordCount\":1000,\"supportedQueryFormats\":\"JSON\",\"capabilities\":\"Create,Delete,Query,Update,Editing\",\"description\":\"\",\"copyrightText\":\"\",\"spatialReference\":{\"wkid\":102100},\"initialExtent\":{\"xmin\":-20037507.0671618,\"ymin\":-30240971.9583862,\"xmax\":20037507.0671618,\"ymax\":18398924.324645,\"spatialReference\":{\"wkid\":102100,\"latestWkid\":3857}},\"allowGeometryUpdates\":true,\"units\":\"esriMeters\",\"xssPreventionInfo\":{\"xssPreventionEnabled\":true,\"xssPreventionRule\":\"InputOnly\",\"xssInputRule\":\"rejectInvalid\"}}",
+					"value": "{     \"maxRecordCount\": 2000,     \"supportedQueryFormats\": \"JSON\",     \"capabilities\": \"Query,Editing,Create,Update,Delete\",     \"description\": \"\",     \"allowGeometryUpdates\": \"true\",     \"units\": \"esriMeters\",     \"syncEnabled\": \"false\",     \"editorTrackingInfo\": {         \"enableEditorTracking\": \"false\",         \"enableOwnershipAccessControl\": \"false\",         \"allowOthersToUpdate\": \"true\",         \"allowOthersToDelete\": \"true\"     },     \"xssPreventionInfo\": {         \"xssPreventionEnabled\": \"true\",         \"xssPreventionRule\": \"InputOnly\",         \"xssInputRule\": \"rejectInvalid\"     },     \"tables\": [],     \"name\": \"NewTest\" }",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "outputType",
+					"key": "targetType",
 					"value": "featureService",
 					"type": "text",
 					"enabled": true
@@ -352,6 +352,12 @@
 					"value": "{{token}}",
 					"type": "text",
 					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
 				}
 			],
 			"dataMode": "urlencoded",
@@ -359,7 +365,7 @@
 			"tests": "var tests;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1437063749061,
+			"time": 1437066006658,
 			"name": "Create service",
 			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r30000027r000000",
 			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa"
