@@ -1,0 +1,185 @@
+{
+	"id": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
+	"name": "API REST ArcGIS",
+	"description": "",
+	"order": [
+		"b37c287b-383b-567d-672e-018fe1d547f3",
+		"78f39bd6-9b3a-b9cb-81ee-1b616d6dda5e",
+		"64ed6146-0bd8-4193-626c-e472700f7f4b",
+		"8006daf2-6334-1494-6ae3-05334b52caaa"
+	],
+	"folders": [],
+	"timestamp": 0,
+	"owner": "73352",
+	"remoteLink": null,
+	"public": false,
+	"requests": [
+		{
+			"id": "64ed6146-0bd8-4193-626c-e472700f7f4b",
+			"headers": "Accept: application/json\nContent-Type: application/x-www-form-urlencoded\n",
+			"url": "http://services1.arcgis.com/TUFZjmmRUOQfAGTf/arcgis/rest/services/asdasdasd/FeatureServer/0/",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "POST",
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
+			"data": [
+				{
+					"key": "features",
+					"value": "[{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80704\",\"y\":\"43.46217\"} },{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80549\",\"y\":\"43.46242\"}}]",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Add features to a feature service",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1437030937130,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "78f39bd6-9b3a-b9cb-81ee-1b616d6dda5e",
+			"headers": "",
+			"url": "http://www.arcgis.com/sharing/rest/content/users/user.mmap/createService?f=json&token=QnDExG0oXl3sQZHn1E_oad0CmNaZj5M0-p7d5DnOjuUySi2B9St9fR87GVrm0O0TaZeEjM_YMK0f8ysD6t0_-zNfW2xQjDN3M9_vidu1p8aMkzUz2g-0lSJEr56BjEwO-jp7z1RiB1H52qo56jeTEA..",
+			"preRequestScript": "var prScript",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "createParameters",
+					"value": "{    \"name\" : \"Empty layer\",    \"serviceDescription\" : \"Description text\",    \"hasStaticData\" : false,    \"maxRecordCount\" : 1000,    \"supportedQueryFormats\" : \"JSON\",    \"capabilities\" : \"Create,Delete,Query,Update,Editing\",    \"description\" : \"\",    \"copyrightText\" : \"\",    \"spatialReference\" : {       \"wkid\" : 102100       },    \"initialExtent\" : {       \"xmin\" : -20037507.0671618,       \"ymin\" : -30240971.9583862,       \"xmax\" : 20037507.0671618,       \"ymax\" : 18398924.324645,       \"spatialReference\" : {          \"wkid\" : 102100,          \"latestWkid\" : 3857          }       },    \"allowGeometryUpdates\" : true,    \"units\" : \"esriMeters\",    \"xssPreventionInfo\" : {       \"xssPreventionEnabled\" : true,       \"xssPreventionRule\" : \"InputOnly\",       \"xssInputRule\" : \"rejectInvalid\"       } }",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1437030504986,
+			"name": "Create feature service",
+			"description": "",
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
+			"responses": []
+		},
+		{
+			"id": "8006daf2-6334-1494-6ae3-05334b52caaa",
+			"headers": "",
+			"url": "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "POST",
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
+			"data": [
+				{
+					"key": "SingleLine",
+					"value": "Calle emilio muñoz 35, Madrid",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "categorforStoragey",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "outFields",
+					"value": "*",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "pjson",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "{{token}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Geocoder request",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1437031122451,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "b37c287b-383b-567d-672e-018fe1d547f3",
+			"name": "Get token",
+			"dataMode": "params",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "60",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"rawModeData": null,
+			"descriptionFormat": "html",
+			"description": "",
+			"headers": "",
+			"method": "POST",
+			"pathVariables": {},
+			"url": "https://www.arcgis.com/sharing/rest/generateToken",
+			"preRequestScript": "",
+			"tests": "",
+			"version": null,
+			"currentHelper": "normal",
+			"helperAttributes": "{}",
+			"folder": null,
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa"
+		}
+	]
+}
