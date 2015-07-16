@@ -6,7 +6,8 @@
 		"b37c287b-383b-567d-672e-018fe1d547f3",
 		"78f39bd6-9b3a-b9cb-81ee-1b616d6dda5e",
 		"64ed6146-0bd8-4193-626c-e472700f7f4b",
-		"8006daf2-6334-1494-6ae3-05334b52caaa"
+		"8006daf2-6334-1494-6ae3-05334b52caaa",
+		"d861960a-6fd3-e7f1-ae51-4c9d096b630e"
 	],
 	"folders": [],
 	"timestamp": 0,
@@ -17,29 +18,40 @@
 		{
 			"id": "64ed6146-0bd8-4193-626c-e472700f7f4b",
 			"headers": "Accept: application/json\nContent-Type: application/x-www-form-urlencoded\n",
-			"url": "http://services1.arcgis.com/TUFZjmmRUOQfAGTf/arcgis/rest/services/asdasdasd/FeatureServer/0/",
-			"pathVariables": {},
+			"url": "http://services.arcgis.com/{{feature_id}}/arcgis/rest/services/{{feature_name}}/FeatureServer/0/addFeatures",
 			"preRequestScript": "var prScript",
+			"pathVariables": {},
 			"method": "POST",
-			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
 			"data": [
 				{
 					"key": "features",
 					"value": "[{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80704\",\"y\":\"43.46217\"} },{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80549\",\"y\":\"43.46242\"}}]",
 					"type": "text",
 					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "{{token}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
 				}
 			],
 			"dataMode": "urlencoded",
-			"name": "Add features to a feature service",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1437030937130,
 			"version": 2,
-			"responses": [],
 			"tests": "var tests;",
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"time": 1437037756240,
+			"name": "Add features to a feature service",
+			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_Features/02r30000010m000000/",
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
+			"responses": []
 		},
 		{
 			"id": "78f39bd6-9b3a-b9cb-81ee-1b616d6dda5e",
@@ -63,7 +75,7 @@
 			"helperAttributes": {},
 			"time": 1437030504986,
 			"name": "Create feature service",
-			"description": "",
+			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Create_Service/02r30000027r000000/",
 			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
 			"responses": []
 		},
@@ -109,7 +121,7 @@
 			],
 			"dataMode": "urlencoded",
 			"name": "Geocoder request",
-			"description": "",
+			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/World_Geocoding_Service/02r30000027s000000/",
 			"descriptionFormat": "html",
 			"time": 1437031122451,
 			"version": 2,
@@ -168,7 +180,7 @@
 			],
 			"rawModeData": null,
 			"descriptionFormat": "html",
-			"description": "",
+			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Generate_Token/02r3000000m5000000/",
 			"headers": "",
 			"method": "POST",
 			"pathVariables": {},
@@ -180,6 +192,69 @@
 			"helperAttributes": "{}",
 			"folder": null,
 			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa"
+		},
+		{
+			"id": "d861960a-6fd3-e7f1-ae51-4c9d096b630e",
+			"headers": "",
+			"url": "http://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World/solve?stops=-3.696715,40.436614;-3.673884,40.430277&f=json&token=SZlW6I6MzMovjctipC8aqmDg3dAPV-2ys3gPLcJ7EQOxz5losPw6H_PYMWJO4yhM17PKzWz6gFMOJ0ltNyk4BkazeSx30yf0ikZ_I-n797gaQ55UrT_tfmNr-W1uxyfb&directionsLanguage=es",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "GET",
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "60",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Get directions",
+			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Route_service_with_synchronous_execution/02r300000036000000/",
+			"descriptionFormat": "html",
+			"time": 1437037049599,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		}
 	]
 }
