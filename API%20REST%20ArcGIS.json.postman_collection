@@ -1,6 +1,5 @@
 {
 	"id": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
-	"owner": "73352",
 	"name": "API REST ArcGIS",
 	"description": "",
 	"order": [
@@ -10,18 +9,14 @@
 		"8006daf2-6334-1494-6ae3-05334b52caaa",
 		"d861960a-6fd3-e7f1-ae51-4c9d096b630e",
 		"5f71fa47-0ec3-eea5-acf5-90ed436b61d9",
-		"ef1c9755-864e-3326-8347-e0941bb5a38f"
+		"ef1c9755-864e-3326-8347-e0941bb5a38f",
+		"79b35263-9a05-a2d0-ffbf-4adc98e41e90"
 	],
 	"folders": [],
 	"timestamp": 0,
+	"owner": "73352",
 	"remoteLink": null,
 	"public": false,
-	"lastUpdatedBy": {
-		"id": "73352",
-		"username": "hhkaos"
-	},
-	"lastRevision": 22926760,
-	"team": null,
 	"requests": [
 		{
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
@@ -85,8 +80,11 @@
 		},
 		{
 			"id": "64ed6146-0bd8-4193-626c-e472700f7f4b",
-			"name": "Add features to a feature service",
-			"dataMode": "urlencoded",
+			"headers": "Accept: application/json\nContent-Type: application/x-www-form-urlencoded\n",
+			"url": "http://services.arcgis.com/{{account_id}}/arcgis/rest/services/{{feature_name}}/FeatureServer/0/addFeatures",
+			"preRequestScript": "var prScript",
+			"pathVariables": {},
+			"method": "POST",
 			"data": [
 				{
 					"key": "features",
@@ -107,19 +105,14 @@
 					"enabled": true
 				}
 			],
-			"rawModeData": null,
-			"descriptionFormat": "html",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_Features/02r30000010m000000/",
-			"headers": "Accept: application/json\nContent-Type: application/x-www-form-urlencoded\n",
-			"method": "POST",
-			"pathVariables": {},
-			"url": "http://services.arcgis.com/{{feature_id}}/arcgis/rest/services/{{feature_name}}/FeatureServer/0/addFeatures",
-			"preRequestScript": "var prScript",
+			"dataMode": "urlencoded",
+			"version": 2,
 			"tests": "var tests;",
-			"version": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": null,
+			"helperAttributes": {},
+			"time": 1437115669491,
+			"name": "Add features to a feature service",
+			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_Features/02r30000010m000000/",
 			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa"
 		},
 		{
@@ -148,6 +141,44 @@
 			"helperAttributes": "{}",
 			"folder": null,
 			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa"
+		},
+		{
+			"id": "79b35263-9a05-a2d0-ffbf-4adc98e41e90",
+			"headers": "Accept: */*\nContent-Type: application/x-www-form-urlencoded\nAccept-Encoding: gzip, deflate\n",
+			"url": "http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/admin/services/NewTest2.FeatureServer/addToDefinition",
+			"preRequestScript": "var prScript",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "addToDefinition",
+					"value": "{\"layers\":[{\"adminLayerInfo\":{\"geometryField\":{\"name\":\"Shape\",\"srid\":4326}},\"name\":\"NewTest3\",\"type\":\"Feature Layer\",\"displayField\":\"\",\"description\":\"\",\"copyrightText\":\"\",\"defaultVisibility\":true,\"relationships\":[],\"isDataVersioned\":false,\"supportsRollbackOnFailureParameter\":true,\"supportsAdvancedQueries\":true,\"geometryType\":\"esriGeometryPoint\",\"minScale\":0,\"maxScale\":0,\"extent\":{\"type\":\"extent\",\"xmin\":-17.70518418985952,\"ymin\":29.007108442849102,\"xmax\":3.871964247634747,\"ymax\":42.65733404196801,\"spatialReference\":{\"wkid\":4326}},\"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"gray_large_blank.png\",\"contentType\":\"image/png\",\"width\":29.25,\"height\":37.5,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"iVBORw0KGgoAAAANSUhEUgAAACEAAAAvCAYAAABt7qMfAAAEEElEQVRYR8VY21HjWBDt1svYBkpQBODJYMjAZMBmMP6x8NfORsAQwc5+GenHk8GQAWQAGUAAFHbxsLEe924draSSbdm6NjKrL5cl3Xt0+nT36cu0xtXv91uapv3JzF+llO35V5n5Rkp5J4T4p9frPaguzSoP9vv9tq7r59hY13Xa2dkhy7JI07TsdSEE+b5P7+/vFEURAVAURRe9Xu+mbI+VIAaDge37/jkRfceme3t78eZlF4C8vb3FoIjop2VZF51OZ7TsvaUgPM8D5QNN077u7u5So9Eo23vh/ng8ptfXVxJC3DFzp9vt3hUtUggiAXBtmqZt2zYhBJteCM1oNKIgCEbMfFIEZAFECsAwDPvw8BCx3XT/7D0pJT09PVEYhoVAZnZINHBrGEbr4OBgRngfRQLhDodDAHmwLOs4r5EZEJ7nXRNR++joqBIG5oGDkcfHR/x90+12T9L7GQjXdb8T0d/QgEoGbMoMMgYaIaK/HMf5iR8xiCQM9/V63UYmbPtCxkwmk5FlWV8QlhiE67o/mPm8KiGWfUQqVCnlheM4PzhlodFo2JvUgrINl91HDRmPxzEb7HneN0QE2VBFOqqCAhvIFiLqsOu6v2u12ulnaGEeILQxnU6vAGLYbDbtWq2m+hGVPTedTtFjRgAh0ZhM06xscdWFgiCgl5cXykAYhqH6bmXPhWGYgRgiM/6vcCBDYmGapnnabDYr+0LVheA5giC4ilMUvmF/f//TU/T5+Rl7dtKKOUTJ3mbPmGcHPQSl23GcgxjE5eXlwDCMb58ZEoQiDMNfZ2dn/zGRGJlblO3PyBJkBco2Mx/DaWWtHF7CMIw2nPS2LxjhMAwzT5EHEQsUIclb+aoBwWEhFInx/ZX5iXQj13XvTdNsbbNmoFQHQfDgOM6XBWeVaCNjo2oG0vXmWVhgIjE495ZltbbRS9ArfN+fYWEZiNhl1ev1ysmYTCaUuqn84gtDReq0MPhUyQZYwACU+sqVIJKQxGxAoFW4LbgoCLKIhcJw4M/8EFQFGyjRURQtDD2F2ZGnKG1sH2UjZSFfF+bFtnLQRN3Qdb31kVKOEg0W8nVhLRApG+ium2gDLCAUq1hYqom5sFwzc3sTNsCClHJm7izK+9K5H0dFmqbhrGItNsAC0lIIcVJ2ZFQKIknZ38x8ug4bCQtXjuP8UVb1lEAkp3a3mqbZKqc2OJ0RQoyEEMcqp3hKINICRkTnKmyABSKKh90yFpSEmS6SFjBmbq1iAyxIKZcWpo2EmX8pFSlMT1HKQowwLSpiLO0dqyjEnEJEp0XuCwCISEmMHwKRdllmtvNsgAUpZWGXLNOFsjCLwjIPYt0wlDawMvQ4YkK25J5Tzoa1ekcZEAxNzAxfGg8xZc8vu/8v7ylSk0iCl+sAAAAASUVORK5CYII=\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},\"allowGeometryUpdates\":true,\"hasAttachments\":true,\"htmlPopupType\":\"esriServerHTMLPopupTypeNone\",\"hasM\":false,\"hasZ\":false,\"objectIdField\":\"OBJECTID\",\"globalIdField\":\"\",\"typeIdField\":\"\",\"fields\":[{\"name\":\"OBJECTID\",\"type\":\"esriFieldTypeOID\",\"alias\":\"OBJECTID\",\"sqlType\":\"sqlTypeOther\",\"nullable\":false,\"editable\":false,\"domain\":null,\"defaultValue\":null},{\"name\":\"123\",\"type\":\"esriFieldTypeString\",\"alias\":\"asd12\",\"sqlType\":\"sqlTypeNVarchar\",\"nullable\":true,\"editable\":true,\"domain\":null,\"defaultValue\":null,\"length\":256},{\"name\":\"asd\",\"type\":\"esriFieldTypeString\",\"alias\":\"asd\",\"sqlType\":\"sqlTypeNVarchar\",\"nullable\":true,\"editable\":true,\"domain\":null,\"defaultValue\":null,\"length\":256}],\"indexes\":[],\"types\":[],\"templates\":[{\"name\":\"New Feature\",\"description\":\"\",\"drawingTool\":\"esriFeatureEditToolPoint\",\"prototype\":{\"attributes\":{\"123\":null,\"asd\":null}}}],\"supportedQueryFormats\":\"JSON\",\"hasStaticData\":false,\"maxRecordCount\":10000,\"capabilities\":\"Query,Editing,Create,Update,Delete\"}]}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "{{token}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1437120047172,
+			"name": "Add layer to a feature service",
+			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_To_Definition_Feature_Service/02r300000230000000/",
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
+			"responses": []
 		},
 		{
 			"id": "8006daf2-6334-1494-6ae3-05334b52caaa",
@@ -246,7 +277,7 @@
 				},
 				{
 					"key": "expiration",
-					"value": "600",
+					"value": "21600",
 					"type": "text",
 					"enabled": true
 				}
@@ -255,14 +286,11 @@
 			"version": 2,
 			"tests": "",
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1437057820932,
+			"helperAttributes": {},
+			"time": 1437115480166,
 			"name": "Get token",
 			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Generate_Token/02r3000000m5000000/",
-			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa",
-			"rawModeData": null,
-			"descriptionFormat": "html",
-			"folder": null
+			"collectionId": "fbc12b36-9a77-f505-d0a4-c1e0c7a662aa"
 		},
 		{
 			"id": "d861960a-6fd3-e7f1-ae51-4c9d096b630e",
