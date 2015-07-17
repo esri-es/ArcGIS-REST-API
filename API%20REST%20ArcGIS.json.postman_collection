@@ -58,7 +58,7 @@
 		{
 			"id": "60bd6324-8c15-0a4c-5b32-de51c5e49d21",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "https://www.arcgis.com/sharing/rest/portals/TUFZjmmRUOQfAGTf/isServiceNameAvailable?name={{feature_service_name}}&f=json&token={{token}}&type=Feature Service",
+			"url": "https://www.arcgis.com/sharing/rest/portals/{{account_id}}/isServiceNameAvailable?name={{feature_service_name}}&f=json&token={{token}}&type=Feature Service",
 			"preRequestScript": "var prScript",
 			"pathVariables": {},
 			"method": "GET",
@@ -111,7 +111,7 @@
 			"tests": "var tests;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1437126131462,
+			"time": 1437130579647,
 			"name": "Check if feature service exist",
 			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r300000076000000",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
