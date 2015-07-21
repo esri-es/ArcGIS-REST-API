@@ -4,12 +4,13 @@
 	"description": "",
 	"order": [
 		"6f605ed9-35e2-0d34-f32b-421b0c807130",
-		"c09f698c-d726-f35d-3b26-11482d3635f5",
 		"ae7914e8-9bb0-0b60-4e15-4e27543df5b6",
 		"c6109a03-35c7-afe1-2779-3c61828ae3e8",
 		"60bd6324-8c15-0a4c-5b32-de51c5e49d21",
 		"8199c471-7235-c6d1-b339-cf3057ee1544",
-		"042652f6-ead8-0fa2-4438-a45d20ba1924"
+		"042652f6-ead8-0fa2-4438-a45d20ba1924",
+		"c09f698c-d726-f35d-3b26-11482d3635f5",
+		"cc0a81a0-aae2-5cc5-e9a9-b6231552c758"
 	],
 	"folders": [],
 	"timestamp": 0,
@@ -370,6 +371,51 @@
 			"helperAttributes": "{}",
 			"folder": null,
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+		},
+		{
+			"id": "cc0a81a0-aae2-5cc5-e9a9-b6231552c758",
+			"headers": "",
+			"url": "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "Web_Map_as_JSON",
+					"value": "{     \"mapOptions\": {         \"showAttribution\": true,         \"extent\": {             \"xmin\": -10212866.663781697,             \"ymin\": 3600493.212559925,             \"xmax\": -9987836.052510148,             \"ymax\": 3829804.2974154423,             \"spatialReference\": {                 \"wkid\": 102100,                 \"latestWkid\": 3857             }         },         \"spatialReference\": {             \"wkid\": 102100,             \"latestWkid\": 3857         }     },     \"operationalLayers\": [         {             \"id\": \"Ocean\",             \"title\": \"Ocean\",             \"opacity\": 1,             \"minScale\": 591657527.591555,             \"maxScale\": 9027.977411,             \"url\": \"http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer\"         }                  ],     \"exportOptions\": {         \"outputSize\": [             800,             1100         ],         \"dpi\": 96     } }",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Format",
+					"value": "PNG32",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Layout_Template",
+					"value": "MAP_ONLY",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Get static image (using print service)",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1437496573994,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		}
 	]
 }
