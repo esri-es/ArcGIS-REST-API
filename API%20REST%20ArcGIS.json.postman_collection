@@ -3,21 +3,160 @@
 	"name": "API REST ArcGIS",
 	"description": "",
 	"order": [
-		"6f605ed9-35e2-0d34-f32b-421b0c807130",
-		"ae7914e8-9bb0-0b60-4e15-4e27543df5b6",
-		"c6109a03-35c7-afe1-2779-3c61828ae3e8",
-		"60bd6324-8c15-0a4c-5b32-de51c5e49d21",
-		"8199c471-7235-c6d1-b339-cf3057ee1544",
-		"042652f6-ead8-0fa2-4438-a45d20ba1924",
-		"c09f698c-d726-f35d-3b26-11482d3635f5",
-		"cc0a81a0-aae2-5cc5-e9a9-b6231552c758"
+		"6f605ed9-35e2-0d34-f32b-421b0c807130"
 	],
-	"folders": [],
+	"folders": [
+		{
+			"id": "0cf04fcb-cec9-e651-55b1-776ba98d8970",
+			"name": "Directions and routing",
+			"description": "",
+			"write": true,
+			"order": [
+				"c6109a03-35c7-afe1-2779-3c61828ae3e8",
+				"21d5f657-acb0-9765-dae8-a956832dd9ec",
+				"0552e930-5416-659b-21bc-02bc9e104ba0"
+			],
+			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"owner": "73352",
+			"collection_name": "API REST ArcGIS",
+			"collection_owner": "73352",
+			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+		},
+		{
+			"id": "490b98ef-24ca-34df-bbf1-b61948727f15",
+			"name": "Geocoding and place search",
+			"description": "",
+			"write": true,
+			"order": [
+				"ae7914e8-9bb0-0b60-4e15-4e27543df5b6",
+				"2356efa2-4d54-7405-4d6c-ec5352f62ab8",
+				"fc15490d-36f0-4f39-af9b-ec6561b5bacf",
+				"0b9e3dc1-5220-1abd-41ce-a1df99ecd7f0",
+				"0149a19c-1962-e092-71b7-246ac0d5238a"
+			],
+			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"owner": "73352",
+			"collection_name": "API REST ArcGIS",
+			"collection_owner": "73352",
+			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+		},
+		{
+			"id": "2a9969ea-8a44-1e5b-1324-19d289801c1a",
+			"name": "Geoenrichment",
+			"description": "",
+			"write": true,
+			"order": [
+				"128855e8-5ec9-c800-0a13-bd306d65d372",
+				"a7a2849d-1794-be14-2b14-2ee3436459de"
+			],
+			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"owner": "73352",
+			"collection_name": "API REST ArcGIS",
+			"collection_owner": "73352",
+			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+		},
+		{
+			"id": "209cdaa1-0026-b07a-3076-474171431064",
+			"name": "Hosted services",
+			"description": "",
+			"write": true,
+			"order": [
+				"60bd6324-8c15-0a4c-5b32-de51c5e49d21",
+				"8199c471-7235-c6d1-b339-cf3057ee1544",
+				"042652f6-ead8-0fa2-4438-a45d20ba1924",
+				"c09f698c-d726-f35d-3b26-11482d3635f5"
+			],
+			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"owner": "73352",
+			"collection_name": "API REST ArcGIS",
+			"collection_owner": "73352",
+			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+		},
+		{
+			"id": "5338244d-bdfb-4dd6-2a38-897a7a090bb0",
+			"name": "Print service",
+			"description": "",
+			"write": true,
+			"order": [
+				"cc0a81a0-aae2-5cc5-e9a9-b6231552c758"
+			],
+			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"owner": "73352",
+			"collection_name": "API REST ArcGIS",
+			"collection_owner": "73352",
+			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+		}
+	],
 	"timestamp": 0,
 	"owner": "73352",
 	"remoteLink": "",
 	"public": false,
 	"requests": [
+		{
+			"id": "0149a19c-1962-e092-71b7-246ac0d5238a",
+			"headers": "",
+			"url": "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?token={{token}}&f=pjson&location=-3.626966,40.432546&text=em&maxSuggestions=30",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "GET",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "21600",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "suggest",
+			"description": "[Full description of the service](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-suggest.htm)\n\n",
+			"descriptionFormat": "html",
+			"time": 1441727641028,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "490b98ef-24ca-34df-bbf1-b61948727f15"
+		},
 		{
 			"id": "042652f6-ead8-0fa2-4438-a45d20ba1924",
 			"headers": "Accept: */*\nContent-Type: application/x-www-form-urlencoded\nAccept-Encoding: gzip, deflate\n",
@@ -52,9 +191,306 @@
 			"helperAttributes": {},
 			"time": 1437128674572,
 			"name": "Add layer to a feature service",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_To_Definition_Feature_Service/02r300000230000000/\n\nLayer Object (JSON):\nhttp://resources.arcgis.com/en/help/sds/rest/index.html?featureServiceObject.html\n\nField types:\nhttp://resources.esri.com/help/9.3/arcgisserver/adf/java/help/api/arcgiswebservices/com/esri/arcgisws/EsriFieldType.html",
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_To_Definition_Feature_Service/02r300000230000000/) //\n[Layer Object (JSON)](http://resources.arcgis.com/en/help/sds/rest/index.html?featureServiceObject.html) //\n[Field types](http://resources.esri.com/help/9.3/arcgisserver/adf/java/help/api/arcgiswebservices/com/esri/arcgisws/EsriFieldType.html)",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
-			"responses": []
+			"responses": [],
+			"folder": "209cdaa1-0026-b07a-3076-474171431064"
+		},
+		{
+			"id": "0552e930-5416-659b-21bc-02bc9e104ba0",
+			"headers": "",
+			"url": "http://route.arcgis.com/arcgis/rest/services/World/ClosestFacility/NAServer/ClosestFacility_World/solveClosestFacility?f=json&returnDirections=true&returnFacilities=false&returnIncidents=false&returnBarriers=false&returnPolylineBarriers=false&returnCFRoutes=true&useHierarchy=false&defaultCutoff=7&outSR=102100&travelMode=null&incidents=%7B%22type%22%3A%22features%22%2C%22features%22%3A%5B%7B%22geometry%22%3A%7B%22x%22%3A-13625563.00086767%2C%22y%22%3A4549045.33719256%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%2C%22latestWkid%22%3A3857%7D%7D%7D%5D%2C%22doNotLocateOnRestrictedElements%22%3Atrue%7D&facilities=%7B%22type%22%3A%22features%22%2C%22features%22%3A%5B%7B%22geometry%22%3A%7B%22x%22%3A-13625960%2C%22y%22%3A4549921%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%2C%22latestWkid%22%3A3857%7D%7D%7D%2C%7B%22geometry%22%3A%7B%22x%22%3A-13626184%2C%22y%22%3A4549247%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%2C%22latestWkid%22%3A3857%7D%7D%7D%2C%7B%22geometry%22%3A%7B%22x%22%3A-13626477%2C%22y%22%3A4549415%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%2C%22latestWkid%22%3A3857%7D%7D%7D%2C%7B%22geometry%22%3A%7B%22x%22%3A-13625385%2C%22y%22%3A4549659%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%2C%22latestWkid%22%3A3857%7D%7D%7D%2C%7B%22geometry%22%3A%7B%22x%22%3A-13624374%2C%22y%22%3A4548254%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%2C%22latestWkid%22%3A3857%7D%7D%7D%2C%7B%22geometry%22%3A%7B%22x%22%3A-13624891%2C%22y%22%3A4548565%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%2C%22latestWkid%22%3A3857%7D%7D%7D%5D%2C%22doNotLocateOnRestrictedElements%22%3Atrue%7D&token={{token}}",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "GET",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "21600",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Closest Facility",
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Closest_Facility_service_with_synchronous_execution/02r3000000n7000000/) //\n[View JS Demo](http://developers.arcgis.com/javascript/samples/routetask_closest_facility/)",
+			"descriptionFormat": "html",
+			"time": 1441729453960,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0cf04fcb-cec9-e651-55b1-776ba98d8970"
+		},
+		{
+			"id": "0b9e3dc1-5220-1abd-41ce-a1df99ecd7f0",
+			"headers": "",
+			"url": "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?token={{token}}&f=pjson&location=-3.626966,40.432546",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "GET",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "21600",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "reverseGeocode",
+			"description": "[Full description of the service:](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm) //\n[View JS Demo](http://timw1984.github.io/WebApp-Location/)\n",
+			"descriptionFormat": "html",
+			"time": 1441727293798,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "490b98ef-24ca-34df-bbf1-b61948727f15"
+		},
+		{
+			"id": "128855e8-5ec9-c800-0a13-bd306d65d372",
+			"headers": "",
+			"url": " http://geoenrich.arcgis.com/arcgis/rest/services/World/geoenrichmentserver/GeoEnrichment/enrich?studyareas=[{\"geometry\":{\"x\":-117.1956,\"y\":34.0572}}]&f=pjson&token={{token}}",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "POST",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "SingleLine",
+					"value": "Calle emilio muñoz 35, Madrid",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "categorforStoragey",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "outFields",
+					"value": "*",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "pjson",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "{{token}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Geoenrich XY location",
+			"description": "[Description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Input_XY_locations/02r300000006000000/)",
+			"descriptionFormat": "html",
+			"time": 1441720702238,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2a9969ea-8a44-1e5b-1324-19d289801c1a"
+		},
+		{
+			"id": "21d5f657-acb0-9765-dae8-a956832dd9ec",
+			"headers": "",
+			"url": "https://route.arcgis.com/arcgis/rest/services/World/ServiceAreas/NAServer/ServiceArea_World/solveServiceArea?f=json&token={{token}}&facilities=-122.253,37.757",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "GET",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "21600",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Service Area service",
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Service_Area_service_with_synchronous_execution/02r3000000n2000000/) // \n[View JS Demo](http://developers.arcgis.com/javascript/samples/routetask_basic_servicearea/)",
+			"descriptionFormat": "html",
+			"time": 1441729087480,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0cf04fcb-cec9-e651-55b1-776ba98d8970"
+		},
+		{
+			"id": "2356efa2-4d54-7405-4d6c-ec5352f62ab8",
+			"headers": "",
+			"url": "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "POST",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "text",
+					"value": "Calle emilio muñoz 35, Madrid",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "categorforStoragey",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "outFields",
+					"value": "*",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "pjson",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "{{token}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Find",
+			"description": "Geocodes one location per request; the input address is specified in a single parameter.\n\n[Full description of the service](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find.htm)\n\n",
+			"descriptionFormat": "html",
+			"time": 1441726877470,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "490b98ef-24ca-34df-bbf1-b61948727f15"
 		},
 		{
 			"id": "60bd6324-8c15-0a4c-5b32-de51c5e49d21",
@@ -114,8 +550,9 @@
 			"helperAttributes": {},
 			"time": 1437130579647,
 			"name": "Check if feature service exist",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r300000076000000",
-			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+			"description": "[Full description of the service:](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r300000076000000)",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"folder": "209cdaa1-0026-b07a-3076-474171431064"
 		},
 		{
 			"id": "6f605ed9-35e2-0d34-f32b-421b0c807130",
@@ -175,7 +612,7 @@
 			"helperAttributes": {},
 			"time": 1437115480166,
 			"name": "Get token",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Generate_Token/02r3000000m5000000/",
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Generate_Token/02r3000000m5000000/)",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
@@ -218,12 +655,65 @@
 			"helperAttributes": {},
 			"time": 1437127513549,
 			"name": "Create Feature Service",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r30000027r000000",
-			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r30000027r000000)",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"folder": "209cdaa1-0026-b07a-3076-474171431064"
+		},
+		{
+			"id": "a7a2849d-1794-be14-2b14-2ee3436459de",
+			"headers": "",
+			"url": "http://geoenrich.arcgis.com/arcgis/rest/services/World/geoenrichmentserver/GetVariables/execute?sourcecountry=ES&f=json&token={{token}}",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "POST",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "SingleLine",
+					"value": "Calle emilio muñoz 35, Madrid",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "categorforStoragey",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "outFields",
+					"value": "*",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "f",
+					"value": "pjson",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "{{token}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Get variables",
+			"description": "[List of variables you can use to geoenrich](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Get_variables/02r300000266000000/)",
+			"descriptionFormat": "html",
+			"time": 1441721138002,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2a9969ea-8a44-1e5b-1324-19d289801c1a"
 		},
 		{
 			"id": "ae7914e8-9bb0-0b60-4e15-4e27543df5b6",
-			"name": "Geocoder request",
+			"name": "FindAddressCandidates",
 			"dataMode": "urlencoded",
 			"data": [
 				{
@@ -259,7 +749,7 @@
 			],
 			"rawModeData": null,
 			"descriptionFormat": "html",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/World_Geocoding_Service/02r30000027s000000/",
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/rest/apiref/candidates.html) \n// [World Geocoding Service](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)\n// [View JS Demo: input autocomplete](http://developers.arcgis.com/javascript/samples/widget_directions_basic/)",
 			"headers": "",
 			"method": "POST",
 			"pathVariables": {},
@@ -269,7 +759,7 @@
 			"version": null,
 			"currentHelper": "normal",
 			"helperAttributes": "{}",
-			"folder": null,
+			"folder": "490b98ef-24ca-34df-bbf1-b61948727f15",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
@@ -306,12 +796,13 @@
 			"helperAttributes": {},
 			"time": 1437115669491,
 			"name": "Add features to a feature service",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_Features/02r30000010m000000/",
-			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_Features/02r30000010m000000/)",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"folder": "209cdaa1-0026-b07a-3076-474171431064"
 		},
 		{
 			"id": "c6109a03-35c7-afe1-2779-3c61828ae3e8",
-			"name": "Get directions",
+			"name": "Route service",
 			"dataMode": "params",
 			"data": [
 				{
@@ -359,7 +850,7 @@
 			],
 			"rawModeData": null,
 			"descriptionFormat": "html",
-			"description": "Full description of the service:\nhttp://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Route_service_with_synchronous_execution/02r300000036000000/",
+			"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Route_service_with_synchronous_execution/02r300000036000000/) //\n[View JS Demo](http://developers.arcgis.com/javascript/samples/widget_directions_basic/)",
 			"headers": "",
 			"method": "GET",
 			"pathVariables": {},
@@ -369,7 +860,7 @@
 			"version": null,
 			"currentHelper": "normal",
 			"helperAttributes": "{}",
-			"folder": null,
+			"folder": "0cf04fcb-cec9-e651-55b1-776ba98d8970",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
@@ -408,14 +899,79 @@
 			],
 			"dataMode": "params",
 			"name": "Get static image (using print service)",
-			"description": "",
+			"description": "[Export webmap task](http://resources.arcgis.com/en/help/rest/apiref/gp_exportwebmaptask.html)",
 			"descriptionFormat": "html",
 			"time": 1437496573994,
 			"version": 2,
 			"responses": [],
 			"tests": "",
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"folder": "5338244d-bdfb-4dd6-2a38-897a7a090bb0"
+		},
+		{
+			"id": "fc15490d-36f0-4f39-af9b-ec6561b5bacf",
+			"headers": "",
+			"url": "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses?addresses={     \"records\": [         {             \"attributes\": {                 \"OBJECTID\": 1,                 \"Address\": \"Calle elena\",                 \"City\": \"Granada\"            }         },         {             \"attributes\": {                 \"OBJECTID\": 2,                 \"Address\": \"Emilio Muñoz 35\",                 \"City\": \"Madrid\",                 \"Region\": \"CA\",                 \"Postal\": \"28037\"             }         }     ] }&sourceCountry=ES&token={{token}}&f=pjson",
+			"pathVariables": {},
+			"preRequestScript": "var prScript",
+			"method": "GET",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "21600",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "geocodeAddresses",
+			"description": "[Full description of the service](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm)\n\n",
+			"descriptionFormat": "html",
+			"time": 1441727110862,
+			"version": 2,
+			"responses": [],
+			"tests": "var tests;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "490b98ef-24ca-34df-bbf1-b61948727f15"
 		}
 	]
 }
