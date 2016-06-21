@@ -1,0 +1,212 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ArcGIS Open Data",
+		"_postman_id": "788989ef-7f4b-034f-7cc4-03ca26361d36",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API v2",
+			"description": "More info at:\nhttp://akharris.github.io/ember-arc-swag/",
+			"item": [
+				{
+					"name": "Get catalog",
+					"request": {
+						"url": "http://opendata.arcgis.com/api/v2/datasets",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idClient",
+									"value": "{{idClient}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "passKey",
+									"value": "{{passKey}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "SelectDate",
+									"value": "15/06/2016",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Lines",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Query catalog",
+					"request": {
+						"url": "http://opendata.arcgis.com/api/v2/datasets?q=catastro&page[size]=5&page[number]=2",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idClient",
+									"value": "{{idClient}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "passKey",
+									"value": "{{passKey}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "SelectDate",
+									"value": "15/06/2016",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Lines",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get dataset",
+					"request": {
+						"url": "http://opendata.arcgis.com/api/v2/datasets/73dd224dd6c84b5587227ac1340e4bae_0",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idClient",
+									"value": "{{idClient}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "passKey",
+									"value": "{{passKey}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "SelectDate",
+									"value": "15/06/2016",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Lines",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get related dataset",
+					"request": {
+						"url": "http://opendata.arcgis.com/api/v2/datasets/73dd224dd6c84b5587227ac1340e4bae_0/related",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idClient",
+									"value": "{{idClient}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "passKey",
+									"value": "{{passKey}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "SelectDate",
+									"value": "15/06/2016",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Lines",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get catalog",
+			"request": {
+				"url": "http://{{domain}}/data.json",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "idClient",
+							"value": "{{idClient}}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "passKey",
+							"value": "{{passKey}}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SelectDate",
+							"value": "15/06/2016",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Lines",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
