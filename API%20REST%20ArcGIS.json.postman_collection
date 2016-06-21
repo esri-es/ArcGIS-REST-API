@@ -10,24 +10,18 @@
 			"id": "0cf04fcb-cec9-e651-55b1-776ba98d8970",
 			"name": "Directions and routing (3)",
 			"description": "",
-			"write": true,
 			"order": [
 				"c6109a03-35c7-afe1-2779-3c61828ae3e8",
 				"21d5f657-acb0-9765-dae8-a956832dd9ec",
 				"0552e930-5416-659b-21bc-02bc9e104ba0"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
 			"id": "490b98ef-24ca-34df-bbf1-b61948727f15",
 			"name": "Geocoding and place search (5)",
 			"description": "",
-			"write": true,
 			"order": [
 				"ae7914e8-9bb0-0b60-4e15-4e27543df5b6",
 				"2356efa2-4d54-7405-4d6c-ec5352f62ab8",
@@ -35,34 +29,24 @@
 				"0b9e3dc1-5220-1abd-41ce-a1df99ecd7f0",
 				"0149a19c-1962-e092-71b7-246ac0d5238a"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
 			"id": "2a9969ea-8a44-1e5b-1324-19d289801c1a",
 			"name": "Geoenrichment (2)",
 			"description": "",
-			"write": true,
 			"order": [
 				"128855e8-5ec9-c800-0a13-bd306d65d372",
 				"a7a2849d-1794-be14-2b14-2ee3436459de"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
 			"id": "d22311ba-b3bc-a7a8-2ba2-39bc42c9b840",
 			"name": "Geometry service (18)",
 			"description": "[Full documentation](http://tasks.arcgisonline.com/ArcGIS/SDK/REST/index.html?geometryserver.html)",
-			"write": true,
 			"order": [
 				"bb34b183-4bca-fda2-5c75-fe0dd105740a",
 				"5d909fdf-c58f-296d-d130-0e059db3b8c5",
@@ -83,74 +67,52 @@
 				"3e0939ca-21dd-0adc-dbd9-d03a9167dd8b",
 				"4f0ef005-95e5-486e-5c81-195be08d118f"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
 			"id": "209cdaa1-0026-b07a-3076-474171431064",
 			"name": "Hosted services",
 			"description": "",
-			"write": true,
 			"order": [
 				"60bd6324-8c15-0a4c-5b32-de51c5e49d21",
 				"8199c471-7235-c6d1-b339-cf3057ee1544",
 				"042652f6-ead8-0fa2-4438-a45d20ba1924",
 				"c09f698c-d726-f35d-3b26-11482d3635f5"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
-			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+			"owner": "73352"
 		},
 		{
 			"id": "4e34034d-8e9a-6314-31d3-35ecc11df74b",
 			"name": "Managing your organization",
 			"description": "[Full documentation](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Working_with_users_groups_and_items/02r3000000mt000000/)",
-			"write": true,
 			"order": [
 				"624fe8b8-6a1b-39a0-9ff1-af68fab007e1",
 				"82451c31-a6e5-5c27-70ac-8b42015b9d6a",
-				"1347f037-46ef-16c8-8d74-861c6ef2fce1"
+				"1347f037-46ef-16c8-8d74-861c6ef2fce1",
+				"096f9e69-c9b6-9bc8-d76e-d01f229619b6",
+				"db89f818-66b5-e407-0143-1b8677ed5d68"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
-			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a"
+			"owner": "73352"
 		},
 		{
 			"id": "5338244d-bdfb-4dd6-2a38-897a7a090bb0",
 			"name": "Print service (1)",
 			"description": "",
-			"write": true,
 			"order": [
 				"cc0a81a0-aae2-5cc5-e9a9-b6231552c758"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		},
 		{
 			"id": "9c36f186-968d-8108-cadb-2f99818d45ae",
 			"name": "Spatial analysis Tools (23)",
 			"description": "[Full documentation](https://developers.arcgis.com/rest/analysis/)",
-			"write": true,
 			"order": [
 				"dfdb406e-00da-0b66-ca10-3602f8734245"
 			],
-			"collection": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"owner": "73352",
-			"collection_name": "API REST ArcGIS",
-			"collection_owner": "73352",
-			"collection_id": "f5d92490-5983-5259-d0de-8a0b8c30829a",
 			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a"
 		}
 	],
@@ -325,6 +287,70 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"folder": "0cf04fcb-cec9-e651-55b1-776ba98d8970"
+		},
+		{
+			"id": "096f9e69-c9b6-9bc8-d76e-d01f229619b6",
+			"headers": "",
+			"url": "https://billing.arcgis.com/sms/rest/subscription?token={{token}}&f=json",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "21600",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Get Billing Info",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1448369636490,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "4e34034d-8e9a-6314-31d3-35ecc11df74b"
 		},
 		{
 			"id": "0b9e3dc1-5220-1abd-41ce-a1df99ecd7f0",
@@ -1410,6 +1436,70 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"folder": "d22311ba-b3bc-a7a8-2ba2-39bc42c9b840"
+		},
+		{
+			"id": "db89f818-66b5-e407-0143-1b8677ed5d68",
+			"headers": "",
+			"url": "https://www.arcgis.com/sharing/rest/portals/self?token={{token}}&f=json",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "f5d92490-5983-5259-d0de-8a0b8c30829a",
+			"data": [
+				{
+					"key": "f",
+					"value": "json",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "{{username}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{password}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "referer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ip",
+					"value": "{{referrerIp}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "referer",
+					"value": "arcgis.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "expiration",
+					"value": "21600",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Check available credits",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1448369696746,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "4e34034d-8e9a-6314-31d3-35ecc11df74b"
 		},
 		{
 			"id": "dfdb406e-00da-0b66-ca10-3602f8734245",
