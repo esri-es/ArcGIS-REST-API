@@ -1,10 +1,10 @@
 # ArcGIS-REST-API
-[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en) collection for [ArcGIS REST API ](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r300000054000000) 
+[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en) collection for [ArcGIS REST API ](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r300000054000000)
 
 **Requirements**: [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en)
 
 ## Auto import
-[![Importar colección a Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/a5209ab41b8cae254074)
+[![Importar colección a Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/95c6c93b690e1d095183)
 
 ## Import manually
 Short video (in spanish) explaining how to import manually this collection (and setup the environment variables):

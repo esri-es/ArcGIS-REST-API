@@ -1,0 +1,465 @@
+{
+	"id": "76431f4b-2edb-aad8-49e4-01f20615007b",
+	"owner": "2024358",
+	"name": "ArcGIS Open Data",
+	"description": "",
+	"order": [
+		"37145309-8152-302b-1aa5-937cb495f777"
+	],
+	"folders": [
+		{
+			"owner": "2024358",
+			"lastUpdatedBy": "2024358",
+			"lastRevision": 1739459965,
+			"folder": null,
+			"id": "0cc0e024-4535-cdff-16fb-aa76fc0bb458",
+			"name": "Datasets",
+			"description": "More info at:\nhttp://akharris.github.io/ember-arc-swag/",
+			"order": [
+				"5acdbf49-025a-1cca-0ea8-4e9fa828a994",
+				"7f0ed615-f356-733d-1cc4-aaa6d8aa5967",
+				"8267271b-0da7-8b85-6e22-2ae86a95b99c",
+				"d5e10ea9-2f7b-9ab2-67bd-410ff8db9ffb"
+			]
+		},
+		{
+			"owner": "2024358",
+			"lastUpdatedBy": "2024358",
+			"lastRevision": 1739469790,
+			"folder": null,
+			"id": "b487bd7d-0896-b5ca-e41a-fe2d45373541",
+			"name": "Groups",
+			"description": "",
+			"order": [
+				"014cd7db-bac0-6466-2297-58a2aa3e7048"
+			]
+		},
+		{
+			"owner": "2024358",
+			"lastUpdatedBy": "2024358",
+			"lastRevision": 1739540997,
+			"folder": null,
+			"id": "a7421d0a-6bed-5738-c0f9-9672f2d81240",
+			"name": "Items",
+			"description": "",
+			"order": [
+				"c407caa6-5c47-b428-319c-bcd477722b79"
+			]
+		},
+		{
+			"owner": "2024358",
+			"lastUpdatedBy": "2024358",
+			"lastRevision": 1739509684,
+			"folder": null,
+			"id": "eb93c783-21c3-0b03-5645-75862fb70726",
+			"name": "Organizations",
+			"description": "",
+			"order": [
+				"847e55a2-d60e-77ee-b793-09453e0724a5"
+			]
+		},
+		{
+			"owner": "2024358",
+			"lastUpdatedBy": "2024358",
+			"lastRevision": 1739540773,
+			"folder": null,
+			"id": "41b808ac-8762-7237-5d75-a48b18fd97fd",
+			"name": "Pages",
+			"description": "",
+			"order": [
+				"f4060018-7d14-2b04-30e7-a1550811df3c"
+			]
+		},
+		{
+			"owner": "2024358",
+			"lastUpdatedBy": "2024358",
+			"lastRevision": 1739541000,
+			"folder": null,
+			"id": "3c55c3ed-72bf-729d-cc92-b160c4dd6204",
+			"name": "Sites",
+			"description": "",
+			"order": [
+				"aa3c6aa3-264e-1320-6dac-d6e0bf904906"
+			]
+		}
+	],
+	"timestamp": 0,
+	"public": false,
+	"lastUpdatedBy": "2024358",
+	"lastRevision": 1739655731,
+	"team": null,
+	"requests": [
+		{
+			"folder": "b487bd7d-0896-b5ca-e41a-fe2d45373541",
+			"id": "014cd7db-bac0-6466-2297-58a2aa3e7048",
+			"name": "Get Groups",
+			"dataMode": "params",
+			"data": null,
+			"rawModeData": null,
+			"descriptionFormat": "html",
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/groups",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"folder": null,
+			"id": "37145309-8152-302b-1aa5-937cb495f777",
+			"name": "Get catalog",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "idClient",
+					"value": "{{idClient}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "passKey",
+					"value": "{{passKey}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "SelectDate",
+					"value": "15/06/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Lines",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"rawModeData": "",
+			"descriptionFormat": null,
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": null,
+			"url": "http://{{domain}}/data.json",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": null,
+			"headerData": null,
+			"pathVariableData": null,
+			"responses": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"id": "5acdbf49-025a-1cca-0ea8-4e9fa828a994",
+			"folder": "0cc0e024-4535-cdff-16fb-aa76fc0bb458",
+			"name": "Get catalog",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "idClient",
+					"value": "{{idClient}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "passKey",
+					"value": "{{passKey}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "SelectDate",
+					"value": "15/06/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Lines",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"rawModeData": "",
+			"descriptionFormat": null,
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/datasets",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": "{}",
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"id": "7f0ed615-f356-733d-1cc4-aaa6d8aa5967",
+			"folder": "0cc0e024-4535-cdff-16fb-aa76fc0bb458",
+			"name": "Query catalog",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "idClient",
+					"value": "{{idClient}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "passKey",
+					"value": "{{passKey}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "SelectDate",
+					"value": "15/06/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Lines",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"rawModeData": "",
+			"descriptionFormat": null,
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/datasets?q=catastro&page%5Bsize%5D=5&page%5Bnumber%5D=2",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": "{}",
+			"queryParams": [
+				{
+					"key": "q",
+					"value": "catastro",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page%5Bsize%5D",
+					"value": "5",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page%5Bnumber%5D",
+					"value": "2",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"headerData": [],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"id": "8267271b-0da7-8b85-6e22-2ae86a95b99c",
+			"folder": "0cc0e024-4535-cdff-16fb-aa76fc0bb458",
+			"name": "Get dataset",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "idClient",
+					"value": "{{idClient}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "passKey",
+					"value": "{{passKey}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "SelectDate",
+					"value": "15/06/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Lines",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"rawModeData": "",
+			"descriptionFormat": null,
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/datasets/73dd224dd6c84b5587227ac1340e4bae_0",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": "{}",
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"folder": "eb93c783-21c3-0b03-5645-75862fb70726",
+			"id": "847e55a2-d60e-77ee-b793-09453e0724a5",
+			"name": "Get Organizations",
+			"dataMode": "params",
+			"data": null,
+			"rawModeData": null,
+			"descriptionFormat": "html",
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/organizations",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"folder": "3c55c3ed-72bf-729d-cc92-b160c4dd6204",
+			"id": "aa3c6aa3-264e-1320-6dac-d6e0bf904906",
+			"name": "Get Sites",
+			"dataMode": "params",
+			"data": null,
+			"rawModeData": null,
+			"descriptionFormat": "html",
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/sites",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"folder": "a7421d0a-6bed-5738-c0f9-9672f2d81240",
+			"id": "c407caa6-5c47-b428-319c-bcd477722b79",
+			"name": "Get Items",
+			"dataMode": "params",
+			"data": null,
+			"rawModeData": null,
+			"descriptionFormat": "html",
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/items",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"id": "d5e10ea9-2f7b-9ab2-67bd-410ff8db9ffb",
+			"folder": "0cc0e024-4535-cdff-16fb-aa76fc0bb458",
+			"name": "Get related dataset",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "idClient",
+					"value": "{{idClient}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "passKey",
+					"value": "{{passKey}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "SelectDate",
+					"value": "15/06/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Lines",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"rawModeData": "",
+			"descriptionFormat": null,
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/datasets/73dd224dd6c84b5587227ac1340e4bae_0/related",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": "{}",
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		},
+		{
+			"folder": "41b808ac-8762-7237-5d75-a48b18fd97fd",
+			"id": "f4060018-7d14-2b04-30e7-a1550811df3c",
+			"name": "Get Pages",
+			"dataMode": "params",
+			"data": null,
+			"rawModeData": null,
+			"descriptionFormat": "html",
+			"description": "",
+			"headers": "",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "https://opendatadev.arcgis.com/api/v2/pages",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"queryParams": [],
+			"headerData": [],
+			"pathVariableData": [],
+			"collectionId": "76431f4b-2edb-aad8-49e4-01f20615007b"
+		}
+	]
+}
