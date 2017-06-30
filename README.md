@@ -4,7 +4,7 @@
 **Requirements**: [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en)
 
 ## Auto import
-[![Importar colección a Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/95c6c93b690e1d095183)
+[![Importar colección a Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/71c5932a2faa6cacf1fb)
 
 ## Import manually
 Short video (in spanish) explaining how to import manually this collection (and setup the environment variables):
