@@ -15,3 +15,8 @@ Short video (in spanish) explaining how to import manually this collection (and 
 Tech talk (in spanish) for the [geodevelopers.org](geodevelopers.org) community
 
 [<img src="https://i.ytimg.com/vi/ov9orEizbhQ/hqdefault.jpg">](https://www.youtube.com/watch?v=ov9orEizbhQ)
+
+And another workshop (also in Spanish)
+
+[<img src="https://i.ytimg.com/vi/mcimx6Y6h-Y/hqdefault.jpg">](https://www.youtube.com/watch?v=mcimx6Y6h-Y)
+
