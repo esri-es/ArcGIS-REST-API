@@ -1,7 +1,7 @@
 # ArcGIS-REST-API
-[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en) collection for [ArcGIS REST API ](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r300000054000000)
+[Postman](https://www.getpostman.com/apps) collection for [ArcGIS REST API](https://developers.arcgis.com/rest/)
 
-**Requirements**: [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en)
+**Requirements**: [Postman](https://www.getpostman.com/apps)
 
 ## Auto import
 [![Importar colección a Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/a5209ab41b8cae254074)
