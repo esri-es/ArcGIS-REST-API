@@ -912,11 +912,6 @@
 									"type": "text"
 								},
 								{
-									"key": "categorforStoragey",
-									"value": "true",
-									"type": "text"
-								},
-								{
 									"key": "outFields",
 									"value": "*",
 									"type": "text"
@@ -929,6 +924,12 @@
 								{
 									"key": "token",
 									"value": "{{token}}",
+									"type": "text"
+								},
+								{
+									"key": "forStorage",
+									"value": "false",
+									"description": "",
 									"type": "text"
 								}
 							]
