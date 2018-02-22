@@ -12,6 +12,37 @@
 			"item": [
 				{
 					"name": "Query Layer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -35,123 +66,153 @@
 							"query": [
 								{
 									"key": "where",
-									"value": "1%3D1"
+									"value": "1%3D1",
+									"equals": true
 								},
 								{
 									"key": "objectIds",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "time",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "geometry",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "geometryType",
-									"value": "esriGeometryEnvelope"
+									"value": "esriGeometryEnvelope",
+									"equals": true
 								},
 								{
 									"key": "inSR",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "spatialRel",
-									"value": "esriSpatialRelIntersects"
+									"value": "esriSpatialRelIntersects",
+									"equals": true
 								},
 								{
 									"key": "distance",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "units",
-									"value": "esriSRUnit_Foot"
+									"value": "esriSRUnit_Foot",
+									"equals": true
 								},
 								{
 									"key": "relationParam",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "outFields",
-									"value": "*"
+									"value": "*",
+									"equals": true
 								},
 								{
 									"key": "returnGeometry",
-									"value": "true"
+									"value": "true",
+									"equals": true
 								},
 								{
 									"key": "maxAllowableOffset",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "geometryPrecision",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "outSR",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "gdbVersion",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "returnDistinctValues",
-									"value": "false"
+									"value": "false",
+									"equals": true
 								},
 								{
 									"key": "returnIdsOnly",
-									"value": "false"
+									"value": "false",
+									"equals": true
 								},
 								{
 									"key": "returnCountOnly",
-									"value": "false"
+									"value": "false",
+									"equals": true
 								},
 								{
 									"key": "returnExtentOnly",
-									"value": "false"
+									"value": "false",
+									"equals": true
 								},
 								{
 									"key": "orderByFields",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "groupByFieldsForStatistics",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "outStatistics",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "returnZ",
-									"value": "false"
+									"value": "false",
+									"equals": true
 								},
 								{
 									"key": "returnM",
-									"value": "false"
+									"value": "false",
+									"equals": true
 								},
 								{
 									"key": "multipatchOption",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "resultOffset",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "resultRecordCount",
-									"value": ""
+									"value": "",
+									"equals": true
 								},
 								{
 									"key": "f",
-									"value": "pjson"
+									"value": "pjson",
+									"equals": true
 								},
 								{
 									"key": "token",
-									"value": "{{portalToken}}"
+									"value": "{{portalToken}}",
+									"equals": true
 								}
 							]
 						},
@@ -179,6 +240,35 @@
 									"postman.setEnvironmentVariable(\"item_id\", jsonData.id);",
 									"",
 									"postman.setNextRequest(\"Share item\");"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
 								]
 							}
 						}
@@ -321,6 +411,35 @@
 									"postman.setNextRequest(\"Update item\");"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
 						}
 					],
 					"request": {
@@ -391,6 +510,35 @@
 								"type": "text/javascript",
 								"exec": [
 									"postman.setNextRequest(null);"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
 								]
 							}
 						}
@@ -584,6 +732,37 @@
 			"item": [
 				{
 					"name": "Route service",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -669,6 +848,37 @@
 				},
 				{
 					"name": "Service Area service",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -754,6 +964,37 @@
 				},
 				{
 					"name": "Closest Facility",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1013,6 +1254,37 @@
 				},
 				{
 					"name": "geocodeAddresses",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1101,6 +1373,37 @@
 				},
 				{
 					"name": "reverseGeocode",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1283,6 +1586,37 @@
 			"item": [
 				{
 					"name": "Geoenrich XY location",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -1431,6 +1765,37 @@
 				},
 				{
 					"name": "Geoenrich Address location",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2793,6 +3158,35 @@
 									"postman.setEnvironmentVariable(\"subdomain\", subdomain);"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
 						}
 					],
 					"request": {
@@ -2846,6 +3240,37 @@
 				},
 				{
 					"name": "Add layer to a feature service",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2892,6 +3317,37 @@
 				},
 				{
 					"name": "Add features to a feature service",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2940,6 +3396,37 @@
 				},
 				{
 					"name": "Update Definition",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3008,6 +3495,35 @@
 									"    tests[\"It is a registered app\"] = \"It is a registered app\";",
 									"}",
 									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
 								]
 							}
 						}
@@ -3084,6 +3600,35 @@
 									"postman.setEnvironmentVariable(\"client_secret\", jsonData.client_secret);",
 									"",
 									"postman.setNextRequest(\"Get Token (OAuth)\");"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
 								]
 							}
 						}
@@ -3241,13 +3786,14 @@
 								"exec": [
 									"var cid = pm.environment.get(\"client_id\");",
 									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
 									"",
 									"const echoPostRequest = {",
-									"  url: 'https://www.arcgis.com/sharing/rest/oauth2/token',",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
 									"  method: 'POST',",
 									"  body: {",
 									"      mode: \"urlencoded\",",
-									"      urlencoded: \"client_id=\" + cid + \"&client_secret=\" + cs + \"&grant_type=client_credentials&f=json\"",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
 									"  }",
 									"};",
 									"",
@@ -3256,6 +3802,7 @@
 									"    if (res.error) { console.log(res.error.error_description); }",
 									"    if(res.access_token) {",
 									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
 									"    }",
 									"});"
 								]
@@ -3351,6 +3898,35 @@
 									"postman.setEnvironmentVariable(\"item_id\", jsonData.id);",
 									"",
 									"postman.setNextRequest(\"Share item\");"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
 								]
 							}
 						}
@@ -3461,6 +4037,37 @@
 				},
 				{
 					"name": "Add a comment to an item",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3508,6 +4115,37 @@
 				},
 				{
 					"name": "Delete item",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3660,6 +4298,37 @@
 			"item": [
 				{
 					"name": "Calculate Density",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var cid = pm.environment.get(\"client_id\");",
+									"var cs = pm.environment.get(\"client_secret\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.access_token) {",
+									"        pm.environment.set(\"token\", res.access_token);",
+									"         console.log(\"New token: \", res.access_token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -3684,39 +4353,48 @@
 							"query": [
 								{
 									"key": "f",
-									"value": "json"
+									"value": "json",
+									"equals": true
 								},
 								{
 									"key": "inputLayer",
-									"value": "%7B%22url%22%3A%22http%3A%2F%2Fservices.arcgis.com%2FQ6ZFRRvMTlsTTFuP%2Farcgis%2Frest%2Fservices%2FNerja_Food%2FFeatureServer%2F0%22%7D"
+									"value": "%7B%22url%22%3A%22http%3A%2F%2Fservices.arcgis.com%2FQ6ZFRRvMTlsTTFuP%2Farcgis%2Frest%2Fservices%2FNerja_Food%2FFeatureServer%2F0%22%7D",
+									"equals": true
 								},
 								{
 									"key": "areaUnits",
-									"value": "SquareKilometers"
+									"value": "SquareKilometers",
+									"equals": true
 								},
 								{
 									"key": "classificationType",
-									"value": "EqualInterval"
+									"value": "EqualInterval",
+									"equals": true
 								},
 								{
 									"key": "numClasses",
-									"value": "10"
+									"value": "10",
+									"equals": true
 								},
 								{
 									"key": "OutputName",
-									"value": "%7B%22serviceProperties%22%3A%7B%22name%22%3A%22Densidad%20de%20Nerja%20Food%22%2C%22serviceUrl%22%3A%22http%3A%2F%2Fservices.arcgis.com%2FQ6ZFRRvMTlsTTFuP%2Farcgis%2Frest%2Fservices%2FDensidad%20de%20Nerja%20Food%2FFeatureServer%22%7D%2C%22itemProperties%22%3A%7B%22itemId%22%3A%22b325b865d9b24cbfafff6ce30049f1e4%22%7D%7D"
+									"value": "%7B%22serviceProperties%22%3A%7B%22name%22%3A%22Densidad%20de%20Nerja%20Food%22%2C%22serviceUrl%22%3A%22http%3A%2F%2Fservices.arcgis.com%2FQ6ZFRRvMTlsTTFuP%2Farcgis%2Frest%2Fservices%2FDensidad%20de%20Nerja%20Food%2FFeatureServer%22%7D%2C%22itemProperties%22%3A%7B%22itemId%22%3A%22b325b865d9b24cbfafff6ce30049f1e4%22%7D%7D",
+									"equals": true
 								},
 								{
 									"key": "context",
-									"value": "%7B%22extent%22%3A%7B%22type%22%3A%22extent%22%2C%22xmin%22%3A-3328453.7107606614%2C%22ymin%22%3A3061018.7587652337%2C%22xmax%22%3A1788546.710760817%2C%22ymax%22%3A5575491.241233723%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%7D%7D%7D"
+									"value": "%7B%22extent%22%3A%7B%22type%22%3A%22extent%22%2C%22xmin%22%3A-3328453.7107606614%2C%22ymin%22%3A3061018.7587652337%2C%22xmax%22%3A1788546.710760817%2C%22ymax%22%3A5575491.241233723%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%7D%7D%7D",
+									"equals": true
 								},
 								{
 									"key": "returnFeatureCollection",
-									"value": "false"
+									"value": "false",
+									"equals": true
 								},
 								{
 									"key": "token",
-									"value": "{{token}}"
+									"value": "{{token}}",
+									"equals": true
 								}
 							]
 						},
