@@ -4526,7 +4526,7 @@
 									"",
 									"",
 									"pm.test(\"esriJobSucceeded\", function () {",
-									"    pm.expect(jsonData.jobId).to.eql(\"esriJobSucceeded\");",
+									"    pm.expect(jsonData.jobStatus).to.eql(\"esriJobSucceeded\");",
 									"});"
 								]
 							}
