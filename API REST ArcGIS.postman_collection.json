@@ -4602,6 +4602,242 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Setup Map Area",
+			"description": "",
+			"item": [
+				{
+					"name": "Setup Map Area",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"jobId is present\"] = responseBody.has(\"jobId\");",
+									"",
+									"postman.setEnvironmentVariable(\"jobId\", jsonData.jobId);"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var username = pm.environment.get(\"username\");",
+									"var password = pm.environment.get(\"password\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/generateToken`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `username=${username}&password=${password}&referer=arcgis.com&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    console.log(\"res=\",res)",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.token) {",
+									"        pm.environment.set(\"token\", res.token);",
+									"         console.log(\"New token: \", res.token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "mapAreaItemId",
+									"value": "5a613dd6bcd44d239a66be346ba7b75b",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "f",
+									"value": "json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://packaging.arcgis.com/arcgis/rest/services/OfflinePackaging/GPServer/SetupMapArea/submitJob",
+							"protocol": "https",
+							"host": [
+								"packaging",
+								"arcgis",
+								"com"
+							],
+							"path": [
+								"arcgis",
+								"rest",
+								"services",
+								"OfflinePackaging",
+								"GPServer",
+								"SetupMapArea",
+								"submitJob"
+							]
+						},
+						"description": "[Documentation](https://developers.arcgis.com/rest/packaging/api-reference/setup-map-area.htm)"
+					},
+					"response": []
+				},
+				{
+					"name": "Checking Setup Map Area Job Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"tests[\"jobId is present\"] = responseBody.has(\"jobId\");",
+									"",
+									"",
+									"pm.test(\"esriJobSucceeded\", function () {",
+									"    pm.expect(jsonData.jobStatus).to.eql(\"esriJobSucceeded\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var username = pm.environment.get(\"username\");",
+									"var password = pm.environment.get(\"password\");",
+									"var root_url = pm.environment.get(\"root_url\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${root_url}/sharing/rest/generateToken`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `username=${username}&password=${password}&referer=arcgis.com&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    console.log(\"res=\",res)",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.token) {",
+									"        pm.environment.set(\"token\", res.token);",
+									"         console.log(\"New token: \", res.token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://packaging.arcgis.com/arcgis/rest/services/OfflinePackaging/GPServer/SetupMapArea/jobs/{{jobId}}?f=json&token={{token}}",
+							"protocol": "https",
+							"host": [
+								"packaging",
+								"arcgis",
+								"com"
+							],
+							"path": [
+								"arcgis",
+								"rest",
+								"services",
+								"OfflinePackaging",
+								"GPServer",
+								"SetupMapArea",
+								"jobs",
+								"{{jobId}}"
+							],
+							"query": [
+								{
+									"key": "f",
+									"value": "json",
+									"equals": true
+								},
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"equals": true
+								}
+							]
+						},
+						"description": "[Checking job status](https://developers.arcgis.com/rest/analysis/api-reference/checking-job-status.htm)"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve results from Setup Map Area",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://packaging.arcgis.com/arcgis/rest/services/OfflinePackaging/GPServer/SetupMapArea/jobs/{{jobId}}/results/packages?token={{token}}&f=json",
+							"protocol": "https",
+							"host": [
+								"packaging",
+								"arcgis",
+								"com"
+							],
+							"path": [
+								"arcgis",
+								"rest",
+								"services",
+								"OfflinePackaging",
+								"GPServer",
+								"SetupMapArea",
+								"jobs",
+								"{{jobId}}",
+								"results",
+								"packages"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"equals": true
+								},
+								{
+									"key": "f",
+									"value": "json",
+									"equals": true
+								}
+							]
+						},
+						"description": "[Documentation](https://developers.arcgis.com/rest/packaging/api-reference/setup-map-area.htm#ESRI_SECTION2_F015B666B73C41F4AF11EB3A4133D5A6)"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
