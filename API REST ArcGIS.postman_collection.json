@@ -4230,6 +4230,111 @@
 						"description": "\nhttps://{{root_url}}/sharing/rest/content/items/<item-id>?f=json"
 					},
 					"response": []
+				},
+				{
+					"name": "Invite an user to an Organization",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var username = pm.environment.get(\"username\");",
+									"var password = pm.environment.get(\"password\");",
+									"var urlKey = pm.environment.get(\"urlKey\");",
+									"",
+									"const echoPostRequest = {",
+									"  url:  `https://${urlKey}.maps.arcgis.com/sharing/rest/generateToken`,",
+									"  method: 'POST',",
+									"  body: {",
+									"      mode: \"urlencoded\",",
+									"      urlencoded: `username=${username}&password=${password}&referer=arcgis.com&f=json`",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var res = response.json();",
+									"    console.log(\"res=\",res)",
+									"    if (res.error) { console.log(res.error.error_description); }",
+									"    if(res.token) {",
+									"        pm.environment.set(\"token\", res.token);",
+									"         console.log(\"New token: \", res.token);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "origin",
+								"value": "https://{{urlKey}}.maps.arcgis.com"
+							},
+							{
+								"key": "content-type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "referer",
+								"value": "https://{{urlKey}}.maps.arcgis.com/home/inviteusers.html"
+							},
+							{
+								"key": "authority",
+								"value": "{{urlKey}}.maps.arcgis.com"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "subject",
+									"value": "Invitation to join an ArcGIS Online organization",
+									"type": "text"
+								},
+								{
+									"key": "html",
+									"value": "<html><body><p>XXXX has invited you to join an ArcGIS Online Organization, Map GeoGeeks from Spain.</p>\n\n<p>Please click this link to finish setting up your account and establish your password: <a href=\"https://www.arcgis.com/home/newuser.html?invitation=@@invitation.id@@\">https://www.arcgis.com/home/newuser.html?invitation=@@invitation.id@@</a></p>\n\n<p>Note that your account has already been created for you with the username, <strong>@@touser.username@@</strong>.  </p>\n\n<p>If you have difficulty signing in, please contact Raúl Jiménez (raul.jimenez@esri.es). Be sure to include a description of the problem, the error message, and a screenshot.</p>\n\n<p>For your reference, you can access the home page of the organization here: <br>https://geogeeks.maps.arcgis.com/home/</p>\n\n<p>This link will expire in two weeks.</p>\n\n<p style=\"color:gray;\">This is an automated email. Please do not reply.</p>\n\n</body></html>",
+									"type": "text"
+								},
+								{
+									"key": "invitationList",
+									"value": "{\"invitations\":[{\"username\":\"USERNAME\",\"password\":\"PASSWORD\",\"firstname\":\"FNAME\",\"lastname\":\"LNAME\",\"fullname\":\"FNAME RJO\",\"email\":\"EMAIL\",\"role\":\"account_user\",\"level\":\"2\",\"userType\":\"arcgisonly\"}]}",
+									"type": "text"
+								},
+								{
+									"key": "f",
+									"value": "json",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{urlKey}}.maps.arcgis.com/sharing/rest/portals/self/invite",
+							"protocol": "https",
+							"host": [
+								"{{urlKey}}",
+								"maps",
+								"arcgis",
+								"com"
+							],
+							"path": [
+								"sharing",
+								"rest",
+								"portals",
+								"self",
+								"invite"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
