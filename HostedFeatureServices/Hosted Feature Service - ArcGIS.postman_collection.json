@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "57e41610-d56a-43df-a1b3-1b89df42fc2e",
-		"name": "Feature Service - ArcGIS REST API",
+		"_postman_id": "b25537a4-49dd-47b8-bfb6-9d27b6e332e3",
+		"name": "Hosted Feature Service - ArcGIS",
 		"description": "A feature service can contain datasets (for example, tables and views) with or without a spatial column. Datasets with a spatial column are considered layers; those without a spatial column are considered tables. A feature service allows clients to query and edit feature geometry and attributes.\n\n[More info](https://developers.arcgis.com/rest/services-reference/get-started-with-the-services-directory.htm)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,48 +9,6 @@
 		{
 			"name": "Pending to review",
 			"item": [
-				{
-					"name": "Check if feature service exist",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{host}}/{{portalPath}}/sharing/rest/portals/{{account_id}}/isServiceNameAvailable?name={{feature_service_name}}&f=json&token={{token}}&type=Feature Service",
-							"protocol": "https",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"{{portalPath}}",
-								"sharing",
-								"rest",
-								"portals",
-								"{{account_id}}",
-								"isServiceNameAvailable"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "{{feature_service_name}}"
-								},
-								{
-									"key": "f",
-									"value": "json"
-								},
-								{
-									"key": "token",
-									"value": "{{token}}"
-								},
-								{
-									"key": "type",
-									"value": "Feature Service"
-								}
-							]
-						},
-						"description": "[Full description of the service:](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r300000076000000)"
-					},
-					"response": []
-				},
 				{
 					"name": "Add features to a feature service",
 					"event": [
@@ -464,7 +422,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "<catalog-url>/<serviceName>/FeatureServer",
@@ -618,8 +577,10 @@
 							"}",
 							"",
 							"var host = extractSubdomain(jsonData.encodedServiceURL);",
+							"postman.setEnvironmentVariable(\"host\", host);",
 							"",
-							"postman.setEnvironmentVariable(\"host\", host);"
+							"var instance = jsonData.encodedServiceURL.split(\"/\")[3];",
+							"postman.setEnvironmentVariable(\"instance\", instance);"
 						],
 						"type": "text/javascript"
 					}
@@ -674,6 +635,102 @@
 			"response": []
 		},
 		{
+			"name": "<root-url>/portals/<instance>/isServiceNameAvailable",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "77b61f4e-1e88-4c9b-8c55-2721771423f3",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/portals/{{instance}}/isServiceNameAvailable?name={{serviceName}}&f=json&token={{token}}&type=Feature Service",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{portalHost}}"
+					],
+					"port": "{{portalPort}}",
+					"path": [
+						"sharing",
+						"rest",
+						"portals",
+						"{{instance}}",
+						"isServiceNameAvailable"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{serviceName}}"
+						},
+						{
+							"key": "f",
+							"value": "json"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "type",
+							"value": "Feature Service"
+						}
+					]
+				},
+				"description": "Checks whether a given service name and type are available for publishing a new service. true indicates that the name and type is not found in the organization's services and is available for publishing. false means the requested name and type are not available. [Read full documentation](https://developers.arcgis.com/rest/users-groups-and-items/check-service-name.htm)"
+			},
+			"response": []
+		},
+		{
 			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/addToDefinition",
 			"request": {
 				"method": "POST",
@@ -717,13 +774,14 @@
 					]
 				},
 				"url": {
-					"raw": "{{protocol}}://{{host}}/{{instance}}/rest/admin/services/{{serviceName}}/FeatureServer/addToDefinition",
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/admin/services/{{serviceName}}/FeatureServer/addToDefinition",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"{{instance}}",
+						"arcgis",
 						"rest",
 						"admin",
 						"services",
@@ -750,7 +808,7 @@
 						},
 						{
 							"key": "deleteFromDefinition",
-							"value": "{\r\n  \"layers\" : [\r\n    {\r\n      \"id\" : \"0\"\r\n    }\r\n  ]\r\n}"
+							"value": "{\n  \"layers\" : [\n    {\n      \"id\" : \"2\"\n    }\n  ]\n}"
 						},
 						{
 							"key": "f",
@@ -763,13 +821,14 @@
 					]
 				},
 				"url": {
-					"raw": "{{protocol}}://{{host}}/{{instance}}/rest/admin/services/{{serviceName}}/FeatureServer/deleteFromDefinition",
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/admin/services/{{serviceName}}/FeatureServer/deleteFromDefinition",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"{{instance}}",
+						"arcgis",
 						"rest",
 						"admin",
 						"services",
@@ -781,6 +840,83 @@
 				"description": "This operation supports deleting a definition property from a hosted feature service. The result of this operation is a response indicating success or failure with error code and description. [Read full documentation](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-service-.htm)"
 			},
 			"response": []
+		},
+		{
+			"name": "https://awesome-arcgis.maps.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Origin",
+						"value": "https://awesome-arcgis.maps.arcgis.com"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account",
+							"value": "true"
+						},
+						{
+							"key": "everyone",
+							"value": "true"
+						},
+						{
+							"key": "f",
+							"value": "json"
+						},
+						{
+							"key": "groups",
+							"value": ""
+						},
+						{
+							"key": "items",
+							"value": "068bc8d114154820be0112e77a9ec6ef"
+						},
+						{
+							"key": "token",
+							"value": "iR079hL0eDuM8lxxCMbrCQgRN9RyP1QadIgOLA6rjiF46BCYKM97_l0-UO_bnRyIc1Wzcj7N04_n5Gj2RDHeKFaJQ70tnz6wcpd1y9LWVAOFH0yER4wt8JGqIbewXeuS0HM-qJOblnd4Bc5fhYEUWdRvKbWVHH0eDAGbqSYWrOQGNt9rWilsKb6_P4JAuv0qt6jQqR0RpvN36sWyrrpDDh5FVttI2gt3t_3k2muxlLk."
+						}
+					]
+				},
+				"url": {
+					"raw": "https://awesome-arcgis.maps.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems",
+					"protocol": "https",
+					"host": [
+						"awesome-arcgis",
+						"maps",
+						"arcgis",
+						"com"
+					],
+					"path": [
+						"sharing",
+						"rest",
+						"content",
+						"users",
+						"awesome_arcgis",
+						"shareItems"
+					]
+				}
+			},
+			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
