@@ -17,7 +17,7 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
 - [Getting started](#getting-started)
 - [Available SDKs](#available-sdks)
 - [Previous concepts](#previous-concepts)
-  - [ArcGIS Online items (geoinformation model)](#arcgis-online-items-geoinformation-model)
+  - [ArcGIS Online items (ArcGIS geoinformation model)](#arcgis-online-items-arcgis-geoinformation-model)
   - [ArcGIS Online Architecture](#arcgis-online-architecture)
 - [Working with Databases (Feature Services)](#working-with-databases-feature-services)
   - [How to check if a database exists](#how-to-check-if-a-database-exists)
