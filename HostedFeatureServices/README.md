@@ -84,23 +84,27 @@ Here we are going to show you how to work directly with the REST API, but if you
 
 ## Previous concepts
 
-When working with hosted feature services is better to be familiar withe the ArcGIS [geoinformation model](https://doc.arcgis.com/en/arcgis-online/reference/geo-info.htm) and the [ArcGIS Online Architecture]((https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)) in order to better understand why the endpoints are designed the way they ware.
+When working with hosted feature services is better to be familiar with the ArcGIS [geoinformation model](https://doc.arcgis.com/en/arcgis-online/reference/geo-info.htm) and the [ArcGIS Online Architecture](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405) in order to better understand why the endpoints are designed the way they are.
 
-### ArcGIS Online items (geoinformation model)
+### ArcGIS Online items (ArcGIS geoinformation model)
 
 > **Note**: items ArcGIS Enterprise works the same way
 
-An `Item` is the central unit of the geoinformation model.
+An `Item` is the core unit of the geoinformation model. To better understand the concept of an `Item`, it is necessary to bear in mind that ArcGIS Online is designed from its base to be used for organizations with multiple users (not just developers), and so that any user of an organization (especially those without programming skills) can create, share, find and manage with other users all kinds of geolocalized information::
 
-To better understand the concept of an `Item`, it is necessary to bear in mind that ArcGIS Online is designed from its base for organizations with multiple users, and so that any user of an organization (especially those without programming knowledge) can share, find and manage all kinds of geolocalized information with other users: from databases, through static files (PDFs, CSV, ZIPs, ...), ArcGIS map specifications like [Web Maps](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) and [Web Scenes](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) and configuration files for apps, etc.
+* Data through: databases and static files (CSV, GeoJSON, Excels, ...)
+* Static files: PDFs, ZIPs, etc
+* Astonishing 2D and 3D maps (possible thank to ths ArcGIS map specifications like [Web Maps](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) and [Web Scenes](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/))
+* Configuration files for apps
+* And much more
 
 Bearing this in mind, when we create a free developer account we are assigned an organizational account that can only have a single user, so there are some capabilities such as sharing an item with a group that will not be very useful, as there are no more users in our organization.
 
 > The only exception is that we want to group several public items in a public group for reasons of organization and visibility of the items.
 
-So an `Item` is just a JSON plain object stored in ArcGIS Online  which contains information about the hosted resource (database, static file, etc) but also permissions and other properties.
+So an `Item` is just a JSON plain object stored in ArcGIS Online which contains information about the resource (database, static file, etc) but also permissions and other properties.
 
-To simplify the concept, imagine each user in ArcGIS Online has a item table associated with it, something like this:
+As a first approach, imagine each user in ArcGIS Online has a item table associated with it, something like this:
 
 [![Item table](https://user-images.githubusercontent.com/826965/65668230-a0fde280-e041-11e9-8d8b-8347483291be.png)](https://user-images.githubusercontent.com/826965/65668230-a0fde280-e041-11e9-8d8b-8347483291be.png)
 
