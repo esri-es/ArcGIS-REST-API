@@ -12,7 +12,7 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+## Table of contents
 
 - [Getting started](#getting-started)
 - [Available SDKs](#available-sdks)
@@ -23,7 +23,7 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
   - [Shortcuts](#shortcuts)
   - [Quick reference](#quick-reference)
 - [Working with Databases (Feature Services)](#working-with-databases-feature-services)
-  - [How to check if a database exists](#how-to-check-if-a-database-exists)
+  - [How to check if a database exists (back to: TOC | Quick reference)](#how-to-check-if-a-database-exists-back-to-toc--quick-reference)
   - [How to create an empty database](#how-to-create-an-empty-database)
   - [How to get database info](#how-to-get-database-info)
   - [How to change database info](#how-to-change-database-info)
@@ -208,7 +208,7 @@ ArcGIS online is **much more** than hosted feature services, that's we we encour
 
 ## Working with Databases (Feature Services)
 
-### How to check if a database exists
+### How to check if a database exists (back to: TOC | [Quick reference](#quick-reference))
 
 > **Postman request name**: [\<root-url\>/portals/\<instance\>/isServiceNameAvailable](https://developers.arcgis.com/rest/users-groups-and-items/check-service-name.htm)<br>
 > **Example**:
