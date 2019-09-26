@@ -7,422 +7,8 @@
 	},
 	"item": [
 		{
-			"name": "Pending to review",
-			"item": [
-				{
-					"name": "Add features to a feature service",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var cid = pm.environment.get(\"client_id\");",
-									"var cs = pm.environment.get(\"client_secret\");",
-									"var root_url = pm.environment.get(\"root_url\");",
-									"",
-									"const echoPostRequest = {",
-									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
-									"  method: 'POST',",
-									"  body: {",
-									"      mode: \"urlencoded\",",
-									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
-									"  }",
-									"};",
-									"",
-									"pm.sendRequest(echoPostRequest, function (err, response) {",
-									"    var res = response.json();",
-									"    if (res.error) { console.log(res.error.error_description); }",
-									"    if(res.access_token) {",
-									"        pm.environment.set(\"token\", res.access_token);",
-									"         console.log(\"New token: \", res.access_token);",
-									"    }",
-									"});"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "features",
-									"value": "[{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80704\",\"y\":\"43.46217\"} },{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80549\",\"y\":\"43.46242\"}}]",
-									"type": "text"
-								},
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "text"
-								},
-								{
-									"key": "f",
-									"value": "json",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://{{subdomain}}.arcgis.com/{{account_id}}/arcgis/rest/services/{{feature_service_name}}/FeatureServer/0/addFeatures",
-							"protocol": "http",
-							"host": [
-								"{{subdomain}}",
-								"arcgis",
-								"com"
-							],
-							"path": [
-								"{{account_id}}",
-								"arcgis",
-								"rest",
-								"services",
-								"{{feature_service_name}}",
-								"FeatureServer",
-								"0",
-								"addFeatures"
-							]
-						},
-						"description": "[Full description of the service](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_Features/02r30000010m000000/)"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Definition",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var cid = pm.environment.get(\"client_id\");",
-									"var cs = pm.environment.get(\"client_secret\");",
-									"var root_url = pm.environment.get(\"root_url\");",
-									"",
-									"const echoPostRequest = {",
-									"  url:  `https://${root_url}/sharing/rest/oauth2/token`,",
-									"  method: 'POST',",
-									"  body: {",
-									"      mode: \"urlencoded\",",
-									"      urlencoded: `client_id=${cid}&client_secret=${cs}&grant_type=client_credentials&f=json`",
-									"  }",
-									"};",
-									"",
-									"pm.sendRequest(echoPostRequest, function (err, response) {",
-									"    var res = response.json();",
-									"    if (res.error) { console.log(res.error.error_description); }",
-									"    if(res.access_token) {",
-									"        pm.environment.set(\"token\", res.access_token);",
-									"         console.log(\"New token: \", res.access_token);",
-									"    }",
-									"});"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "text"
-								},
-								{
-									"key": "f",
-									"value": "json",
-									"type": "text"
-								},
-								{
-									"key": "updateDefinition",
-									"value": "{   \"adminServiceInfo\" : {     \"name\" : \"libelium_esri_v5\",      \"type\" : \"FeatureServer\",      \"status\" : \"Started\",      \"database\" : {       \"datasource\" : {         \"name\" : \"db\"       }     }   },    \"currentVersion\" : 10.3,    \"serviceItemId\" : \"4318b46c55b04c1c974997858409ab3e\",    \"serviceDescription\" : \"\",    \"hasVersionedData\" : false,    \"supportsDisconnectedEditing\" : false,    \"hasStaticData\" : false,    \"maxRecordCount\" : 1000,    \"supportedQueryFormats\" : \"JSON\",    \"capabilities\" : \"Create,Delete,Query,Update,Editing\",    \"description\" : \"\",    \"copyrightText\" : \"\",    \"spatialReference\" : {     \"wkid\" : 4326,      \"latestWkid\" : 4326   },    \"initialExtent\" : {     \"xmin\" : -20037507.0671618,      \"ymin\" : -30240971.9583862,      \"xmax\" : 20037507.0671618,      \"ymax\" : 18398924.324645,      \"spatialReference\" : {       \"wkid\" : 4326,        \"latestWkid\" : 4326     }   },    \"fullExtent\" : {     \"xmin\" : -423797.75423061714,      \"ymin\" : -90,      \"xmax\" : 180,      \"ymax\" : 5230463.6623417344,      \"spatialReference\" : {       \"wkid\" : 4326,        \"latestWkid\" : 4326     }   },    \"allowGeometryUpdates\" : true,    \"units\" : \"esriDecimalDegrees\",    \"syncEnabled\" : false,    \"supportsApplyEditsWithGlobalIds\" : false,    \"xssPreventionInfo\" : {     \"xssPreventionEnabled\" : true,      \"xssPreventionRule\" : \"InputOnly\",      \"xssInputRule\" : \"rejectInvalid\"   },    \"layers\" : [     {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_CO___CARBON_MONOXIDE\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 0,        \"name\" : \"CO - Carbon Monoxide\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450874694276       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -423797.75423061714,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 5230463.6623417344,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"orange_cutout.png\",\"contentType\":\"image/png\",\"width\":23.25,\"height\":32.25,\"xoffset\":0,\"yoffset\":11.125,\"angle\":0,\"imageData\":\"iVBORw0KGgoAAAANSUhEUgAAABsAAAApCAYAAADEZlLzAAAEnUlEQVRYR61XXVIbRxDu2dkfrX5gkVOxk6pg6S1ViU18A3GCwAmCb0DeHHjAPED5LdzA+AQ4J4Ab2NhJVd6ESVVip2IQoL/9mZl0r1hZ0s5qEck8bdX29Lfd/fXXvQxyTvPJ1zWD2ysGsO/RtKExP5KgfpEieFl/9vvJNHcs62VzveZxd26LGWydGQbYThmsQgnoOTlKSgj7HQj8NtCzkmpP9C6363snLZ1fLVhz45vvOJgHBjdqbrkKTmk+LwHgdy6g1z4DKeSJgGi1vvvb68lLKbAYiJmHlu165YW7wNinSPIQlZLQPv8AYdBrCRUtTwKOgSVAjlv2ivOf5/nOfN+9+Bv8XjsFOASLa1Sab1p2ASP64tZAycX2+V8YYb8lOhf1pIZDsNONpQNumivl6pczpS7rq+KUnv0JIopeLu4er5JdDNZ88m3D5Pyw5N0F0y7856gSB1HQh07rA0RCLNef/XoUg/2xuXRoWk6DwLJOQBTvXeGXBkMTbtpguxWwsSWyTgwW+kdf7RwvM2pakzvNEhKCW472DlGa+kkp2BdSvEiMuMF/YAzWqP+oRXRHhD50kDCR8Ovs3cbDpya3tsrVe1rjfqc1YJYQq5SKSSMqAef8gBhcKHlaH+2z9wgWbjNKoV0oN3SNK6WAzvl7jEg+Xtx9u5+VqnebD9dRzn4uLdwDw+ApM2r4oN8+IjDlVqpgWmliUJ36nYsTZFM9jzXI5mahNF/T1S8K+9C7OoNrsDtYLzvlL+i1iRRxcfPA4gy5lYbtllOmIgwQ7GMCVgVi1uTB0BGsfWMwyyk1nGIlDYYMjiM73Vw6d9yKZznFlFHod8HvXt04jQhUy/TTu2oxzPVz03bWMN8pMIUE6V5+BBweP97febOXR5Di3B0cQWmCYN0hCvx9dvrTgxWcUQfFuc9QT9ITh1IZ+qjiOdS3HNdDVqe/B5uze/kPzbvV2HuSSh0j6T0pBzEqq6npHimJ7tA9H1O4uHO8MADDVKIIYyr1TUk2dCny+yBlNPRpGCaYTkHbNokRiQKK8T62z+OBEOPANJn5ihqbHPxfhz6MGjpS0SMapMMiUZ+gNjamieqsH0GigNo4bJ2RefZgDVeA53EqNUSZFYgKTCkclbox+pHkWE6hlkWUWQCpxqHfH+vRMTCaAIZhbDnFuVn8am397iWSSW7f333zNDEYX3iGe4jrcdO6NaCIwsGGNbJ/kLNUF1MbYHTxQLztoUGLUcV0H/WR3huvJzfVzTBnbwMZRYOexMk8uY5rN+JBdGxNJ6p50ZJ4S6lSUWnTGDf5dXQ0dgx+8+ikiOKFSBdVJlgiYRTdLKsdrW5ZUU0F+xSdhWMjPzqF0kQszIpqKthodNzUr3ij9RORPzWqXDCKjnPnFe6HHptSO0W1kgJnnv9o2g9h5s9g8tWxqjC2NWhynbmK0yeVGlMLHWtzwZK/G4MZnm7k0+oglUypxa3ABrUbTIR4AR2dCKjstMjmLbFabZzWsDTvEKkx+U8NoG606uUSZBQ8IQvWjwYevsKolMolxVRtnBZdks7E5qbpmzmNyQXSTfpNok1rUtXzdPNffLyFXQHw8hEAAAAASUVORK5CYII=\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_CO___CARBON_MONOXIDE_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D857067C27D\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_CO2___CARBON_DIOXIDE\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 1,        \"name\" : \"CO2 - Carbon Dioxide\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873079099       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_CO2___CARBON_DIOXIDE_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D85EBBE2F59\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_DUST___DUST\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 2,        \"name\" : \"DUST - Dust\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873074142       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_DUST___DUST_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D85DB578316\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_GPS___GLOBAL_POSITIONING_SYSTEM\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 3,        \"name\" : \"GPS - Global Positioning System\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873080757       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_GPS___GLOBAL_POSITIONING_SYSTEM_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D8596763EE1\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_HUMA___HUMIDITY\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 4,        \"name\" : \"HUMA - Humidity\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873079238       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_HUMA___HUMIDITY_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D8522ABE3E1\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_LP___LIQUID_PRESENCE\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 5,        \"name\" : \"LP - Liquid Presence\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873076120       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_LP___LIQUID_PRESENCE_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D85204E19A9\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_MCP___MICROPHONE\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 6,        \"name\" : \"MCP - Microphone\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873073904       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_MCP___MICROPHONE_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D85976E6C27\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_NO2___NITROGREN_DIOXIDE\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 7,        \"name\" : \"NO2 - Nitrogren Dioxide\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873078288       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_NO2___NITROGREN_DIOXIDE_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D85148A864C\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_ORP___OXIDATION_REDUCTION_POTENTIAL_SENSOR\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 8,        \"name\" : \"ORP - Oxidation-reduction potential sensor\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873045990       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_ORP___OXIDATION_REDUCTION_POTENTIAL_SENSOR_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_PH___PH\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 9,        \"name\" : \"PH - pH\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : null       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_PH___PH_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D859DFCC209\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_PS___PARKING_SPOT_STATUS\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 10,        \"name\" : \"PS - Parking Spot Status\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873080306       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_PS___PARKING_SPOT_STATUS_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D852C65A8AB\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_TCA___TEMPERATURE_CELSIUS\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 11,        \"name\" : \"TCA - Temperature Celsius\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873081248       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_TCA___TEMPERATURE_CELSIUS_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D853B38235E\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     },      {       \"adminLayerInfo\" : {         \"tableName\" : \"sh_db_30873.user_40591.libelium_esri_v5_US___ULTRASOUND\",          \"geometryField\" : {\"name\" : \"Shape\"},          \"xssTrustedFields\" : \"\"       },        \"id\" : 12,        \"name\" : \"US - Ultrasound\",        \"type\" : \"Feature Layer\",        \"displayField\" : \"\",        \"description\" : \"\",        \"copyrightText\" : \"\",        \"defaultVisibility\" : true,        \"editingInfo\" : {         \"lastEditDate\" : 1450873076820       },        \"relationships\" : [],        \"isDataVersioned\" : false,        \"supportsCalculate\" : true,        \"supportsAttachmentsByUploadId\" : true,        \"supportsRollbackOnFailureParameter\" : true,        \"supportsStatistics\" : true,        \"supportsAdvancedQueries\" : true,        \"supportsValidateSql\" : true,        \"supportsCoordinatesQuantization\" : true,        \"supportsApplyEditsWithGlobalIds\" : false,        \"advancedQueryCapabilities\" : {         \"supportsPagination\" : true,          \"supportsQueryWithDistance\" : true,          \"supportsReturningQueryExtent\" : true,          \"supportsStatistics\" : true,          \"supportsOrderBy\" : true,          \"supportsDistinct\" : true,          \"supportsReturningGeometryCentroid\" : false       },        \"useStandardizedQueries\" : true,        \"geometryType\" : \"esriGeometryPoint\",        \"minScale\" : 0,        \"maxScale\" : 0,        \"extent\" : {         \"xmin\" : -180,          \"ymin\" : -90,          \"xmax\" : 180,          \"ymax\" : 90,          \"spatialReference\" : {           \"wkid\" : 4326,            \"latestWkid\" : 4326         }       },        \"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"sensor.png\",\"contentType\":\"image/png\",\"width\":15.0,\"height\":15.0,\"xoffset\":0,\"yoffset\":11.75,\"angle\":0,\"imageData\":\"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\"},\"label\":\"\",\"description\":\"\"},\"transparency\":0,\"labelingInfo\":null},        \"allowGeometryUpdates\" : true,        \"hasAttachments\" : false,        \"htmlPopupType\" : \"esriServerHTMLPopupTypeNone\",        \"hasM\" : false,        \"hasZ\" : false,        \"objectIdField\" : \"OBJECTID\",        \"globalIdField\" : \"\",        \"typeIdField\" : \"\",        \"fields\" : [         {           \"name\" : \"OBJECTID\",            \"type\" : \"esriFieldTypeOID\",            \"alias\" : \"OBJECTID\",            \"sqlType\" : \"sqlTypeOther\",            \"nullable\" : false,            \"editable\" : false,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure_id\",            \"type\" : \"esriFieldTypeInteger\",            \"alias\" : \"Measure ID\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"meshlium_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Meshlium ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"waspmote_id\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Waspmote ID\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"name\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Name\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"latitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Latitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"longitude\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Longitude\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"date\",            \"type\" : \"esriFieldTypeDate\",            \"alias\" : \"Date\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"measure\",            \"type\" : \"esriFieldTypeDouble\",            \"alias\" : \"Measure\",            \"sqlType\" : \"sqlTypeNVarchar\",            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         },          {           \"name\" : \"units\",            \"type\" : \"esriFieldTypeString\",            \"alias\" : \"Units\",            \"sqlType\" : \"sqlTypeNVarchar\", \"length\" : 256,            \"nullable\" : true,            \"editable\" : true,            \"domain\" : null,            \"defaultValue\" : null         }       ],        \"indexes\" : [         {           \"name\" : \"user_40591.libelium_esri_v5_US___ULTRASOUND_Shape_sidx\",            \"fields\" : \"Shape\",            \"isAscending\" : false,            \"isUnique\" : false,            \"description\" : \"Shape Index\"         },          {           \"name\" : \"PK__libelium__F4B70D8513A2BCE6\",            \"fields\" : \"OBJECTID\",            \"isAscending\" : true,            \"isUnique\" : true,            \"description\" : \"clustered, unique, primary key\"         }       ],        \"types\" : [],        \"templates\" : [         {           \"name\" : \"New Feature\",            \"description\" : \"\",            \"drawingTool\" : \"esriFeatureEditToolPoint\",            \"prototype\" : {             \"attributes\" : {               \"Name\" : null,                \"Date\" : null             }           }         }       ],        \"supportedQueryFormats\" : \"JSON\",        \"hasStaticData\" : false,        \"maxRecordCount\" : 10000,        \"capabilities\" : \"Create,Delete,Query,Update,Editing\",        \"exceedsLimitFactor\" : 1     }   ] }",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://{{subdomain}}.arcgis.com/{{account_id}}/ArcGIS/admin/services/{{feature_service_name}}.FeatureServer/updateDefinition",
-							"protocol": "http",
-							"host": [
-								"{{subdomain}}",
-								"arcgis",
-								"com"
-							],
-							"path": [
-								"{{account_id}}",
-								"ArcGIS",
-								"admin",
-								"services",
-								"{{feature_service_name}}.FeatureServer",
-								"updateDefinition"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update item metadata",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Sec-Fetch-Mode",
-								"value": "cors"
-							},
-							{
-								"key": "Origin",
-								"value": "https://awesome-arcgis.maps.arcgis.com"
-							},
-							{
-								"key": "User-Agent",
-								"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "extent",
-									"value": "-180,-58.976,-90,73.136"
-								},
-								{
-									"key": "f",
-									"value": "json"
-								},
-								{
-									"key": "snippet",
-									"value": ""
-								},
-								{
-									"key": "tags",
-									"value": "Data Collection"
-								},
-								{
-									"key": "thumbnailURL",
-									"value": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/export?size=800,532&bboxSR=4326&format=png24&f=image&bbox=-180,-58.976,-90,73.136"
-								},
-								{
-									"key": "title",
-									"value": "PointLayer"
-								},
-								{
-									"key": "token",
-									"value": "iR079hL0eDuM8lxxCMbrCQgRN9RyP1QadIgOLA6rjiF46BCYKM97_l0-UO_bnRyIc1Wzcj7N04_n5Gj2RDHeKFaJQ70tnz6wcpd1y9LWVAOFH0yER4wt8JGqIbewXeuS0HM-qJOblnd4Bc5fhYEUWdRvKbWVHH0eDAGbqSYWrOQGNt9rWilsKb6_P4JAuv0qt6jQqR0RpvN36sWyrrpDDh5FVttI2gt3t_3k2muxlLk."
-								},
-								{
-									"key": "typeKeywords",
-									"value": "Build a layer,Collector,Data,Feature Service Template,General,Layer,Layer Template,Platform,Service template,Template"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://awesome-arcgis.maps.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update",
-							"protocol": "https",
-							"host": [
-								"awesome-arcgis",
-								"maps",
-								"arcgis",
-								"com"
-							],
-							"path": [
-								"sharing",
-								"rest",
-								"content",
-								"users",
-								"awesome_arcgis",
-								"items",
-								"08fe7baa579e4661a2291f25c4c1e05b",
-								"update"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update feature service definition",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Sec-Fetch-Mode",
-								"value": "cors"
-							},
-							{
-								"key": "Origin",
-								"value": "https://awesome-arcgis.maps.arcgis.com"
-							},
-							{
-								"key": "User-Agent",
-								"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "f",
-									"value": "json"
-								},
-								{
-									"key": "token",
-									"value": "iR079hL0eDuM8lxxCMbrCQgRN9RyP1QadIgOLA6rjiF46BCYKM97_l0-UO_bnRyIc1Wzcj7N04_n5Gj2RDHeKFaJQ70tnz6wcpd1y9LWVAOFH0yER4wt8JGqIbewXeuS0HM-qJOblnd4Bc5fhYEUWdRvKbWVHH0eDAGbqSYWrOQGNt9rWilsKb6_P4JAuv0qt6jQqR0RpvN36sWyrrpDDh5FVttI2gt3t_3k2muxlLk."
-								},
-								{
-									"key": "updateDefinition",
-									"value": "{\"editorTrackingInfo\":{\"enableEditorTracking\":true}}"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/PointLayer/FeatureServer/updateDefinition",
-							"protocol": "https",
-							"host": [
-								"services7",
-								"arcgis",
-								"com"
-							],
-							"path": [
-								"rF1wdZICHfgsvter",
-								"arcgis",
-								"rest",
-								"admin",
-								"services",
-								"PointLayer",
-								"FeatureServer",
-								"updateDefinition"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "<admin-catalog-url>/{{serviceName}}/FeatureServer/{{layerId}}/addToDefinition",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "74262687-cf39-4070-a40f-2bb0ce07136d",
-								"exec": [
-									"var protocol = pm.environment.get(\"protocol\");",
-									"var portalHost = pm.environment.get(\"portalHost\");",
-									"var portalPort = pm.environment.get(\"portalPort\");",
-									"var username = pm.environment.get(\"username\");",
-									"var password = pm.environment.get(\"password\");",
-									"",
-									"const echoPostRequest = {",
-									"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
-									"    method: 'POST',",
-									"    header: {",
-									"        'Accept': 'application/json',",
-									"        'Content-Type': 'application/x-www-form-urlencoded'",
-									"    },",
-									"    body: {",
-									"        mode: 'urlencoded',",
-									"        urlencoded: [",
-									"            {key: \"f\", value: \"json\", disabled: false},",
-									"            {key: \"username\", value: username, disabled: false},",
-									"            {key: \"password\", value: password, disabled: false},",
-									"            {key: \"client\", value: \"referer\", disabled: false},",
-									"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
-									"            {key: \"expiration\", value: 21600, disabled: false},",
-									"        ]",
-									"        ",
-									"    }",
-									"};",
-									"",
-									"pm.sendRequest(echoPostRequest, function (err, response) {",
-									"    if (err && err.code) { ",
-									"        console.log(\"Request error: \", err);",
-									"    }else{",
-									"        try{",
-									"            var res = response.json();",
-									"            var token = res.token;",
-									"            ",
-									"            if(token) {",
-									"                pm.environment.set(\"token\", token);",
-									"            }",
-									"        }catch(e){",
-									"            console.log(`Catch error: ${e.message}`);",
-									"        }",
-									"    }",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "addToDefinition",
-									"value": "{     \"layers\": [         {             \"name\": \"Set_a_Layer_Name\",             \"type\": \"Feature Layer\",             \"geometryType\": \"esriGeometryPoint\",             \"extent\": {                 \"type\": \"extent\",                 \"xmin\": -17.70518418985952,                 \"ymin\": 29.007108442849102,                 \"xmax\": 3.871964247634747,                 \"ymax\": 42.65733404196801,                 \"spatialReference\": {                     \"wkid\": 4326                 }             },             \"drawingInfo\": {                 \"renderer\": {                     \"type\": \"simple\",                     \"symbol\": {                         \"type\": \"esriPMS\",                         \"url\": \"gray_large_blank.png\",                         \"contentType\": \"image/png\",                         \"width\": 29.25,                         \"height\": 37.5,                         \"xoffset\": 0,                         \"yoffset\": 11.75,                         \"angle\": 0,                         \"imageData\": \"iVBORw0KGgoAAAANSUhEUgAAACEAAAAvCAYAAABt7qMfAAAEEElEQVRYR8VY21HjWBDt1svYBkpQBODJYMjAZMBmMP6x8NfORsAQwc5+GenHk8GQAWQAGUAAFHbxsLEe924draSSbdm6NjKrL5cl3Xt0+nT36cu0xtXv91uapv3JzF+llO35V5n5Rkp5J4T4p9frPaguzSoP9vv9tq7r59hY13Xa2dkhy7JI07TsdSEE+b5P7+/vFEURAVAURRe9Xu+mbI+VIAaDge37/jkRfceme3t78eZlF4C8vb3FoIjop2VZF51OZ7TsvaUgPM8D5QNN077u7u5So9Eo23vh/ng8ptfXVxJC3DFzp9vt3hUtUggiAXBtmqZt2zYhBJteCM1oNKIgCEbMfFIEZAFECsAwDPvw8BCx3XT/7D0pJT09PVEYhoVAZnZINHBrGEbr4OBgRngfRQLhDodDAHmwLOs4r5EZEJ7nXRNR++joqBIG5oGDkcfHR/x90+12T9L7GQjXdb8T0d/QgEoGbMoMMgYaIaK/HMf5iR8xiCQM9/V63UYmbPtCxkwmk5FlWV8QlhiE67o/mPm8KiGWfUQqVCnlheM4PzhlodFo2JvUgrINl91HDRmPxzEb7HneN0QE2VBFOqqCAhvIFiLqsOu6v2u12ulnaGEeILQxnU6vAGLYbDbtWq2m+hGVPTedTtFjRgAh0ZhM06xscdWFgiCgl5cXykAYhqH6bmXPhWGYgRgiM/6vcCBDYmGapnnabDYr+0LVheA5giC4ilMUvmF/f//TU/T5+Rl7dtKKOUTJ3mbPmGcHPQSl23GcgxjE5eXlwDCMb58ZEoQiDMNfZ2dn/zGRGJlblO3PyBJkBco2Mx/DaWWtHF7CMIw2nPS2LxjhMAwzT5EHEQsUIclb+aoBwWEhFInx/ZX5iXQj13XvTdNsbbNmoFQHQfDgOM6XBWeVaCNjo2oG0vXmWVhgIjE495ZltbbRS9ArfN+fYWEZiNhl1ev1ysmYTCaUuqn84gtDReq0MPhUyQZYwACU+sqVIJKQxGxAoFW4LbgoCLKIhcJw4M/8EFQFGyjRURQtDD2F2ZGnKG1sH2UjZSFfF+bFtnLQRN3Qdb31kVKOEg0W8nVhLRApG+ium2gDLCAUq1hYqom5sFwzc3sTNsCClHJm7izK+9K5H0dFmqbhrGItNsAC0lIIcVJ2ZFQKIknZ38x8ug4bCQtXjuP8UVb1lEAkp3a3mqbZKqc2OJ0RQoyEEMcqp3hKINICRkTnKmyABSKKh90yFpSEmS6SFjBmbq1iAyxIKZcWpo2EmX8pFSlMT1HKQowwLSpiLO0dqyjEnEJEp0XuCwCISEmMHwKRdllmtvNsgAUpZWGXLNOFsjCLwjIPYt0wlDawMvQ4YkK25J5Tzoa1ekcZEAxNzAxfGg8xZc8vu/8v7ylSk0iCl+sAAAAASUVORK5CYII=\"                     },                     \"label\": \"\",                     \"description\": \"\"                 },                 \"transparency\": 0,                 \"labelingInfo\": null             },             \"objectIdField\": \"OBJECTID\",             \"fields\": [                 {                     \"name\": \"OBJECTID\",                     \"type\": \"esriFieldTypeOID\",                     \"alias\": \"OBJECTID\",                     \"sqlType\": \"sqlTypeOther\",                     \"nullable\": false,                     \"editable\": false,                     \"domain\": null,                     \"defaultValue\": null                 },                 {                     \"name\": \"Speed\",                     \"type\": \"esriFieldTypeDouble\",                     \"alias\": \"Speed\",                     \"sqlType\": \"sqlTypeNVarchar\",                     \"nullable\": true,                     \"editable\": true,                     \"domain\": null,                     \"defaultValue\": null,                     \"length\": 256                 },                 {                     \"name\": \"Date\",                     \"type\": \"esriFieldTypeDate\",                     \"alias\": \"Date of the fine\",                     \"sqlType\": \"sqlTypeNVarchar\",                     \"nullable\": true,                     \"editable\": true,                     \"domain\": null,                     \"defaultValue\": null,                     \"length\": 256                 },                 {                     \"name\": \"License\",                     \"type\": \"esriFieldTypeString\",                     \"alias\": \"License number\",                     \"sqlType\": \"sqlTypeNVarchar\",                     \"nullable\": true,                     \"editable\": true,                     \"domain\": null,                     \"defaultValue\": null,                     \"length\": 256                 }             ],             \"templates\": [                 {                     \"name\": \"New Feature\",                     \"description\": \"\",                     \"drawingTool\": \"esriFeatureEditToolPoint\",                     \"prototype\": {                         \"attributes\": {                             \"Speed\": null,                             \"Date\": null,                             \"License\": null                         }                     }                 }             ],             \"supportedQueryFormats\": \"JSON\",             \"hasStaticData\": false,             \"maxRecordCount\": 10000,             \"capabilities\": \"Query,Editing,Create,Update,Delete\"         }     ] }",
-									"type": "text"
-								},
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "text"
-								},
-								{
-									"key": "f",
-									"value": "json",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{protocol}}://{{host}}/{{instance}}/rest/admin/services/{{serviceName}}/FeatureServer/{{layerId}}/addToDefinition",
-							"protocol": "{{protocol}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"{{instance}}",
-								"rest",
-								"admin",
-								"services",
-								"{{serviceName}}",
-								"FeatureServer",
-								"{{layerId}}",
-								"addToDefinition"
-							]
-						},
-						"description": "This operation supports adding a definition property in a hosted feature service layer. The result of this operation is a response indicating success or a response indicating failure with an error code and description. [Read full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)."
-					},
-					"response": []
-				}
-			],
+			"name": "Tmp",
+			"item": [],
 			"protocolProfileBehavior": {}
 		},
 		{
@@ -431,13 +17,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{protocol}}://{{host}}/{{instance}}/rest/services/{{serviceName}}/FeatureServer?f=pjson",
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/services/{{serviceName}}/FeatureServer?f=pjson",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"{{instance}}",
+						"arcgis",
 						"rest",
 						"services",
 						"{{serviceName}}",
@@ -450,28 +37,75 @@
 						}
 					]
 				},
-				"description": "This resource provides basic information about the feature service, including the feature layers and tables that it contains, the service description, and so on. [Read full documentation](https://developers.arcgis.com/rest/services-reference/feature-service.htm)"
+				"description": "This resource provides basic information about the feature service, including the feature layers and tables that it contains, the service description, and so on | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-get-database-info)."
 			},
 			"response": []
 		},
 		{
 			"name": "<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8db454a5-91a7-4046-a8a2-d7bbcd8bb97f",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
 							"key": "features",
-							"value": "[{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80704\",\"y\":\"43.46217\"} },{\"attributes\":{\"campo1\":\"valor1\",\"campo2\":\"valor2\"},\"geometry\":{\"x\":\"-3.80549\",\"y\":\"43.46242\"}}]",
+							"value": "[{\"attributes\":{\"field1\":\"value1\",\"field2\":\"value2\"},\"geometry\":{\"x\":\"-3.80704\",\"y\":\"43.46217\"} },{\"attributes\":{\"field1\":\"value1\",\"field2\":\"value2\"},\"geometry\":{\"x\":\"-3.80549\",\"y\":\"43.46242\"}}]",
 							"type": "text"
 						},
 						{
@@ -487,13 +121,14 @@
 					]
 				},
 				"url": {
-					"raw": "{{protocol}}://{{host}}/{{instance}}/rest/services/{{serviceName}}/FeatureServer/{{layerId}}/addFeatures",
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/services/{{serviceName}}/FeatureServer/{{layerId}}/addFeatures",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"{{instance}}",
+						"arcgis",
 						"rest",
 						"services",
 						"{{serviceName}}",
@@ -502,7 +137,7 @@
 						"addFeatures"
 					]
 				},
-				"description": "This operation adds features to the associated feature layer or table (POST only). [Read full documentation](https://developers.arcgis.com/rest/services-reference/add-features.htm)"
+				"description": "This operation adds records to the associated feature layer or table | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#add-records)."
 			},
 			"response": []
 		},
@@ -630,7 +265,178 @@
 						"createService"
 					]
 				},
-				"description": "The Create Service operation allows users to create a hosted feature service. You can use the API to create an empty hosted feature service from a feature service metadata JSON. [Read more](https://developers.arcgis.com/rest/users-groups-and-items/create-service.htm)"
+				"description": "The Create Service operation allows users to create a hosted feature service. You can use the API to create an empty hosted feature service from a feature service metadata JSON | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-create-an-empty-database)."
+			},
+			"response": []
+		},
+		{
+			"name": "<root-url>/content/users/<username>/shareItems",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fe0623d4-1822-44fb-a700-cd4105ac05f4",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account",
+							"value": "true"
+						},
+						{
+							"key": "everyone",
+							"value": "true"
+						},
+						{
+							"key": "f",
+							"value": "json"
+						},
+						{
+							"key": "groups",
+							"value": ""
+						},
+						{
+							"key": "items",
+							"value": "068bc8d114154820be0112e77a9ec6ef"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/content/users/{{username}}/shareItems",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{portalHost}}"
+					],
+					"port": "{{portalPort}}",
+					"path": [
+						"sharing",
+						"rest",
+						"content",
+						"users",
+						"{{username}}",
+						"shareItems"
+					]
+				},
+				"description": "This operation allows to share a database (including all contained tables) with:\n\n* Everyone, in which case they are publicly accessible\n* With any user in an ArcGIS organization \n* With a list of user groups within ArcGIS. \n\n[Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#visibility)."
+			},
+			"response": []
+		},
+		{
+			"name": "<root-url>/content/users/<username>/items/<itemId>/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "extent",
+							"value": "-180,-58.976,-90,73.136"
+						},
+						{
+							"key": "f",
+							"value": "json"
+						},
+						{
+							"key": "snippet",
+							"value": ""
+						},
+						{
+							"key": "tags",
+							"value": "Data Collection"
+						},
+						{
+							"key": "thumbnailURL",
+							"value": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/export?size=800,532&bboxSR=4326&format=png24&f=image&bbox=-180,-58.976,-90,73.136"
+						},
+						{
+							"key": "title",
+							"value": "My Point Layer"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "typeKeywords",
+							"value": "Build a layer,Collector,Data,Feature Service Template,General,Layer,Layer Template,Platform,Service template,Template"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/content/users/{{username}}/items/{{itemId}}/update",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{portalHost}}"
+					],
+					"port": "{{portalPort}}",
+					"path": [
+						"sharing",
+						"rest",
+						"content",
+						"users",
+						"{{username}}",
+						"items",
+						"{{itemId}}",
+						"update"
+					]
+				}
 			},
 			"response": []
 		},
@@ -726,42 +532,75 @@
 						}
 					]
 				},
-				"description": "Checks whether a given service name and type are available for publishing a new service. true indicates that the name and type is not found in the organization's services and is available for publishing. false means the requested name and type are not available. [Read full documentation](https://developers.arcgis.com/rest/users-groups-and-items/check-service-name.htm)"
+				"description": "Checks whether a given service name and type are available for publishing a new service. true indicates that the name and type is not found in the organization's services and is available for publishing. false means the requested name and type are not available | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-check-if-a-database-exists)."
 			},
 			"response": []
 		},
 		{
 			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/addToDefinition",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d3f0c54b-788e-4821-b0ca-fd9d3525ae3c",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Sec-Fetch-Mode",
-						"value": "cors"
-					},
-					{
-						"key": "Origin",
-						"value": "https://awesome-arcgis.maps.arcgis.com"
-					},
-					{
-						"key": "User-Agent",
-						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
-					},
-					{
-						"key": "Accept",
-						"value": "*/*"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
 							"key": "addToDefinition",
-							"value": "{\"layers\":[{\"currentVersion\":10.51,\"id\":0,\"name\":\"Point layer\",\"type\":\"Feature Layer\",\"displayField\":\"\",\"description\":\"\",\"copyrightText\":\"\",\"defaultVisibility\":true,\"editingInfo\":{\"lastEditDate\":null},\"relationships\":[],\"isDataVersioned\":false,\"supportsAppend\":true,\"supportsCalculate\":true,\"supportsTruncate\":true,\"supportsAttachmentsByUploadId\":true,\"supportsAttachmentsResizing\":true,\"supportsRollbackOnFailureParameter\":true,\"supportsStatistics\":true,\"supportsAdvancedQueries\":true,\"supportsValidateSql\":true,\"supportsCoordinatesQuantization\":true,\"supportsApplyEditsWithGlobalIds\":false,\"advancedQueryCapabilities\":{\"supportsPagination\":true,\"supportsPaginationOnAggregatedQueries\":true,\"supportsQueryRelatedPagination\":true,\"supportsQueryWithDistance\":true,\"supportsReturningQueryExtent\":true,\"supportsStatistics\":true,\"supportsOrderBy\":true,\"supportsDistinct\":true,\"supportsQueryWithResultType\":true,\"supportsSqlExpression\":true,\"supportsAdvancedQueryRelated\":true,\"supportsCountDistinct\":true,\"supportsLod\":true,\"supportsReturningGeometryCentroid\":false,\"supportsQueryWithDatumTransformation\":true,\"supportsHavingClause\":true,\"supportsOutFieldSQLExpression\":true},\"useStandardizedQueries\":true,\"geometryType\":\"esriGeometryPoint\",\"minScale\":0,\"maxScale\":0,\"extent\":{\"xmin\":-20037508.342788905,\"ymin\":-8175201.3721496435,\"xmax\":-10018754.171394452,\"ymax\":12175461.54272524,\"spatialReference\":{\"wkid\":102100}},\"drawingInfo\":{\"renderer\":{\"type\":\"simple\",\"symbol\":{\"type\":\"esriPMS\",\"url\":\"RedSphere.png\",\"imageData\":\"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\",\"contentType\":\"image/png\",\"width\":15,\"height\":15}}},\"allowGeometryUpdates\":true,\"hasAttachments\":true,\"htmlPopupType\":\"esriServerHTMLPopupTypeNone\",\"hasM\":false,\"hasZ\":false,\"objectIdField\":\"OBJECTID\",\"uniqueIdField\":{\"name\":\"OBJECTID\",\"isSystemMaintained\":true},\"globalIdField\":\"\",\"typeIdField\":\"\",\"fields\":[{\"name\":\"OBJECTID\",\"type\":\"esriFieldTypeOID\",\"alias\":\"OBJECTID\",\"sqlType\":\"sqlTypeOther\",\"nullable\":false,\"editable\":false,\"domain\":null,\"defaultValue\":null}],\"indexes\":[],\"types\":[],\"templates\":[{\"name\":\"New Feature\",\"description\":\"\",\"drawingTool\":\"esriFeatureEditToolPoint\",\"prototype\":{\"attributes\":{}}}],\"supportedQueryFormats\":\"JSON, geoJSON\",\"hasStaticData\":false,\"maxRecordCount\":2000,\"standardMaxRecordCount\":32000,\"tileMaxRecordCount\":8000,\"maxRecordCountFactor\":1,\"capabilities\":\"Query,Editing,Create,Update,Delete,Sync\",\"syncEnabled\":true,\"adminLayerInfo\":{\"geometryField\":{\"name\":\"Shape\",\"srid\":102100}}}],\"tables\":[]}"
+							"value": "{\"layers\":[{\"currentVersion\":10.51,\"id\":0,\"name\":\"Standalone_table\",\"type\":\"Table\",\"displayField\":\"\",\"description\":\"\",\"copyrightText\":\"\",\"defaultVisibility\":true,\"editingInfo\":{\"lastEditDate\":null},\"relationships\":[],\"isDataVersioned\":false,\"supportsAppend\":true,\"supportsCalculate\":true,\"supportsASyncCalculate\":true,\"supportsTruncate\":true,\"supportsAttachmentsByUploadId\":true,\"supportsAttachmentsResizing\":true,\"supportsRollbackOnFailureParameter\":true,\"supportsStatistics\":true,\"supportsExceedsLimitStatistics\":true,\"supportsAdvancedQueries\":true,\"supportsValidateSql\":true,\"supportsCoordinatesQuantization\":true,\"supportsFieldDescriptionProperty\":true,\"supportsQuantizationEditMode\":true,\"supportsApplyEditsWithGlobalIds\":false,\"advancedQueryCapabilities\":{\"supportsPagination\":true,\"supportsPaginationOnAggregatedQueries\":true,\"supportsQueryRelatedPagination\":true,\"supportsQueryWithDistance\":true,\"supportsReturningQueryExtent\":true,\"supportsStatistics\":true,\"supportsOrderBy\":true,\"supportsDistinct\":true,\"supportsQueryWithResultType\":true,\"supportsSqlExpression\":true,\"supportsAdvancedQueryRelated\":true,\"supportsCountDistinct\":true,\"supportsLod\":true,\"supportsQueryWithLodSR\":false,\"supportedLodTypes\":[\"geohash\"],\"supportsReturningGeometryCentroid\":false,\"supportsQueryWithDatumTransformation\":true,\"supportsHavingClause\":true,\"supportsOutFieldSQLExpression\":true,\"supportsMaxRecordCountFactor\":true,\"supportsTopFeaturesQuery\":true,\"supportsQueryWithCacheHint\":true},\"useStandardizedQueries\":true,\"allowGeometryUpdates\":true,\"hasAttachments\":false,\"htmlPopupType\":\"esriServerHTMLPopupTypeNone\",\"hasM\":false,\"hasZ\":false,\"objectIdField\":\"ObjectId\",\"uniqueIdField\":{\"name\":\"ObjectId\",\"isSystemMaintained\":true},\"globalIdField\":\"\",\"typeIdField\":\"\",\"fields\":[{\"name\":\"Start_Date\",\"type\":\"esriFieldTypeDate\",\"actualType\":\"datetime2\",\"alias\":\"Start Date\",\"sqlType\":\"sqlTypeTimestamp2\",\"length\":8,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Start_Time\",\"type\":\"esriFieldTypeDate\",\"actualType\":\"datetime2\",\"alias\":\"Start Time\",\"sqlType\":\"sqlTypeTimestamp2\",\"length\":8,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"End_Date\",\"type\":\"esriFieldTypeDate\",\"actualType\":\"datetime2\",\"alias\":\"End Date\",\"sqlType\":\"sqlTypeTimestamp2\",\"length\":8,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"End_Time\",\"type\":\"esriFieldTypeDate\",\"actualType\":\"datetime2\",\"alias\":\"End Time\",\"sqlType\":\"sqlTypeTimestamp2\",\"length\":8,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Event_Title\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Event Title\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"All_Day_Event\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"All Day Event\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"No_End_Time\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"No End Time\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Event_Description\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Event Description\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Contact\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Contact\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Contact_Email\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Contact Email\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Contact_Phone\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Contact Phone\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Location\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Location\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Category\",\"type\":\"esriFieldTypeInteger\",\"actualType\":\"int\",\"alias\":\"Category\",\"sqlType\":\"sqlTypeInteger\",\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Mandatory\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Mandatory\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Registration\",\"type\":\"esriFieldTypeString\",\"actualType\":\"nvarchar\",\"alias\":\"Registration\",\"sqlType\":\"sqlTypeNVarchar\",\"length\":256,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Maximum\",\"type\":\"esriFieldTypeInteger\",\"actualType\":\"int\",\"alias\":\"Maximum\",\"sqlType\":\"sqlTypeInteger\",\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"Last_Date_To_Register\",\"type\":\"esriFieldTypeDate\",\"actualType\":\"datetime2\",\"alias\":\"Last Date To Register\",\"sqlType\":\"sqlTypeTimestamp2\",\"length\":8,\"nullable\":true,\"editable\":true,\"visible\":true,\"domain\":null,\"defaultValue\":null},{\"name\":\"ObjectId\",\"type\":\"esriFieldTypeOID\",\"actualType\":\"int\",\"alias\":\"ObjectId\",\"sqlType\":\"sqlTypeInteger\",\"nullable\":false,\"editable\":false,\"visible\":true,\"domain\":null,\"defaultValue\":null}],\"indexes\":[{\"name\":\"PK__STANDALO__9A6192912565F964\",\"fields\":\"ObjectId\",\"isAscending\":true,\"isUnique\":true,\"description\":\"clustered, unique, primary key\"}],\"types\":[],\"templates\":[],\"supportedQueryFormats\":\"JSON, geoJSON, PBF\",\"hasStaticData\":true,\"maxRecordCount\":2000,\"standardMaxRecordCount\":32000,\"tileMaxRecordCount\":8000,\"maxRecordCountFactor\":1,\"capabilities\":\"Query\"}]}"
 						},
 						{
 							"key": "f",
@@ -790,12 +629,167 @@
 						"addToDefinition"
 					]
 				},
-				"description": "This operation supports adding a definition property to a hosted feature service. The result of this operation is a response indicating success or failure with error code and description. [Read full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-service-.htm)."
+				"description": "This operation supports adding a definition property to a hosted feature service. The result of this operation is a response indicating success or failure with error code and description | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#create-a-table)."
+			},
+			"response": []
+		},
+		{
+			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/updateDefinition",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "13d35a19-743c-4bbf-82a3-2398869e698b",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "async",
+							"value": "true"
+						},
+						{
+							"key": "f",
+							"value": "json"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "updateDefinition",
+							"value": "{\"capabilities\":\"Query\",\"hasStaticData\":true,\"editorTrackingInfo\":{\"enableEditorTracking\":false,\"enableOwnershipAccessControl\":false,\"allowOthersToUpdate\":true,\"allowOthersToDelete\":true,\"allowOthersToQuery\":true,\"allowAnonymousToUpdate\":true,\"allowAnonymousToDelete\":true}}"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/admin/services/{{serviceName}}/FeatureServer/updateDefinition",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{instance}}",
+						"arcgis",
+						"rest",
+						"admin",
+						"services",
+						"{{serviceName}}",
+						"FeatureServer",
+						"updateDefinition"
+					]
+				},
+				"description": "This operation allows us to change who is able to edit the service, who can do what, if we want to keep track of who created and updated records and when, manage spatial indexes, enable cache (CDN), and manage if export data is publicly for everyone. The result of this operation is a response indicating success or failure with error code and description | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#edition-manage-indexes-cache-control-and-allow-export-data)."
 			},
 			"response": []
 		},
 		{
 			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/deleteFromDefinition",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6a88a47b-6a55-45f5-9a39-527673e6f0ad",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -808,7 +802,7 @@
 						},
 						{
 							"key": "deleteFromDefinition",
-							"value": "{\n  \"layers\" : [\n    {\n      \"id\" : \"2\"\n    }\n  ]\n}"
+							"value": "{\n  \"layers\" : [\n    {\n      \"id\" : \"3\"\n    }\n  ]\n}"
 						},
 						{
 							"key": "f",
@@ -837,83 +831,155 @@
 						"deleteFromDefinition"
 					]
 				},
-				"description": "This operation supports deleting a definition property from a hosted feature service. The result of this operation is a response indicating success or failure with error code and description. [Read full documentation](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-service-.htm)"
+				"description": "This operation supports deleting a definition property from a hosted feature service. For example we can remove a table from the database. The result of this operation is a response indicating success or failure with error code and description | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#remove-a-table)."
 			},
 			"response": []
 		},
 		{
-			"name": "https://awesome-arcgis.maps.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems",
+			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/addToDefinition",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "74262687-cf39-4070-a40f-2bb0ce07136d",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Sec-Fetch-Mode",
-						"value": "cors"
-					},
-					{
-						"key": "Origin",
-						"value": "https://awesome-arcgis.maps.arcgis.com"
-					},
-					{
-						"key": "User-Agent",
-						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
-					},
-					{
-						"key": "Accept",
-						"value": "*/*"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "account",
-							"value": "true"
+							"key": "addToDefinition",
+							"value": "{     \"layers\": [         {             \"name\": \"Set_a_Layer_Name\",             \"type\": \"Feature Layer\",             \"geometryType\": \"esriGeometryPoint\",             \"extent\": {                 \"type\": \"extent\",                 \"xmin\": -17.70518418985952,                 \"ymin\": 29.007108442849102,                 \"xmax\": 3.871964247634747,                 \"ymax\": 42.65733404196801,                 \"spatialReference\": {                     \"wkid\": 4326                 }             },             \"drawingInfo\": {                 \"renderer\": {                     \"type\": \"simple\",                     \"symbol\": {                         \"type\": \"esriPMS\",                         \"url\": \"gray_large_blank.png\",                         \"contentType\": \"image/png\",                         \"width\": 29.25,                         \"height\": 37.5,                         \"xoffset\": 0,                         \"yoffset\": 11.75,                         \"angle\": 0,                         \"imageData\": \"iVBORw0KGgoAAAANSUhEUgAAACEAAAAvCAYAAABt7qMfAAAEEElEQVRYR8VY21HjWBDt1svYBkpQBODJYMjAZMBmMP6x8NfORsAQwc5+GenHk8GQAWQAGUAAFHbxsLEe924draSSbdm6NjKrL5cl3Xt0+nT36cu0xtXv91uapv3JzF+llO35V5n5Rkp5J4T4p9frPaguzSoP9vv9tq7r59hY13Xa2dkhy7JI07TsdSEE+b5P7+/vFEURAVAURRe9Xu+mbI+VIAaDge37/jkRfceme3t78eZlF4C8vb3FoIjop2VZF51OZ7TsvaUgPM8D5QNN077u7u5So9Eo23vh/ng8ptfXVxJC3DFzp9vt3hUtUggiAXBtmqZt2zYhBJteCM1oNKIgCEbMfFIEZAFECsAwDPvw8BCx3XT/7D0pJT09PVEYhoVAZnZINHBrGEbr4OBgRngfRQLhDodDAHmwLOs4r5EZEJ7nXRNR++joqBIG5oGDkcfHR/x90+12T9L7GQjXdb8T0d/QgEoGbMoMMgYaIaK/HMf5iR8xiCQM9/V63UYmbPtCxkwmk5FlWV8QlhiE67o/mPm8KiGWfUQqVCnlheM4PzhlodFo2JvUgrINl91HDRmPxzEb7HneN0QE2VBFOqqCAhvIFiLqsOu6v2u12ulnaGEeILQxnU6vAGLYbDbtWq2m+hGVPTedTtFjRgAh0ZhM06xscdWFgiCgl5cXykAYhqH6bmXPhWGYgRgiM/6vcCBDYmGapnnabDYr+0LVheA5giC4ilMUvmF/f//TU/T5+Rl7dtKKOUTJ3mbPmGcHPQSl23GcgxjE5eXlwDCMb58ZEoQiDMNfZ2dn/zGRGJlblO3PyBJkBco2Mx/DaWWtHF7CMIw2nPS2LxjhMAwzT5EHEQsUIclb+aoBwWEhFInx/ZX5iXQj13XvTdNsbbNmoFQHQfDgOM6XBWeVaCNjo2oG0vXmWVhgIjE495ZltbbRS9ArfN+fYWEZiNhl1ev1ysmYTCaUuqn84gtDReq0MPhUyQZYwACU+sqVIJKQxGxAoFW4LbgoCLKIhcJw4M/8EFQFGyjRURQtDD2F2ZGnKG1sH2UjZSFfF+bFtnLQRN3Qdb31kVKOEg0W8nVhLRApG+ium2gDLCAUq1hYqom5sFwzc3sTNsCClHJm7izK+9K5H0dFmqbhrGItNsAC0lIIcVJ2ZFQKIknZ38x8ug4bCQtXjuP8UVb1lEAkp3a3mqbZKqc2OJ0RQoyEEMcqp3hKINICRkTnKmyABSKKh90yFpSEmS6SFjBmbq1iAyxIKZcWpo2EmX8pFSlMT1HKQowwLSpiLO0dqyjEnEJEp0XuCwCISEmMHwKRdllmtvNsgAUpZWGXLNOFsjCLwjIPYt0wlDawMvQ4YkK25J5Tzoa1ekcZEAxNzAxfGg8xZc8vu/8v7ylSk0iCl+sAAAAASUVORK5CYII=\"                     },                     \"label\": \"\",                     \"description\": \"\"                 },                 \"transparency\": 0,                 \"labelingInfo\": null             },             \"objectIdField\": \"OBJECTID\",             \"fields\": [                 {                     \"name\": \"OBJECTID\",                     \"type\": \"esriFieldTypeOID\",                     \"alias\": \"OBJECTID\",                     \"sqlType\": \"sqlTypeOther\",                     \"nullable\": false,                     \"editable\": false,                     \"domain\": null,                     \"defaultValue\": null                 },                 {                     \"name\": \"Speed\",                     \"type\": \"esriFieldTypeDouble\",                     \"alias\": \"Speed\",                     \"sqlType\": \"sqlTypeNVarchar\",                     \"nullable\": true,                     \"editable\": true,                     \"domain\": null,                     \"defaultValue\": null,                     \"length\": 256                 },                 {                     \"name\": \"Date\",                     \"type\": \"esriFieldTypeDate\",                     \"alias\": \"Date of the fine\",                     \"sqlType\": \"sqlTypeNVarchar\",                     \"nullable\": true,                     \"editable\": true,                     \"domain\": null,                     \"defaultValue\": null,                     \"length\": 256                 },                 {                     \"name\": \"License\",                     \"type\": \"esriFieldTypeString\",                     \"alias\": \"License number\",                     \"sqlType\": \"sqlTypeNVarchar\",                     \"nullable\": true,                     \"editable\": true,                     \"domain\": null,                     \"defaultValue\": null,                     \"length\": 256                 }             ],             \"templates\": [                 {                     \"name\": \"New Feature\",                     \"description\": \"\",                     \"drawingTool\": \"esriFeatureEditToolPoint\",                     \"prototype\": {                         \"attributes\": {                             \"Speed\": null,                             \"Date\": null,                             \"License\": null                         }                     }                 }             ],             \"supportedQueryFormats\": \"JSON\",             \"hasStaticData\": false,             \"maxRecordCount\": 10000,             \"capabilities\": \"Query,Editing,Create,Update,Delete\"         }     ] }",
+							"type": "text"
 						},
 						{
-							"key": "everyone",
-							"value": "true"
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "f",
+							"value": "json",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/{{instance}}/rest/admin/services/{{serviceName}}/FeatureServer/{{layerId}}/addToDefinition",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{instance}}",
+						"rest",
+						"admin",
+						"services",
+						"{{serviceName}}",
+						"FeatureServer",
+						"{{layerId}}",
+						"addToDefinition"
+					]
+				},
+				"description": "This operation supports adding a definition property in a hosted feature service layer. The result of this operation is a response indicating success or a response indicating failure with an error code and description. [Read full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)."
+			},
+			"response": []
+		},
+		{
+			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/updateDefinition",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "async",
+							"value": "false"
 						},
 						{
 							"key": "f",
 							"value": "json"
 						},
 						{
-							"key": "groups",
-							"value": ""
-						},
-						{
-							"key": "items",
-							"value": "068bc8d114154820be0112e77a9ec6ef"
-						},
-						{
 							"key": "token",
-							"value": "iR079hL0eDuM8lxxCMbrCQgRN9RyP1QadIgOLA6rjiF46BCYKM97_l0-UO_bnRyIc1Wzcj7N04_n5Gj2RDHeKFaJQ70tnz6wcpd1y9LWVAOFH0yER4wt8JGqIbewXeuS0HM-qJOblnd4Bc5fhYEUWdRvKbWVHH0eDAGbqSYWrOQGNt9rWilsKb6_P4JAuv0qt6jQqR0RpvN36sWyrrpDDh5FVttI2gt3t_3k2muxlLk."
+							"value": "{{token}}"
+						},
+						{
+							"key": "updateDefinition",
+							"value": "{\"name\":\"Point layer - new name\"}"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://awesome-arcgis.maps.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems",
-					"protocol": "https",
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/admin/services/{{serviceName}}/FeatureServer/{{layerId}}/updateDefinition",
+					"protocol": "{{protocol}}",
 					"host": [
-						"awesome-arcgis",
-						"maps",
-						"arcgis",
-						"com"
+						"{{host}}"
 					],
 					"path": [
-						"sharing",
+						"{{instance}}",
+						"arcgis",
 						"rest",
-						"content",
-						"users",
-						"awesome_arcgis",
-						"shareItems"
+						"admin",
+						"services",
+						"{{serviceName}}",
+						"FeatureServer",
+						"{{layerId}}",
+						"updateDefinition"
 					]
-				}
+				},
+				"description": "The updateDefinition operation supports updating a definition property in a feature service layer. This will allow us for example to change name of the table/layer. The result of this operation is a response indicating success or failure with error code and description | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#change-a-table-name)"
 			},
 			"response": []
 		}
