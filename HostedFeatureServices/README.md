@@ -23,7 +23,7 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
   - [Shortcuts](#shortcuts)
   - [Quick reference](#quick-reference)
 - [Working with Databases (Feature Services)](#working-with-databases-feature-services)
-  - [How to check if a database exists (back to: TOC | Quick reference)](#how-to-check-if-a-database-exists-back-to-toc--quick-reference)
+  - [How to check if a database exists](#how-to-check-if-a-database-exists)
   - [How to create an empty database](#how-to-create-an-empty-database)
   - [How to get database info](#how-to-get-database-info)
   - [How to change database info](#how-to-change-database-info)
@@ -208,7 +208,9 @@ ArcGIS online is **much more** than hosted feature services, that's we we encour
 
 ## Working with Databases (Feature Services)
 
-### How to check if a database exists (back to: TOC | [Quick reference](#quick-reference))
+### How to check if a database exists 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<root-url\>/portals/\<instance\>/isServiceNameAvailable](https://developers.arcgis.com/rest/users-groups-and-items/check-service-name.htm)<br>
 > **Example**:
@@ -218,7 +220,9 @@ Checks whether a given service name and type are available for publishing a new 
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/check-service-name.htm)
 
-### How to create an empty database
+### How to create an empty database 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<root-url\>/content/users/\<username\>/createService](https://developers.arcgis.com/rest/users-groups-and-items/create-service.htm) <br>
 > **Example**: https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/createService
@@ -249,7 +253,9 @@ The API REST endpoints to manage the Item and the Hosted Feature Service are dif
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/create-service.htm)
 
-### How to get database info
+### How to get database info 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<catalog-url\>/\<serviceName\>/FeatureServer](https://developers.arcgis.com/rest/services-reference/feature-service.htm)<br>
 > **Example**: [
@@ -260,7 +266,9 @@ This resource provides basic information about the feature service, including th
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/feature-service.htm)
 
-### How to change database info
+### How to change database info 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<root-url\>/content/users/\<username\>/items/\<itemId\>/update](https://developers.arcgis.com/rest/services-reference/feature-service.htm)<br>
 > **Example**: [
@@ -277,7 +285,9 @@ All parameters for this operation are optional.
 
 ### How to manage database options
 
-#### Visibility
+#### Visibility 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<root-url\>/content/users/\<username\>/shareItems](https://developers.arcgis.com/rest/users-groups-and-items/share-items.htm)<br>
 > **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems](https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems)
@@ -290,7 +300,9 @@ This operation allows to share a database (including all contained tables) with:
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/share-items.htm).
 
-#### Edition, manage indexes, cache control and allow export data
+#### Edition, manage indexes, cache control and allow export data 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Endpoint**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/updateDefinition](https://developers.arcgis.com/rest/services-reference/update-definition-feature-service-.htm)
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/updateDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/updateDefinition)
@@ -299,7 +311,9 @@ This operation allows us to change who is able to edit the service, who can do w
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/update-definition-feature-service-.htm)
 
-### How to remove a database
+### How to remove a database 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Endpoint**: [\<root-url\>/content/users/\<username\>/items/\<itemId\>/delete](https://developers.arcgis.com/rest/users-groups-and-items/delete-item.htm)
 > **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/ae4a188ab58c4cf9b5247d20cdb40206/delete](https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/ae4a188ab58c4cf9b5247d20cdb40206/delete)
@@ -310,7 +324,9 @@ This operation is available to the user and to the administrator of the organiza
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/delete-item.htm)
 
-## Working with tables (Feature Layers and Tables)
+## Working with tables (Feature Layers and Tables) 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 First we are going to explain the different ways to store information in an ArcGIS hosted (cloud) database.
 
@@ -330,7 +346,9 @@ So, if you are planning to store spatial information **we strongly encourage you
 
 ### How to manage tables
 
-#### Create a table
+#### Create a table 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/addToDefinition](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-service-.htm)<br>
 > **Example**: [
@@ -347,7 +365,9 @@ In the `addToDefinition` param you have to define which layer type you want to c
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-service-.htm).
 
-##### Example of point layer
+##### Example of point layer 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 Property `geometryType` needs to be assigned to `esriGeometryPoint`.
 
@@ -474,7 +494,9 @@ Property `geometryType` needs to be assigned to `esriGeometryPoint`.
 }
 ```
 
-##### Example of polyline layer
+##### Example of polyline layer 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 Property `geometryType` needs to be assigned to `esriGeometryPolyline`.
 
@@ -609,7 +631,9 @@ Property `geometryType` needs to be assigned to `esriGeometryPolyline`.
 }
 ```
 
-##### Example of polygon layer
+##### Example of polygon layer 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 Property `geometryType` needs to be assigned to `esriGeometryPolygon`.
 
@@ -749,7 +773,9 @@ Property `geometryType` needs to be assigned to `esriGeometryPolygon`.
 }
 ```
 
-##### Example of table
+##### Example of table 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 ```js
 {
@@ -1053,7 +1079,9 @@ Property `geometryType` needs to be assigned to `esriGeometryPolygon`.
 }
 ```
 
-#### Change a table name
+#### Change a table name 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/updateDefinition](https://developers.arcgis.com/rest/services-reference/update-definition-feature-layer-.htm)<br>
 > **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update](
@@ -1063,7 +1091,9 @@ The updateDefinition operation supports updating a definition property in a feat
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/update-definition-feature-layer-.htm)
 
-#### Add fields to a table
+#### Add fields to a table 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/addToDefinition](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/addToDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/addToDefinition)
@@ -1072,11 +1102,15 @@ This operation supports adding a definition property in a hosted feature service
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)
 
-#### Remove fields from a table
+#### Remove fields from a table 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
-#### Remove a table
+#### Remove a table 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/deleteFromDefinition](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-service-.htm)<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/deleteFromDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/deleteFromDefinition)
@@ -1087,7 +1121,9 @@ This operation supports deleting a definition property from a hosted feature ser
 
 ### How to manage records in a table
 
-#### Query records
+#### Query records 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
@@ -1096,7 +1132,9 @@ Resources:
 * [Query a feature layer](https://developers.arcgis.com/labs/rest/query-a-feature-layer/) (tutorial)
 * [Using the ArcGIS REST Query Page](https://www.youtube.com/watch?v=LsYgtjkm69Y) (video)
 
-#### Add records
+#### Add records 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: [\<catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/addFeatures](https://developers.arcgis.com/rest/services-reference/add-features.htm)<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures)
@@ -1149,7 +1187,9 @@ Resources:
 
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
 
-#### Update records
+#### Update records 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
@@ -1157,7 +1197,9 @@ Resources:
 
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
 
-#### Delete records
+#### Delete records 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
@@ -1165,31 +1207,43 @@ Resources:
 
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
 
-#### Add attachments to a record
+#### Add attachments to a record 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
 ### How to manager layer views (filter / extend tables)
 
-#### Create a layer view
+#### Create a layer view 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
-#### Delete a layer view
+#### Delete a layer view 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
 ### How to manage a relationship
 
-#### Create a relationship
+#### Create a relationship 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
-#### Query a relationship
+#### Query a relationship 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
-#### Delete a relationship
+#### Delete a relationship 
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 *PENDING*
 
