@@ -215,7 +215,13 @@
 							"postman.setEnvironmentVariable(\"host\", host);",
 							"",
 							"var instance = jsonData.encodedServiceURL.split(\"/\")[3];",
-							"postman.setEnvironmentVariable(\"instance\", instance);"
+							"postman.setEnvironmentVariable(\"instance\", instance);",
+							"",
+							"var itemId = responseBody.has(\"serviceItemId\");",
+							"postman.setEnvironmentVariable(\"itemId\", itemId);",
+							"",
+							"var serviceName = responseBody.has(\"name\");",
+							"postman.setEnvironmentVariable(\"serviceName\", serviceName);"
 						],
 						"type": "text/javascript"
 					}
@@ -379,6 +385,60 @@
 		},
 		{
 			"name": "<root-url>/content/users/<username>/items/<itemId>/update",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3d97c23d-0beb-4434-8028-cec40ed11c43",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -500,7 +560,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/portals/{{instance}}/isServiceNameAvailable?name={{serviceName}}&f=json&token={{token}}&type=Feature Service",
+					"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/portals/{{instance}}/isServiceNameAvailable?name={{serviceName}}&f=pjson&token={{token}}&type=Feature Service",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{portalHost}}"
@@ -520,7 +580,7 @@
 						},
 						{
 							"key": "f",
-							"value": "json"
+							"value": "pjson"
 						},
 						{
 							"key": "token",
@@ -937,6 +997,60 @@
 		},
 		{
 			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/updateDefinition",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "610d9700-1d39-4fe3-847e-341d2010b196",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],

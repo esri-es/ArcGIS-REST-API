@@ -88,19 +88,84 @@ When working with hosted feature services is better to be familiar withe the Arc
 
 ### ArcGIS Online items (geoinformation model)
 
-*PENDING*
+> **Note**: items ArcGIS Enterprise works the same way
 
-Item responsabilities: manage visibility, capabilities, ...
+An `Item` is the central unit of the geoinformation model.
 
-Hosted Feature Service 
+To better understand the concept of an `Item`, it is necessary to bear in mind that ArcGIS Online is designed from its base for organizations with multiple users, and so that any user of an organization (especially those without programming knowledge) can share, find and manage all kinds of geolocalized information with other users: from databases, through static files (PDFs, CSV, ZIPs, ...), ArcGIS map specifications like [Web Maps](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) and [Web Scenes](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) and configuration files for apps, etc.
 
-> ArcGIS Enterprise works the same way
+Bearing this in mind, when we create a free developer account we are assigned an organizational account that can only have a single user, so there are some capabilities such as sharing an item with a group that will not be very useful, as there are no more users in our organization.
+
+> The only exception is that we want to group several public items in a public group for reasons of organization and visibility of the items.
+
+So an `Item` is just a JSON plain object stored in ArcGIS Online  which contains information about the hosted resource (database, static file, etc) but also permissions and other properties.
+
+To simplify the concept, imagine each user in ArcGIS Online has a item table associated with it, something like this:
+
+[![Item table](https://user-images.githubusercontent.com/826965/65668230-a0fde280-e041-11e9-8d8b-8347483291be.png)](https://user-images.githubusercontent.com/826965/65668230-a0fde280-e041-11e9-8d8b-8347483291be.png)
+
+And this is a very basic example of the JSON that describes what it looks like a **Hosted Feature Service item** (some properties might differ based on the item type):
+
+```js
+{
+	"id": "8729cf95b89c44c283324210bbb1af3a",
+	"owner": "awesome_arcgis",
+	"created": 1569481074000,
+	"isOrgItem": true,
+	"modified": 1569483820000,
+	"guid": null,
+	"name": "NewFeatureService",
+	"title": "NewFeatureService",
+	"type": "Feature Service",
+	"typeKeywords": ["ArcGIS Server", "Data", "Feature Access", "Feature Service", "Service", "Hosted Service"],
+	"description": null,
+	"tags": [],
+	"snippet": null,
+	"thumbnail": "thumbnail/ago_downloaded.gif",
+	"documentation": null,
+	"extent": [],
+	"categories": [],
+	"spatialReference": null,
+	"accessInformation": null,
+	"licenseInfo": null,
+	"culture": "",
+	"properties": null,
+	"url": "https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer",
+	"proxyFilter": null,
+	"access": "private",
+	"size": 0,
+	"appCategories": [],
+	"industries": [],
+	"languages": [],
+	"largeThumbnail": null,
+	"banner": null,
+	"screenshots": [],
+	"listed": false,
+	"ownerFolder": null,
+	"protected": false,
+	"commentsEnabled": true,
+	"numComments": 0,
+	"numRatings": 0,
+	"avgRating": 0,
+	"numViews": 2,
+	"itemControl": "admin",
+	"scoreCompleteness": 33,
+	"groupDesignations": null
+}
+```
+
+Additional resources:
+
+* [Supported item types](https://doc.arcgis.com/en/arcgis-online/reference/supported-items.htm)
+* [Items and item types](https://developers.arcgis.com/rest/users-groups-and-items/items-and-item-types.htm) (developer documentation)
+* Web GIS and geoinformation model (https://www.youtube.com/watch?v=MSJetLXD-Cw&list=PLoptan2utx16J4O_JpRqYiTxpATG1QKjD&index=2) (video in Spanish)
+* [ArcGIS Platform basic concepts](https://youtu.be/5WLmzvtwJqg?t=532) (video in Spanish)
 
 ### ArcGIS Online Architecture
 
 ArcGIS online is **much more** than hosted feature services, that's we we encourage you to take a look to this [ArcGIS Online resource page](https://esri-es.github.io/awesome-arcgis/arcgis/products/arcgis-online/) and this simplified diagram of the ArcGIS Online Architecture to have better understanding on how it works:
 
-![ArcGIS Online Architecture](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)
+[![ArcGIS Online Architecture](https://esri-es.github.io/awesome-arcgis/arcgis/products/product-thumbnails/arcgis-online.png)](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)
 
 ## Working with Databases (Feature Services)
 
@@ -121,7 +186,27 @@ Checks whether a given service name and type are available for publishing a new 
 
 The Create Service operation allows users to create a hosted feature service. You can use the API to create an empty hosted feature service from a feature service metadata JSON.
 
-This request will create an item and an item and an empty hosted feature service. (PENDING)
+This request will create an [Item](#arcgis-online-items-geoinformation-model) and an empty hosted feature service:
+
+* **Item**: as we saw it main responsibilities are provide:
+    * **Common information to any item type for [it details page](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)** like: item type, item title, description, owner, creation date, thumbnail, tags, number of views, comments, ratings, ... | Example: [public Item page](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1).
+    * **Security properties**: visibility, delete protection flag, ...
+    * But also information more specific information (which will depend on the type of item), for example for the a Hosted Feature Service the URL of the REST Endpoint.
+* **Hosted Feature Service**: it main responsabilities are provide: 
+    * **Database info**: pagination size, supported query formats, spatial reference, initial extent, ...
+    * **Layer and Tables**:
+    	* **Layer and table info**: geometry type, fields information, information about how to draw the markers, display de popups, etc.
+    	* **Layer and table data**: mechanism to manage de data
+    * **Security and performance settings**: who can edit what, manage indexes, cache control and allow export data
+
+The API REST endpoints to manage the Item and the Hosted Feature Service are differents:
+
+* To manage the item we will use something like: 
+	* `https://www.arcgis.com/sharing/rest/content/users/<username>/operation`
+	* `https://www.arcgis.com/sharing/rest/content/users/<username>/items/<itemId>/update`
+* To manage the Hosted Feature Service we will use something like: 
+	* `https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/<serviceName>/FeatureServer/addToDefinition`
+	* `https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/<serviceName>/FeatureServer/<layerId>/addToDefinition`
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/create-service.htm)
 
