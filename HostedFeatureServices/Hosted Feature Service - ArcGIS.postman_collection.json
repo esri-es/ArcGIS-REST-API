@@ -12,42 +12,12 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "<catalog-url>/<serviceName>/FeatureServer",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/services/{{serviceName}}/FeatureServer?f=pjson",
-					"protocol": "{{protocol}}",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"{{instance}}",
-						"arcgis",
-						"rest",
-						"services",
-						"{{serviceName}}",
-						"FeatureServer"
-					],
-					"query": [
-						{
-							"key": "f",
-							"value": "pjson"
-						}
-					]
-				},
-				"description": "This resource provides basic information about the feature service, including the feature layers and tables that it contains, the service description, and so on | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-get-database-info)."
-			},
-			"response": []
-		},
-		{
-			"name": "<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures",
+			"name": "<root-url>/portals/<instance>/isServiceNameAvailable",
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "8db454a5-91a7-4046-a8a2-d7bbcd8bb97f",
+						"id": "77b61f4e-1e88-4c9b-8c55-2721771423f3",
 						"exec": [
 							"var protocol = pm.environment.get(\"protocol\");",
 							"var portalHost = pm.environment.get(\"portalHost\");",
@@ -98,46 +68,42 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+				"url": {
+					"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/portals/{{instance}}/isServiceNameAvailable?name={{serviceName}}&f=pjson&token={{token}}&type=Feature Service",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{portalHost}}"
+					],
+					"port": "{{portalPort}}",
+					"path": [
+						"sharing",
+						"rest",
+						"portals",
+						"{{instance}}",
+						"isServiceNameAvailable"
+					],
+					"query": [
 						{
-							"key": "features",
-							"value": "[{\"attributes\":{\"field1\":\"value1\",\"field2\":\"value2\"},\"geometry\":{\"x\":\"-3.80704\",\"y\":\"43.46217\"} },{\"attributes\":{\"field1\":\"value1\",\"field2\":\"value2\"},\"geometry\":{\"x\":\"-3.80549\",\"y\":\"43.46242\"}}]",
-							"type": "text"
-						},
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "text"
+							"key": "name",
+							"value": "{{serviceName}}"
 						},
 						{
 							"key": "f",
-							"value": "json",
-							"type": "text"
+							"value": "pjson"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "type",
+							"value": "Feature Service"
 						}
 					]
 				},
-				"url": {
-					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/services/{{serviceName}}/FeatureServer/{{layerId}}/addFeatures",
-					"protocol": "{{protocol}}",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"{{instance}}",
-						"arcgis",
-						"rest",
-						"services",
-						"{{serviceName}}",
-						"FeatureServer",
-						"{{layerId}}",
-						"addFeatures"
-					]
-				},
-				"description": "This operation adds records to the associated feature layer or table | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#add-records)."
+				"description": "Checks whether a given service name and type are available for publishing a new service. true indicates that the name and type is not found in the organization's services and is available for publishing. false means the requested name and type are not available | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-check-if-a-database-exists)."
 			},
 			"response": []
 		},
@@ -496,7 +462,8 @@
 						"{{itemId}}",
 						"update"
 					]
-				}
+				},
+				"description": "Update item information and their file, URL, or text depending on type. Users can use this operation to update item information such as title, description, tags, and so on, or use it to update an item's file, URL, or text. This call is available to the user and the administrator of the organization.\n\nThe parameters that are to be updated need to be specified in the request. Parameters not specified will not be affected.\n\nAll parameters for this operation are optional.\n\n[Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-change-database-info)"
 			},
 			"response": []
 		},
@@ -591,102 +558,6 @@
 					]
 				},
 				"description": "This operation removes both the item and its link from the user's folder by default. For example, you can use it to remove a database.\n\nThis operation is available to the user and to the administrator of the organization to which the user belongs | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#hosted-feature-service---services-reference)"
-			},
-			"response": []
-		},
-		{
-			"name": "<root-url>/portals/<instance>/isServiceNameAvailable",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "77b61f4e-1e88-4c9b-8c55-2721771423f3",
-						"exec": [
-							"var protocol = pm.environment.get(\"protocol\");",
-							"var portalHost = pm.environment.get(\"portalHost\");",
-							"var portalPort = pm.environment.get(\"portalPort\");",
-							"var username = pm.environment.get(\"username\");",
-							"var password = pm.environment.get(\"password\");",
-							"",
-							"const echoPostRequest = {",
-							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
-							"    method: 'POST',",
-							"    header: {",
-							"        'Accept': 'application/json',",
-							"        'Content-Type': 'application/x-www-form-urlencoded'",
-							"    },",
-							"    body: {",
-							"        mode: 'urlencoded',",
-							"        urlencoded: [",
-							"            {key: \"f\", value: \"json\", disabled: false},",
-							"            {key: \"username\", value: username, disabled: false},",
-							"            {key: \"password\", value: password, disabled: false},",
-							"            {key: \"client\", value: \"referer\", disabled: false},",
-							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
-							"            {key: \"expiration\", value: 21600, disabled: false},",
-							"        ]",
-							"        ",
-							"    }",
-							"};",
-							"",
-							"pm.sendRequest(echoPostRequest, function (err, response) {",
-							"    if (err && err.code) { ",
-							"        console.log(\"Request error: \", err);",
-							"    }else{",
-							"        try{",
-							"            var res = response.json();",
-							"            var token = res.token;",
-							"            ",
-							"            if(token) {",
-							"                pm.environment.set(\"token\", token);",
-							"            }",
-							"        }catch(e){",
-							"            console.log(`Catch error: ${e.message}`);",
-							"        }",
-							"    }",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/portals/{{instance}}/isServiceNameAvailable?name={{serviceName}}&f=pjson&token={{token}}&type=Feature Service",
-					"protocol": "{{protocol}}",
-					"host": [
-						"{{portalHost}}"
-					],
-					"port": "{{portalPort}}",
-					"path": [
-						"sharing",
-						"rest",
-						"portals",
-						"{{instance}}",
-						"isServiceNameAvailable"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "{{serviceName}}"
-						},
-						{
-							"key": "f",
-							"value": "pjson"
-						},
-						{
-							"key": "token",
-							"value": "{{token}}"
-						},
-						{
-							"key": "type",
-							"value": "Feature Service"
-						}
-					]
-				},
-				"description": "Checks whether a given service name and type are available for publishing a new service. true indicates that the name and type is not found in the organization's services and is available for publishing. false means the requested name and type are not available | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-check-if-a-database-exists)."
 			},
 			"response": []
 		},
@@ -1189,6 +1060,136 @@
 					]
 				},
 				"description": "The updateDefinition operation supports updating a definition property in a feature service layer. This will allow us for example to change name of the table/layer, update the drawing info when adding a new field to the layer, etc. The result of this operation is a response indicating success or failure with error code and description. | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#change-a-table-name)"
+			},
+			"response": []
+		},
+		{
+			"name": "<catalog-url>/<serviceName>/FeatureServer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/services/{{serviceName}}/FeatureServer?f=pjson",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{instance}}",
+						"arcgis",
+						"rest",
+						"services",
+						"{{serviceName}}",
+						"FeatureServer"
+					],
+					"query": [
+						{
+							"key": "f",
+							"value": "pjson"
+						}
+					]
+				},
+				"description": "This resource provides basic information about the feature service, including the feature layers and tables that it contains, the service description, and so on | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-get-database-info)."
+			},
+			"response": []
+		},
+		{
+			"name": "<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8db454a5-91a7-4046-a8a2-d7bbcd8bb97f",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "features",
+							"value": "[{\"attributes\":{\"field1\":\"value1\",\"field2\":\"value2\"},\"geometry\":{\"x\":\"-3.80704\",\"y\":\"43.46217\"} },{\"attributes\":{\"field1\":\"value1\",\"field2\":\"value2\"},\"geometry\":{\"x\":\"-3.80549\",\"y\":\"43.46242\"}}]",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "f",
+							"value": "json",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/services/{{serviceName}}/FeatureServer/{{layerId}}/addFeatures",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{instance}}",
+						"arcgis",
+						"rest",
+						"services",
+						"{{serviceName}}",
+						"FeatureServer",
+						"{{layerId}}",
+						"addFeatures"
+					]
+				},
+				"description": "This operation adds records to the associated feature layer or table | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#add-records)."
 			},
 			"response": []
 		}

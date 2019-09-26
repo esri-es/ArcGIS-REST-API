@@ -171,6 +171,37 @@ ArcGIS online is **much more** than hosted feature services, that's we we encour
 
 [![ArcGIS Online Architecture](https://esri-es.github.io/awesome-arcgis/arcgis/products/product-thumbnails/arcgis-online.png)](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)
 
+## Cheatsheet
+
+### Shortcuts
+
+|Shortcut|Example|Description
+|---|---|---
+|`<root-url>`|`https://www.arcgis.com/sharing/rest/`|ArcGIS Online API root
+|`<admin-catalog-url>`|`https://<servicesX>.arcgis.com/<instance>/arcgis/rest/admin/services/`|Root folder to admin a hosted feature service
+|`<catalog-url>`|`https://<servicesX>.arcgis.com/<instance>/arcgis/rest/services/`|Root folder to manage a hosted feature service
+
+> **Note**: an `<instance>` is equivalent to an `<organizationId>` and looks like this: `rF1wdZICHfgsvter`
+
+### Quick reference
+
+|Endpoint|Method|Tasks|
+|---|---|---|
+|`<root-url>/portals/<instance>/isServiceNameAvailable`|GET|Check if a database exists
+|`<root-url>/content/users/<username>/createService`|POST|Create an empty database
+|`<root-url>/content/users/<username>/shareItems`|POST|Change database visibility
+|`<root-url>/content/users/<username>/items/<itemId>/update`|POST|Change database info (title, description, tags, ...)
+|`<root-url>/content/users/<username>/items/<itemId>/delete`|POST|Delete a database
+|`<admin-catalog-url>/<serviceName>/FeatureServer/addToDefinition`|POST|Add a table or layer to a database
+|`<admin-catalog-url>/<serviceName>/FeatureServer/updateDefinition`|POST|Change database permissions, indexes, cache, ...
+|`<admin-catalog-url>/<serviceName>/FeatureServer/deleteFromDefinition`|POST|Remove a table or layer from a database
+|`<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/addToDefinition`|POST|Add fields to a table or layer
+|`<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/updateDefinition`|POST|Change a table or layer name, update drawing info, ...
+|`<catalog-url>/<serviceName>/FeatureServer`|GET|Get database info
+|`<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures`|POST|Add records to a table or layer
+
+
+
 ## Working with Databases (Feature Services)
 
 ### How to check if a database exists
@@ -232,7 +263,11 @@ This resource provides basic information about the feature service, including th
 https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update](
 https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update)
 
+Update item information and their file, URL, or text depending on type. Users can use this operation to update item information such as title, description, tags, and so on, or use it to update an item's file, URL, or text. This call is available to the user and the administrator of the organization.
 
+The parameters that are to be updated need to be specified in the request. Parameters not specified will not be affected.
+
+All parameters for this operation are optional.
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/update-item.htm)
 
@@ -1047,8 +1082,6 @@ This operation supports deleting a definition property from a hosted feature ser
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-service-.htm)
 
 ### How to manage records in a table
-
-*PENDING*
 
 #### Query records
 
