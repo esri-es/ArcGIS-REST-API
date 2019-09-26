@@ -1,7 +1,14 @@
 # Hosted Feature Service - Services reference
 
-This Postman collection is aimed at facilitating the use and knowledge of the ArcGIS REST Endpoints serving as a complement to the documentation provided in
-[https://developers.arcgis.com/rest/services-reference/hosted-feature-service.htm](https://developers.arcgis.com/rest/services-reference/hosted-feature-service.htm)
+We are aware that the documentation from the [ArcGIS REST API](https://developers.arcgis.com/rest/services-reference/get-started-with-the-services-directory.htm) can be overwhelming to new ArcGIS Developers, that why  we created this focused resource.
+
+This resource has been created for them, so it we will focus on explaining how to host data in [ArcGIS Online](https://esri-es.github.io/awesome-arcgis/arcgis/products/arcgis-online/) (the Esri cloud product), although they work in an equivalent way in [ArcGIS Enterprise](https://esri-es.github.io/awesome-arcgis/arcgis/products/arcgis-enterprise/) (the Esri on-premises product).
+
+As far as possible we will try to avoid the technicalities of geographic information systems in order to facilitate understanding.
+
+The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.postman_collection.json) is aimed at facilitating the use and understanding of [the official documentation](https://developers.arcgis.com/rest/services-reference/hosted-feature-service.htm) serving as a complement to it.
+
+---
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -9,20 +16,25 @@ This Postman collection is aimed at facilitating the use and knowledge of the Ar
 
 - [Getting started](#getting-started)
 - [Available SDKs](#available-sdks)
+- [Previous concepts](#previous-concepts)
+  - [ArcGIS Online items (geoinformation model)](#arcgis-online-items-geoinformation-model)
+  - [ArcGIS Online Architecture](#arcgis-online-architecture)
 - [Working with Databases (Feature Services)](#working-with-databases-feature-services)
   - [How to check if a database exists](#how-to-check-if-a-database-exists)
   - [How to create an empty database](#how-to-create-an-empty-database)
   - [How to get database info](#how-to-get-database-info)
+  - [How to change database info](#how-to-change-database-info)
   - [How to manage database options](#how-to-manage-database-options)
     - [Visibility](#visibility)
     - [Edition, manage indexes, cache control and allow export data](#edition-manage-indexes-cache-control-and-allow-export-data)
-- [Working with tables (Feature Layers)](#working-with-tables-feature-layers)
+- [Working with tables (Feature Layers and Tables)](#working-with-tables-feature-layers-and-tables)
   - [How to manage tables](#how-to-manage-tables)
     - [Create a table](#create-a-table)
       - [Example of point layer](#example-of-point-layer)
       - [Example of polyline layer](#example-of-polyline-layer)
       - [Example of polygon layer](#example-of-polygon-layer)
-      - [Example of standalone table](#example-of-standalone-table)
+      - [Example of table](#example-of-table)
+    - [Change a table name](#change-a-table-name)
     - [Add fields to a table](#add-fields-to-a-table)
     - [Remove fields from a table](#remove-fields-from-a-table)
     - [Remove a table](#remove-a-table)
@@ -43,13 +55,17 @@ This Postman collection is aimed at facilitating the use and knowledge of the Ar
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+---
+
 ## Getting started
 
-First if you have not already done so download Postman and import this collection and the environment variables.
+First if of all, if you haven't an ArcGIS Online account we encourage you to create a [free developer account](http://developers.arcgis.com/sign-up).
 
-Now you will need to [set up some variables](https://developers.onelogin.com/api-docs/1/getting-started/postman-collections) like: `username` and `password`.
+Now, please download [Postman](https://www.getpostman.com/downloads/) and import [this collection](./Hosted%20Feature%20Service%20-%20ArcGIS.postman_collection.json) and [the environment variables](./Hosted%20Feature%20Services%20ArcGIS.postman_environment.json).
 
-This documentation is written is by describing common use cases, so if you want to create an empty database:
+Next [set up some variables](https://developers.onelogin.com/api-docs/1/getting-started/postman-collections) like: `username` and `password`.
+
+You are ready to go, feel free to explore. This documentation is written by describing common use cases, so if you want to create an empty database:
 
 1. Go to [the respective section](#how-to-create-an-empty-database)
 2. Read the documentation
@@ -65,6 +81,26 @@ Here we are going to show you how to work directly with the REST API, but if you
 * [ArcGIS REST JS](https://esri.github.io/arcgis-rest-js/api/)
 
 > **Note**: *none of them have support to every capability of the REST API, that's why we still think it's worth learning how to use it directly.*
+
+## Previous concepts
+
+When working with hosted feature services is better to be familiar withe the ArcGIS [geoinformation model](https://doc.arcgis.com/en/arcgis-online/reference/geo-info.htm) and the [ArcGIS Online Architecture]((https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)) in order to better understand why the endpoints are designed the way they ware.
+
+### ArcGIS Online items (geoinformation model)
+
+*PENDING*
+
+Item responsabilities: manage visibility, capabilities, ...
+
+Hosted Feature Service 
+
+> ArcGIS Enterprise works the same way
+
+### ArcGIS Online Architecture
+
+ArcGIS online is **much more** than hosted feature services, that's we we encourage you to take a look to this [ArcGIS Online resource page](https://esri-es.github.io/awesome-arcgis/arcgis/products/arcgis-online/) and this simplified diagram of the ArcGIS Online Architecture to have better understanding on how it works:
+
+![ArcGIS Online Architecture](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)
 
 ## Working with Databases (Feature Services)
 
@@ -85,6 +121,8 @@ Checks whether a given service name and type are available for publishing a new 
 
 The Create Service operation allows users to create a hosted feature service. You can use the API to create an empty hosted feature service from a feature service metadata JSON.
 
+This request will create an item and an item and an empty hosted feature service. (PENDING)
+
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/create-service.htm)
 
 ### How to get database info
@@ -97,6 +135,17 @@ https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purpo
 This resource provides basic information about the feature service, including the feature layers and tables that it contains, the service description, and so on.
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/feature-service.htm)
+
+### How to change database info
+
+> **Endpoint name**: [\<root-url\>/content/users/\<username\>/items/\<itemId\>/update](https://developers.arcgis.com/rest/services-reference/feature-service.htm)<br>
+> **Example**: [
+https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update](
+https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update)
+
+
+
+**Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/update-item.htm)
 
 ### How to manage database options
 
@@ -122,7 +171,23 @@ This operation allows us to change who is able to edit the service, who can do w
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/update-definition-feature-service-.htm)
 
-## Working with tables (Feature Layers)
+## Working with tables (Feature Layers and Tables)
+
+First we are going to explain the different ways to store information in an ArcGIS hosted (cloud) database.
+
+* **A table**: is just a regular table with rows and columns.
+* **A Feature Layer**: is a little bit more, it is a table that contains a spatial geometry type associated to each row (Point, Line or Polygon) and metadata information about the map extent of the data.
+
+Let take a look to the differences of the REST endpoint interfaces:
+
+* **Table**: [Service description page](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer/3) | [Query page](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer/3/query)
+* **Feature layer** (Point type): [Service description page](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer/0) | [Query page](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer/0/query)
+
+As you may notice, a feature layer provide additional capabilities related to spatial operations, datum  transformations, etc.
+
+So, if you are planning to store spatial information **we strongly encourage you** to use feature layers.
+
+> **Important**: please note that a feature layer cannot contain records with different geometry types simultaneously. You will have to split them in different layers.
 
 ### How to manage tables
 
@@ -545,14 +610,14 @@ Property `geometryType` needs to be assigned to `esriGeometryPolygon`.
 }
 ```
 
-##### Example of standalone table
+##### Example of table
 
 ```js
 {
 	"layers": [{
 		"currentVersion": 10.51,
 		"id": 0,
-		"name": "Standalone_table",
+		"name": "New_table",
 		"type": "Table",
 		"displayField": "",
 		"description": "",
@@ -849,11 +914,19 @@ Property `geometryType` needs to be assigned to `esriGeometryPolygon`.
 }
 ```
 
+#### Change a table name
+
+> **Endpoint name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/updateDefinition](https://developers.arcgis.com/rest/services-reference/update-definition-feature-layer-.htm)<br>
+> **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update](
+https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update)
+
+The updateDefinition operation supports updating a definition property in a feature service layer. This will allow us for example to change name of the table/layer. The result of this operation is a response indicating success or failure with error code and description.
+
+**Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/update-definition-feature-layer-.htm)
+
 #### Add fields to a table
 
 *PENDING*
-
-
 
 #### Remove fields from a table
 
@@ -883,7 +956,52 @@ Resources:
 
 #### Add records
 
-*PENDING*
+> **Endpoint name**: [\<catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/addFeatures](https://developers.arcgis.com/rest/services-reference/add-features.htm)<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures)
+
+This operation adds records to the associated feature layer or table.
+
+If you are adding a record to a layer you will have to specify a geometry. Example:
+
+```js
+[{
+	"attributes": {
+		"field1": "value1",
+		"field2": "value2"
+	},
+	"geometry": {
+		"x": "-3.80704",
+		"y": "43.46217"
+	}
+}, {
+	"attributes": {
+		"field1": "value1",
+		"field2": "value2"
+	},
+	"geometry": {
+		"x": "-3.80549",
+		"y": "43.46242"
+	}
+}]
+```
+
+If you are adding a record to a table you will omit the `geometry` property. Example:
+
+```js
+[{
+	"attributes": {
+		"field1": "value1",
+		"field2": "value2"
+	}
+}, {
+	"attributes": {
+		"field1": "value1",
+		"field2": "value2"
+	}
+}]
+```
+
+**Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/add-features.htm).
 
 Resources:
 
