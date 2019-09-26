@@ -206,11 +206,11 @@ This request will create an [Item](#arcgis-online-items-geoinformation-model) an
 The API REST endpoints to manage the Item and the Hosted Feature Service are differents:
 
 * To manage the item we will use something like: 
-	* `https://www.arcgis.com/sharing/rest/content/users/<username>/operation`
-	* `https://www.arcgis.com/sharing/rest/content/users/<username>/items/<itemId>/update`
+	* `https://www.arcgis.com/sharing/rest/content/users/<username>/<operation>`
+	* `https://www.arcgis.com/sharing/rest/content/users/<username>/items/<itemId>/<operation>`
 * To manage the Hosted Feature Service we will use something like: 
-	* `https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/<serviceName>/FeatureServer/addToDefinition`
-	* `https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/<serviceName>/FeatureServer/<layerId>/addToDefinition`
+	* `https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/<serviceName>/FeatureServer/<operation>`
+	* `https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/<serviceName>/FeatureServer/<layerId>/<operation>`
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/create-service.htm)
 
@@ -260,6 +260,17 @@ This operation allows us to change who is able to edit the service, who can do w
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/update-definition-feature-service-.htm)
 
+### How to remove a database
+
+> **Endpoint**: [\<root-url\>/content/users/\<username\>/items/\<itemId\>/delete](https://developers.arcgis.com/rest/users-groups-and-items/delete-item.htm)
+> **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/ae4a188ab58c4cf9b5247d20cdb40206/delete](https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/ae4a188ab58c4cf9b5247d20cdb40206/delete)
+
+This operation removes both the item and its link from the user's folder by default. For example, you can use it to remove a database.
+
+This operation is available to the user and to the administrator of the organization to which the user belongs | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#hosted-feature-service---services-reference)
+
+**Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/delete-item.htm)
+
 ## Working with tables (Feature Layers and Tables)
 
 First we are going to explain the different ways to store information in an ArcGIS hosted (cloud) database.
@@ -286,7 +297,7 @@ So, if you are planning to store spatial information **we strongly encourage you
 > **Example**: [
 https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/addToDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/addToDefinition)
 
-This operation allows us to add a table to a database (`<serviceName>` param). This  The result of this operation is a response indicating success or failure with error code and description.
+This operation allows us to add a table to a database (`<serviceName>` param). The result of this operation is a response indicating success or failure with error code and description.
 
 In the `addToDefinition` param you have to define which layer type you want to create.
 
@@ -1009,13 +1020,18 @@ Property `geometryType` needs to be assigned to `esriGeometryPolygon`.
 > **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update](
 https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update)
 
-The updateDefinition operation supports updating a definition property in a feature service layer. This will allow us for example to change name of the table/layer. The result of this operation is a response indicating success or failure with error code and description.
+The updateDefinition operation supports updating a definition property in a feature service layer. This will allow us for example to change name of the table/layer, update the drawing info when adding a new field to the layer, etc. The result of this operation is a response indicating success or failure with error code and description.
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/update-definition-feature-layer-.htm)
 
 #### Add fields to a table
 
-*PENDING*
+> **Endpoint name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/addToDefinition](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/addToDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/addToDefinition)
+
+This operation supports adding a definition property in a hosted feature service layer, for example add a new field. The result of this operation is a response indicating success or a response indicating failure with an error code and description. 
+
+**Read**: [full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)
 
 #### Remove fields from a table
 
