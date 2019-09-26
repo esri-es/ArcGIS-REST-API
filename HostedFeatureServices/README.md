@@ -191,18 +191,18 @@ ArcGIS online is **much more** than hosted feature services, that's we we encour
 
 |Endpoint|Method|Tasks|
 |---|---|---|
-|`<root-url>/portals/<instance>/isServiceNameAvailable`|GET|Check if a database exists
-|`<root-url>/content/users/<username>/createService`|POST|Create an empty database
-|`<root-url>/content/users/<username>/shareItems`|POST|Change database visibility
-|`<root-url>/content/users/<username>/items/<itemId>/update`|POST|Change database info (title, description, tags, ...)
-|`<root-url>/content/users/<username>/items/<itemId>/delete`|POST|Delete a database
-|`<admin-catalog-url>/<serviceName>/FeatureServer/addToDefinition`|POST|Add a table or layer to a database
-|`<admin-catalog-url>/<serviceName>/FeatureServer/updateDefinition`|POST|Change database permissions, indexes, cache, ...
-|`<admin-catalog-url>/<serviceName>/FeatureServer/deleteFromDefinition`|POST|Remove a table or layer from a database
-|`<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/addToDefinition`|POST|Add fields to a table or layer
-|`<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/updateDefinition`|POST|Change a table or layer name, update drawing info, ...
-|`<catalog-url>/<serviceName>/FeatureServer`|GET|Get database info
-|`<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures`|POST|Add records to a table or layer
+|`<root-url>/portals/<instance>/isServiceNameAvailable`|GET|[Check if a database exists](#how-to-check-if-a-database-exists)
+|`<root-url>/content/users/<username>/createService`|POST|[Create an empty database](#how-to-create-an-empty-database)
+|`<root-url>/content/users/<username>/shareItems`|POST|[Change database visibility](#visibility)
+|`<root-url>/content/users/<username>/items/<itemId>/update`|POST|[Change database info (title, description, tags, ...)](#how-to-change-database-info)
+|`<root-url>/content/users/<username>/items/<itemId>/delete`|POST|[Remove a database](#how-to-remove-a-database)
+|`<admin-catalog-url>/<serviceName>/FeatureServer/addToDefinition`|POST|[Add a table or layer to a database](#create-a-table)
+|`<admin-catalog-url>/<serviceName>/FeatureServer/updateDefinition`|POST|[Change database permissions, indexes, cache, ...](#edition-manage-indexes-cache-control-and-allow-export-data)
+|`<admin-catalog-url>/<serviceName>/FeatureServer/deleteFromDefinition`|POST|[Remove a table or layer from a database](#remove-a-table)
+|`<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/addToDefinition`|POST|[Add fields to a table or layer](#add-fields-to-a-table)
+|`<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/updateDefinition`|POST|[Change a table or layer name, update drawing info, ...](#change-a-table-name)
+|`<catalog-url>/<serviceName>/FeatureServer`|GET|[Get database info](#how-to-get-database-info)
+|`<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures`|POST|[Add records to a table or layer](#add-records)
 
 
 
@@ -306,7 +306,7 @@ This operation allows us to change who is able to edit the service, who can do w
 
 This operation removes both the item and its link from the user's folder by default. For example, you can use it to remove a database.
 
-This operation is available to the user and to the administrator of the organization to which the user belongs | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#hosted-feature-service---services-reference)
+This operation is available to the user and to the administrator of the organization to which the user belongs.
 
 **Read**: [full documentation](https://developers.arcgis.com/rest/users-groups-and-items/delete-item.htm)
 
