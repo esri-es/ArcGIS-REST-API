@@ -187,7 +187,7 @@ This property specifies if the table / layer is related to another table / layer
 
 * [Overview of the relationship class toolset in ArcGIS Pro (Desktop app)](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/an-overview-of-the-relationship-classes-toolset.htm)
     * Parameters: [Usage and syntax](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/create-relationship-class.htm#ESRI_USAGES_6BBF052A9B4B4D91A788AAD83D0521D7)
-* Demo: [Publish a really simple database within ArcGIS Online using ArcGIS Pro](https://www.youtube.com/watch?v=wKut-_f3C10)
+* Demo: [Publish a really simple database within ArcGIS Online using ArcGIS Pro](https://www.youtube.com/watch?v=wKut-_f3C10) ([create relationship class @ minute 3:43](https://youtu.be/wKut-_f3C10?t=223))
 
 ```js
 {
