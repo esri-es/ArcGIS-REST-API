@@ -46,7 +46,7 @@ It looks like this:
 |Property|Type|Details|
 |---|---|---|
 |layers|Array[\<[Layer Object](#layer-object)\>]|This will add one layer per each object in the array.
-|tables|Array[\<Table Object\>|
+|tables|Array[\<Table Object\>]|
 
 
 
@@ -61,11 +61,22 @@ It looks like this:
 |name|String|Layer or table name
 |type|String|\<`Feature Layer` \| `Table`\>
 |parentLayer|Int|Parent layer ID // Added at 10.6
-|displayField|String|The name of the layer's primary display field. The value of this property matches the name of one of the fields of the layer.
 |description|String|String value of the layer as defined in the map service.
 |copyrightText|String|It can be set to empty string
 |defaultVisibility|Boolean|Boolean value indicating whether the layer's visibility is turned on. // Added at 10.1
 |editingInfo|\<[Edit fields info Object](#edit-fields-info-object)\>| If present, specifies information about editing .Ex. `{"lastEditDate": null},` **lastEditDate** indicates the last time a layer was edited. This value gets updated every time the layer data is edited or when any of the layer properties change. // Added at 10.1
+|displayField|String|The name of the layer's primary display field. The value of this property matches the name of one of the fields of the layer.
+|objectIdField|String|Indicates the name of the object ID field in the dataset. The ObjectID field is maintained by ArcGIS and guarantees a unique ID for each row in the table. More about: [Object Identifiers](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/arcgis-field-data-types.htm#GUID-3C98DA8B-8D97-4E9F-AA34-F69C737A9871)
+|uniqueIdField|\<[Unique ID field Object](#unique-id-field-object)\>|Unique numeric field in the polygon feature service.
+|globalIdField|String|A Global ID uniquely identify a feature or table row within a geodatabase and across geodatabases. It can be set to empty string. [Global Identifiers](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/arcgis-field-data-types.htm#GUID-97064FAE-B42E-4DC3-A5C9-9A6F12D053A8)
+|typeIdField|String|A string containing the name of the field holding the type ID for the features, if types exist for the dataset. Each available type has an ID, and each feature's typeIdField can be read to determine the type for each feature. It can be set to empty string
+|fields|Array[\<[Field model object](#field-model-object)]\>|Layer / table fields
+|geometryField|[Field model object](#field-model-object)|Describes settings of the geometry field itself and includes the name, nullable, and editable sub-properties. Other sub-properties such as modelName may or may not be provided. It is possible to have a geometry field that is not editable. For features in layers where editable = false, the geometry values are system maintained and cannot be edited directly even by the data owner or administrator (e.g. utility network dirty area layers). This is different from the allowGeometryUpdates property, which allows the service owner or administrator to control whether or not non-owner/non-administrator users can make geometry updates. Owners or administrators can make geometry updates even when allowGeometryUpdates is false as long as the geometry field is editable
+|types|Array[\<[Type Object](#type-object)\>]|Layer / table sub-types. Can be an empty array. // Added at 10.0 - if the layer has sub-types, they'll be included
+|subtypeField|String| Is set to the name of the subtype field. If the layer does not have subtypes, it is set to empty string ("subtypeField": "") // Added at 10.5
+|defaultSubtypeCode|Int| A layer property that is set to the default subtype code if the layer has subtypes // Added at 10.5
+|templates|Array[\<[Template object](#template-object)\>]|Layer / table templates - usually present when the layer / table has no types
+|subtypes|Array[\<[Subtypes object](#subtypes-object)\>]|Is an array that describes the subtypes in a layer and is always included if the layer has subtypes. The domains in the types array will match the domains in the subtype array for layers that have a unique value renderer based on the subtype column.
 |ownershipBasedAccessControlForFeatures|\<[Access control Object](#access-control-object)\>\|`null`|Object describing how can update, delete and query. // Added at 10.1
 |relationships|Array[\<[Relationship Object](#relationship-object)\>]|The Layer resource returns `relatedTableId`, `cardinality`, `role`, `keyField`, and `composite` for all relationships. In addition, the `relationshiptableId` and `keyFieldInRelationshipTable` properties are returned for attributed relationships only. [Benefits of relationship classes](http://desktop.arcgis.com/en/arcmap/10.3/manage-data/relationships/benefits-of-relationship-classes.htm)
 |isDataVersioned|Boolean|Boolean value indicating whether the data is versioned. [Overview of versioning](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/overview-of-versioning-in-arcgis-pro.htm) // Added at 10.1
@@ -105,17 +116,6 @@ It looks like this:
 |timeInfo|\<[Time info Object](#time-info-Object)\>|The time info metadata of the layer. May be set for feature layers inside a feature collection item.
 |hasAttachments|Boolean|If the layer / table has attachments, the hasAttachments property will be true
 |htmlPopupType|String|\<`esriServerHTMLPopupTypeNone` \| `esriServerHTMLPopupTypeAsURL` \| `esriServerHTMLPopupTypeAsHTMLText`\> // from 10 onward - indicates whether the layer / table has htmlPopups
-|objectIdField|String|Indicates the name of the object ID field in the dataset. The ObjectID field is maintained by ArcGIS and guarantees a unique ID for each row in the table. More about: [Object Identifiers](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/arcgis-field-data-types.htm#GUID-3C98DA8B-8D97-4E9F-AA34-F69C737A9871)
-|uniqueIdField|\<[Unique ID field Object](#unique-id-field-object)\>|Unique numeric field in the polygon feature service.
-|globalIdField|String|A Global ID uniquely identify a feature or table row within a geodatabase and across geodatabases. It can be set to empty string. [Global Identifiers](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/arcgis-field-data-types.htm#GUID-97064FAE-B42E-4DC3-A5C9-9A6F12D053A8)
-|typeIdField|String|A string containing the name of the field holding the type ID for the features, if types exist for the dataset. Each available type has an ID, and each feature's typeIdField can be read to determine the type for each feature. It can be set to empty string
-|fields|Array[\<[Field model object](#field-model-object)]\>|Layer / table fields
-|geometryField|[Field model object](#field-model-object)|Describes settings of the geometry field itself and includes the name, nullable, and editable sub-properties. Other sub-properties such as modelName may or may not be provided. It is possible to have a geometry field that is not editable. For features in layers where editable = false, the geometry values are system maintained and cannot be edited directly even by the data owner or administrator (e.g. utility network dirty area layers). This is different from the allowGeometryUpdates property, which allows the service owner or administrator to control whether or not non-owner/non-administrator users can make geometry updates. Owners or administrators can make geometry updates even when allowGeometryUpdates is false as long as the geometry field is editable
-|types|Array[\<[Type Object](#type-object)\>]|Layer / table sub-types. Can be an empty array. // Added at 10.0 - if the layer has sub-types, they'll be included
-|subtypeField|String| Is set to the name of the subtype field. If the layer does not have subtypes, it is set to empty string ("subtypeField": "") // Added at 10.5
-|defaultSubtypeCode|Int| A layer property that is set to the default subtype code if the layer has subtypes // Added at 10.5
-|templates|Array[\<[Template object](#template-object)\>]|Layer / table templates - usually present when the layer / table has no types
-|subtypes|Array[\<[Subtypes object](#subtypes-object)\>]|Is an array that describes the subtypes in a layer and is always included if the layer has subtypes. The domains in the types array will match the domains in the subtype array for layers that have a unique value renderer based on the subtype column.
 |maxRecordCount|Int|Maximum number of records that will be returned at once for a query // Added at 10.1
 |standardMaxRecordCount|Int|Maximum number of features a query will return when the query uses resultType = standard // Added at 10.6.1
 |tileMaxRecordCount|Int|Maximum number of features a query will return when the query uses resultType = tile // Added at 10.6.1
