@@ -18,7 +18,7 @@ This documentation aims to compile all the information you need to know to build
 - [Height model info Object](#height-model-info-object)
 - [Drawing info Object](#drawing-info-object)
 - [Unique ID field Object](#unique-id-field-object)
-- [Field model object](#field-model-object)
+- [Field model Object](#field-model-object)
 - [Time info Object](#time-info-object)
 - [Type Object](#type-object)
 - [Template object](#template-object)
@@ -181,6 +181,9 @@ Example:
 ```
 
 ## Relationship Object
+
+
+This property specifies if the table / layer is related to another table / layer of the same service. [Overview of the relationship class toolset in ArcGIS Pro (Desktop app)](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/an-overview-of-the-relationship-classes-toolset.htm) | Demo: [Publish a really simple database within ArcGIS Online using ArcGIS Pro](https://www.youtube.com/watch?v=wKut-_f3C10)
 
 ```js
 {
