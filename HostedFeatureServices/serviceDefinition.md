@@ -20,8 +20,8 @@ This documentation aims to compile all the information you need to know to build
 - [Unique ID field Object](#unique-id-field-object)
 - [Field model Object](#field-model-object)
 - [Time info Object](#time-info-object)
-- [Type Object](#type-object)
 - [Template object](#template-object)
+- [Type Object](#type-object)
 - [Subtypes object](#subtypes-object)
 - [Admin layer info Object](#admin-layer-info-object)
 - [Examples](#examples)
@@ -183,7 +183,10 @@ Example:
 ## Relationship Object
 
 
-This property specifies if the table / layer is related to another table / layer of the same service. [Overview of the relationship class toolset in ArcGIS Pro (Desktop app)](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/an-overview-of-the-relationship-classes-toolset.htm) | Demo: [Publish a really simple database within ArcGIS Online using ArcGIS Pro](https://www.youtube.com/watch?v=wKut-_f3C10)
+This property specifies if the table / layer is related to another table / layer of the same service:
+
+* [Overview of the relationship class toolset in ArcGIS Pro (Desktop app)](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/an-overview-of-the-relationship-classes-toolset.htm)
+* Demo: [Publish a really simple database within ArcGIS Online using ArcGIS Pro](https://www.youtube.com/watch?v=wKut-_f3C10)
 
 ```js
 {
@@ -598,7 +601,43 @@ Example ([from this item](https://www.arcgis.com/home/item.html?id=66226c920b7d4
 }
 ```
 
+## Template object
+
+> More info at [Web map specification > Template](https://developers.arcgis.com/web-map-specification/objects/template/)
+
+```js
+{
+    "name": "<templateName1>",
+    "description": "<templateDescription1>",
+    "prototype": < prototypicalFeature1 >,
+    "drawingTool": "esriFeatureEditToolPoint"
+}
+```
+
+Example:
+
+```js
+{
+    "name": "Graffiti Complaint",
+    "description": "",
+    "drawingTool": "esriFeatureEditToolPoint",
+    "prototype": {
+        "attributes": {
+            "status": 1,
+            "req_id": null,
+            "req_type": "Graffiti Complaint - Private Property",
+            "req_date": null,
+        }
+    }
+}
+```
+
 ## Type Object
+
+More information about the:
+
+* [domain specification](https://developers.arcgis.com/web-map-specification/objects/domain/)
+* [Template Object](#template-object)
 
 ```js
 {
@@ -648,39 +687,10 @@ Example:
 }
 ```
 
-## Template object
-
-> More info at [Web map specification > Template](https://developers.arcgis.com/web-map-specification/objects/template/)
-
-```js
-{
-    "name": "<templateName1>",
-    "description": "<templateDescription1>",
-    "prototype": < prototypicalFeature1 >,
-    "drawingTool": "esriFeatureEditToolPoint"
-}
-```
-
-Example:
-
-```js
-{
-    "name": "Graffiti Complaint",
-    "description": "",
-    "drawingTool": "esriFeatureEditToolPoint",
-    "prototype": {
-        "attributes": {
-            "status": 1,
-            "req_id": null,
-            "req_type": "Graffiti Complaint - Private Property",
-            "req_date": null,
-        }
-    }
-}
-```
-
 
 ## Subtypes object
+
+> More information about the [domain specification](https://developers.arcgis.com/web-map-specification/objects/domain/)
 
 ```js
 {
@@ -718,24 +728,24 @@ Example:
             "type": "codedValue",
             "name": "CDOM_4",
             "codedValues": [{
-                "name": "coded 1000.1 desc",
-                "code": 1000.1
-            },
-            {
-                "name": "coded 2000.1 desc",
-                "code": 2000.2
-            },
-            {
-                "name": "coded 3000.1 desc",
-                "code": 3000.3
-            }
-        ],
-        "mergePolicy": "esriMPTDefaultValue",
-        "splitPolicy": "esriSPTDefaultValue"
-    },
-    "FLD4_TEXT_FC2": {
-        "type": "inherited"
-    }
+                    "name": "coded 1000.1 desc",
+                    "code": 1000.1
+                },
+                {
+                    "name": "coded 2000.1 desc",
+                    "code": 2000.2
+                },
+                {
+                    "name": "coded 3000.1 desc",
+                    "code": 3000.3
+                }
+            ],
+            "mergePolicy": "esriMPTDefaultValue",
+            "splitPolicy": "esriSPTDefaultValue"
+        },
+        "FLD4_TEXT_FC2": {
+            "type": "inherited"
+        }
     }
 }
 ```
