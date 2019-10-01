@@ -426,8 +426,6 @@ This object defines the bounding geometry given the lower-left and upper-right c
 
 ### Point layer
 
-> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
-
 Property `geometryType` needs to be assigned to `esriGeometryPoint`.
 
 ```js
