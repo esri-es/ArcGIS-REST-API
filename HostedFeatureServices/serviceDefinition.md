@@ -24,7 +24,7 @@ This documentation aims to compile all the information you need to know to build
 - [Type Object](#type-object)
 - [Subtypes object](#subtypes-object)
 - [Admin layer info Object](#admin-layer-info-object)
-- [Examples](#examples)
+- [Full examples](#full-examples)
   - [Point layer](#point-layer)
   - [Polyline layer](#polyline-layer)
   - [Polygon layer](#polygon-layer)
@@ -786,7 +786,7 @@ Example:
 
 ----
 
-## Examples
+## Full examples
 
 ### Point layer
 
