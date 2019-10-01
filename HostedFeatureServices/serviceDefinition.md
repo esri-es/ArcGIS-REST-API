@@ -64,7 +64,7 @@ It looks like this:
 |displayField|String|The name of the layer's primary display field. The value of this property matches the name of one of the fields of the layer.
 |description|String|String value of the layer as defined in the map service.
 |copyrightText|String|It can be set to empty string
-|subtypeField|String| A layer property that is set to the name of the subtype field. If the layer does not have subtypes, it is set to empty string ("subtypeField": "").//Added at 10.5
+|subtypeField|String| A layer property that is set to the name of the subtype field. If the layer does not have subtypes, it is set to empty string ("subtypeField": "") // Added at 10.5
 |defaultSubtypeCode|Int| A layer property that is set to the default subtype code if the layer has subtypes // Added at 10.5
 |defaultVisibility|Boolean|Boolean value indicating whether the layer's visibility is turned on. // Added at 10.1
 |editingInfo|\<[Edit fields info Object](#edit-fields-info-object)\>| If present, specifies information about editing .Ex. `{"lastEditDate": null},` **lastEditDate** indicates the last time a layer was edited. This value gets updated every time the layer data is edited or when any of the layer properties change. // Added at 10.1
@@ -73,25 +73,25 @@ It looks like this:
 |relationships|Array[\<[Relationship Object](#relationship-object)\>]|The Layer resource returns `relatedTableId`, `cardinality`, `role`, `keyField`, and `composite` for all relationships. In addition, the `relationshiptableId` and `keyFieldInRelationshipTable` properties are returned for attributed relationships only.
 |isDataVersioned|Boolean|Boolean value indicating whether the data is versioned. // Added at 10.1
 |isDataArchived|Boolean|Is true if a layer is archive enabled which allows it to support query with historicMoment. // Added at 10.6
-|isDataBranchVersioned|Boolean|Is true when a layer references a feature class or table in an enterprise geodatabase that is branch-versioned. See [branch versioning](http://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/data-management-strategies.htm#ESRI_SECTION1_6FA2CFB5F9484FF096740D653C674B5D) in enterprise geodatabases. //Added at 10.7
+|isDataBranchVersioned|Boolean|Is true when a layer references a feature class or table in an enterprise geodatabase that is branch-versioned. See [branch versioning](http://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/data-management-strategies.htm#ESRI_SECTION1_6FA2CFB5F9484FF096740D653C674B5D) in enterprise geodatabases. // Added at 10.7
 |isCoGoEnabled|Boolean|Is true if a layer has coordinate geometry enabled. // Added at 10.6
-|supportsRollbackOnFailureParameter|Boolean|Will be `true` to indicate the support for the `rollbackOnFailure` parameter in edit operations (for example, apply edits, add features, update features, and delete features). The `supportsRollbackOnFailureParameter` will be true if the data is simple and non-versioned. If `supportsRollbackOnFailureParameter` is `false` , `rollbackOnFailure` will be true during edit operations such as `applyEdits`. //Added at 10.1
-|archivingInfo|\<[Archiving info object](#archiving-info-object)\>| //Added at 10.5
+|supportsRollbackOnFailureParameter|Boolean|Will be `true` to indicate the support for the `rollbackOnFailure` parameter in edit operations (for example, apply edits, add features, update features, and delete features). The `supportsRollbackOnFailureParameter` will be true if the data is simple and non-versioned. If `supportsRollbackOnFailureParameter` is `false` , `rollbackOnFailure` will be true during edit operations such as `applyEdits`. // Added at 10.1
+|archivingInfo|\<[Archiving info object](#archiving-info-object)\>| // Added at 10.5
 |supportsAppend|Boolean|
 |supportsCalculate|Boolean|
 |supportsTruncate|Boolean|
 |supportsAttachmentsByUploadId|Boolean|
 |supportsAttachmentsResizing|Boolean|
 |supportsRollbackOnFailureParameter|Boolean|
-|supportsStatistics|Boolean|//Added at 10.1
-|supportsAdvancedQueries|Boolean|//Added at 10.1
+|supportsStatistics|Boolean|// Added at 10.1
+|supportsAdvancedQueries|Boolean|// Added at 10.1
 |supportsValidateSql|Boolean|
-|supportsCoordinatesQuantization|Boolean|//Added at 10.6.1
+|supportsCoordinatesQuantization|Boolean|// Added at 10.6.1
 |supportsApplyEditsWithGlobalIds|Boolean|
 |advancedQueryCapabilities|\<[Advanced query capabilities Object](#advanced-query-capabilities-object)\>|Advanced query capabilities of a layer // Added 10.3
 |useStandardizedQueries|Boolean|Will be true to indicate that the layer requires the use of standardized queries. Learn more about [standardized queries](https://enterprise.arcgis.com/en/server/latest/administer/windows/about-standardized-queries.htm).
 |geometryType|String|\<`esriGeometryPoint` \| `esriGeometryPolyline` \| `esriGeometryPolygon`\> // Property applicable to feature layers only
-|geometryProperties|\<[Geometry properties Object](#geometry-properties-object)\>|  // Property applicable to feature layers only //Added at 10.7
+|geometryProperties|\<[Geometry properties Object](#geometry-properties-object)\>|  // Property applicable to feature layers only // Added at 10.7
 |minScale|Int|Integer property used to determine the minimum scale at which the layer is displayed. // Property applicable to feature layers only
 |maxScale|Int|Integer property used to determine the maximum scale at which the layer is displayed. // Property applicable to feature layers only
 |extent|\<[Extent Object](#extent-object)\> \| `null`|An object defining the rectangular area.  // Property applicable to feature layers only
@@ -116,10 +116,10 @@ It looks like this:
 |types|Array[\<[Type Object](#type-object)\>]|Layer / table sub-types. Can be an empty array. // Added at 10.0 - if the layer has sub-types, they'll be included
 |templates|Array[\<[Template object](#template-object)\>]|Layer / table templates - usually present when the layer / table has no types
 |subtypes|Array[\<[Subtypes object](#subtypes-object)\>]|Is an array that describes the subtypes in a layer and is always included if the layer has subtypes. The domains in the types array will match the domains in the subtype array for layers that have a unique value renderer based on the subtype column.
-|maxRecordCount|Int|Maximum number of records that will be returned at once for a query.//Added at 10.1
-|standardMaxRecordCount|Int|Maximum number of features a query will return when the query uses resultType = standard.//Added at 10.6.1
-|tileMaxRecordCount|Int|Maximum number of features a query will return when the query uses resultType = tile.//Added at 10.6.1
-|maxRecordCountFactor|Int|Is used to change the values of standardMaxRecordCount and tileMaxRecordCount for querying.// Added at 10.6.1
+|maxRecordCount|Int|Maximum number of records that will be returned at once for a query // Added at 10.1
+|standardMaxRecordCount|Int|Maximum number of features a query will return when the query uses resultType = standard // Added at 10.6.1
+|tileMaxRecordCount|Int|Maximum number of features a query will return when the query uses resultType = tile // Added at 10.6.1
+|maxRecordCountFactor|Int|Is used to change the values of standardMaxRecordCount and tileMaxRecordCount for querying // Added at 10.6.1
 |supportedQueryFormats|String| describes the supported response types when querying a feature service layer. Values include json, html, and in 10.7 may also include pbf (protocol buffer), a compact binary encoding for geographic data. Ex. `"JSON, geoJSON, PBF"` // Added at 10.1
 |hasMetadata|Boolean|Indicates whether a layer contains metadata // Added at 10.6.1
 |hasStaticData|Boolean|Boolean value indicating whether data changes. True if it does not.
@@ -139,7 +139,7 @@ It looks like this:
     "editDateField": "<editDateField>",
     "editorField": "<editorField>",
     "realm": "<realm>",
-    //Added at 10.7
+    // Added at 10.7
     "dateFieldsTimeReference": {
         "timeZone": "<timeZone>",
         "respectsDaylightSaving": < true | false >
@@ -193,12 +193,12 @@ This property specifies if the table / layer is related to another table / layer
     "id": < relationshipId1 > ,
     "name": "<relationshipName1>",
     "relatedTableId": < relatedTableId1 > ,
-    "cardinality": "<esriRelCardinalityOneToOne>|<esriRelCardinalityOneToMany>|<esriRelCardinalityManyToMany>";, //Added at 10.1
-    "role": "<esriRelRoleOrigin>|<esriRelRoleDestination>";, //Added at 10.1
-    "keyField": "<keyFieldName2>", //Added at 10.1
-    "composite": < true > | < false > , //Added at 10.1
-    "relationshipTableId": < attributedRelationshipClassTableId > , //Added in 10.1. Returned only for attributed relationships
-    "keyFieldInRelationshipTable": "<key field in AttributedRelationshipClass table that matches keyField>" //Added in 10.1. Returned only for attributed relationships
+    "cardinality": "<esriRelCardinalityOneToOne>|<esriRelCardinalityOneToMany>|<esriRelCardinalityManyToMany>";, // Added at 10.1
+    "role": "<esriRelRoleOrigin>|<esriRelRoleDestination>";, // Added at 10.1
+    "keyField": "<keyFieldName2>", // Added at 10.1
+    "composite": < true > | < false > , // Added at 10.1
+    "relationshipTableId": < attributedRelationshipClassTableId > , // Added in 10.1. Returned only for attributed relationships
+    "keyFieldInRelationshipTable": "<key field in AttributedRelationshipClass table that matches keyField>" // Added in 10.1. Returned only for attributed relationships
 }
 ```
 
@@ -256,19 +256,19 @@ Example:
     "supportsStatistics":  < true | false > ,
     "supportsOrderBy":  < true | false > ,
     "supportsDistinct":  < true | false > ,
-    "supportsQueryWithResultType":  < true | false > , //Added at 10.6.1
+    "supportsQueryWithResultType":  < true | false > , // Added at 10.6.1
     "supportsSqlExpression":  < true | false > ,
     "supportsAdvancedQueryRelated":  < true | false > ,
-    "supportsCountDistinct":  < true | false > , //Added at 10.6.1
+    "supportsCountDistinct":  < true | false > , // Added at 10.6.1
     "supportsLod":  < true | false > ,
-    "supportsReturningGeometryCentroid":  < true | false > , //Added at 10.6.1
+    "supportsReturningGeometryCentroid":  < true | false > , // Added at 10.6.1
     "supportsQueryWithDatumTransformation":  < true | false > ,
-    "supportsHavingClause":  < true | false > , //Added at 10.6.1
+    "supportsHavingClause":  < true | false > , // Added at 10.6.1
     "supportsOutFieldSQLExpression":  < true | false > ,
-    "supportsTopFeaturesQuery":  < true | false >, //Added at 10.7   
-    "supportsOrderByOnlyOnLayerFields":  < true | false >, //Added at 10.7   
-    "supportsQueryAttachments":  < true | false >, //Added at 10.7   
-    "supportsQueryAttachmentsWithReturnUrl":  < true | false > //Added at 10.7   
+    "supportsTopFeaturesQuery":  < true | false >, // Added at 10.7   
+    "supportsOrderByOnlyOnLayerFields":  < true | false >, // Added at 10.7   
+    "supportsQueryAttachments":  < true | false >, // Added at 10.7   
+    "supportsQueryAttachmentsWithReturnUrl":  < true | false > // Added at 10.7   
 }
 ```
 
@@ -353,7 +353,7 @@ Example:
 {
     "wkid": < wkid > ,
     "latestWkid": < latestWkid > ,
-    //Added at 10.6 when map is published with a vertical coordinate system
+    // Added at 10.6 when map is published with a vertical coordinate system
     "vcsWkid": < vcsWkid > ,
     "latestVcsWkid": < latestVcsWkid > ,
     "xyTolerance": < xyTolerance > ,
@@ -646,7 +646,7 @@ More information about the:
     "domains": {
         "<domainField11>": < domain11 > ,
         "<domainField12>": < domain12 > ,
-        "description": "<domainDescription>" //Added in 10.6
+        "description": "<domainDescription>" // Added in 10.6
     },
     "templates": [{
             "name": "<templateName11>",
