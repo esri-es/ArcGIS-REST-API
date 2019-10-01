@@ -68,7 +68,7 @@ It looks like this:
 |defaultSubtypeCode|Int| A layer property that is set to the default subtype code if the layer has subtypes // Added at 10.5
 |defaultVisibility|Boolean|Boolean value indicating whether the layer's visibility is turned on. // Added at 10.1
 |editingInfo|\<[Edit fields info Object](#edit-fields-info-object)\>| If present, specifies information about editing .Ex. `{"lastEditDate": null},` **lastEditDate** indicates the last time a layer was edited. This value gets updated every time the layer data is edited or when any of the layer properties change. // Added at 10.1
-|ownershipBasedAccessControlForFeatures|\<[Access control Object](#access-control-object)\>|Object describing how can update, delete and query. // Added at 10.1
+|ownershipBasedAccessControlForFeatures|\<[Access control Object](#access-control-object)\>|`null`|Object describing how can update, delete and query. // Added at 10.1
 |syncCanReturnChanges|Boolean|Will be true if the data is versioned and has global IDs; this indicates the server has the ability to return changes only. If syncCanReturnChanges is false, the server will include all data for each layer in the response.
 |relationships|Array[\<[Relationship Object](#relationship-object)\>]|The Layer resource returns `relatedTableId`, `cardinality`, `role`, `keyField`, and `composite` for all relationships. In addition, the `relationshiptableId` and `keyFieldInRelationshipTable` properties are returned for attributed relationships only.
 |isDataVersioned|Boolean|Boolean value indicating whether the data is versioned. // Added at 10.1
@@ -110,7 +110,7 @@ It looks like this:
 |objectIdField|String|Indicates the name of the object ID field in the dataset.
 |uniqueIdField|\<[Unique ID field Object](#unique-id-field-object)\>|Unique numeric field in the polygon feature service.
 |globalIdField|String|It can be set to empty string
-|typeIdField|String \|Array[\<[Field model object](#field-model-object)]\>|Contains the name of the field holding the type ID for the features. It can be set to empty string
+|typeIdField|String|Contains the name of the field holding the type ID for the features. It can be set to empty string
 |fields|Array[\<[Field model object](#field-model-object)]\>|Layer / table fields
 |geometryField|[Field model object](#field-model-object)|Describes settings of the geometry field itself and includes the name, nullable, and editable sub-properties. Other sub-properties such as modelName may or may not be provided. It is possible to have a geometry field that is not editable. For features in layers where editable = false, the geometry values are system maintained and cannot be edited directly even by the data owner or administrator (e.g. utility network dirty area layers). This is different from the allowGeometryUpdates property, which allows the service owner or administrator to control whether or not non-owner/non-administrator users can make geometry updates. Owners or administrators can make geometry updates even when allowGeometryUpdates is false as long as the geometry field is editable
 |types|Array[\<[Type Object](#type-object)\>]|Layer / table sub-types. Can be an empty array. // Added at 10.0 - if the layer has sub-types, they'll be included
@@ -128,7 +128,7 @@ It looks like this:
 |capabilities|String|Comma separated. Ex. `"Query,Editing,Create,Update,Delete,Sync"`,
 |indexes|Array|Can be an empty array
 |syncEnabled|Boolean|
-|adminLayerInfo|\<[Admin layer info Object](#admin-layer-info-object)\>
+|adminLayerInfo|\<[Admin layer info Object](#admin-layer-info-object)\>|If name property of the layer is the not the name of the table in the database, the tableName property is used to define the fully qualified table name in the database.
 
 ## Edit fields info Object
 
@@ -147,6 +147,21 @@ It looks like this:
 }
 ```
 
+Example:
+
+```js
+{
+    "creationDateField": "created_date",
+    "creatorField": "created_user",
+    "editDateField": "last_edited_date",
+    "editorField": "last_edited_user",
+    "dateFieldsTimeReference": {
+        "timeZone": "UTC",
+        "respectsDaylightSaving": false
+     }
+}
+```
+
 ## Access control Object
 
 ```js
@@ -154,6 +169,14 @@ It looks like this:
    "allowOthersToUpdate": < true | false > ,
    "allowOthersToDelete": < true | false > ,
    "allowOthersToQuery": < true | false >
+}
+```
+
+Example:
+
+```js
+{
+    "allowOthersToQuery": true
 }
 ```
 
@@ -173,6 +196,20 @@ It looks like this:
 }
 ```
 
+Example: (from [this layer](https://services9.arcgis.com/JAEHQgpk7zTHeZED/ArcGIS/rest/services/Best_Practices_WFL1/FeatureServer/1?f=json))
+
+```js
+{
+    "id": 0,
+    "name": "Sites - BP",
+    "relatedTableId": 0,
+    "cardinality": "esriRelCardinalityOneToOne",
+    "role": "esriRelRoleDestination",
+    "keyField": "Latitude",
+    "composite": false
+}
+```
+
 ## Archiving info Object
 
 * `supportsQueryWithHistoricMoment` indicates whether historic moment queries can be performed on the layer. A layer must be archiving-enabled to support these type of queries.
@@ -182,6 +219,14 @@ It looks like this:
 {
     "supportsQueryWithHistoricMoment": < true | false > ,
     "startArchivingMoment": < startArchivingMoment >
+}
+```
+
+Example:
+```js
+{
+    "supportsQueryWithHistoricMoment": false,
+    "startArchivingMoment": -1
 }
 ```
 
@@ -221,13 +266,37 @@ It looks like this:
 }
 ```
 
+Example:
+
+```js
+{
+    "supportsPagination": true,
+    "supportsTrueCurve": true,
+    "supportsQueryWithDistance": true,
+    "supportsReturningQueryExtent": true,
+    "supportsStatistics": true,
+    "supportsOrderBy": true,
+    "supportsDistinct": true
+}
+```
+
 ## Geometry properties Object
 
 ```js
 {
     "shapeAreaFieldName": "<shapeAreaFieldName>",
     "shapeLengthFieldName": "<shapeLengthFieldName>",
-    "units": "<units>"
+    "units": "<esriFeet | esriKilometers | esriMeters | esriMiles>"
+}
+```
+
+Example:
+
+```js
+{
+    "shapeAreaFieldName" : "Shape__Area",
+    "shapeLengthFieldName" : "Shape__Length",
+    "units" : "esriMeters"
 }
 ```
 
@@ -242,6 +311,33 @@ This object defines the bounding geometry given the lower-left and upper-right c
     "xmax": < xmax > ,
     "ymax": < ymax > ,
     "spatialReference": <Spatial reference object>
+}
+```
+
+Example:
+
+```js
+{
+    "xmin": -122.514435102,
+    "ymin": 5.6843418860808E-14,
+    "xmax": 138.625776397,
+    "ymax": 67.1577965990001,
+    "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 3857,
+        "vcsWkid": 5702,
+        "latestVcsWkid": 5702,
+        "xyTolerance": 0.001,
+        "zTolerance": 0.001,
+        "mTolerance": 0.001,
+        "falseX": -20037700,
+        "falseY": -30241100,
+        "xyUnits": 10000,
+        "falseZ": -100000,
+        "zUnits": 10000,
+        "falseM": -100000,
+        "mUnits": 10000
+    }
 }
 ```
 
@@ -267,6 +363,27 @@ This object defines the bounding geometry given the lower-left and upper-right c
 }
 ```
 
+Example:
+
+```js
+{
+    "wkid": 4326,
+    "latestWkid": 3857,
+    "vcsWkid": 5702,
+    "latestVcsWkid": 5702,
+    "xyTolerance": 0.001,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -20037700,
+    "falseY": -30241100,
+    "xyUnits": 10000,
+    "falseZ": -100000,
+    "zUnits": 10000,
+    "falseM": -100000,
+    "mUnits": 10000
+}
+```
+
 ## Height model info Object
 
 > Documentation from: [Web Scene Specification > heightModelInfo](https://developers.arcgis.com/web-scene-specification/objects/heightModelInfo/) & [JS API 4.x documentation > HeightModelInfo](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-HeightModelInfo.html#properties-summary)
@@ -280,6 +397,15 @@ This object defines the bounding geometry given the lower-left and upper-right c
 }
 ```
 
+Example:
+
+```js
+{
+    "heightModel": "gravity_related_height",
+    "vertCRS": "NGVD_1929",
+    "heightUnit": "us-foot"
+}
+```
 
 ## Drawing info Object
 
@@ -295,10 +421,156 @@ This object defines the bounding geometry given the lower-left and upper-right c
 }
 ```
 
+Example:
+
+```js
+{
+	"renderer": {
+		"type": "uniqueValue",
+		"field1": "req_type",
+		"field2": null,
+		"field3": null,
+		"defaultSymbol": null,
+		"defaultLabel": "\u003call other values\u003e",
+		"uniqueValueInfos": [{
+				"value": "Blocked Street or Sidewalk",
+				"label": "Blocked Street or Sidewalk",
+				"description": "",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "1DD4FC53",
+					"imageData": "iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAII=",
+					"contentType": "image/png",
+					"color": null,
+					"width": 19,
+					"height": 19,
+					"angle": 0,
+					"xoffset": 0,
+					"yoffset": 0
+				}
+			},
+			{
+				"value": "Damaged Property",
+				"label": "Damaged Property",
+				"description": "",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "DF3100A6",
+					"imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAII=",
+					"contentType": "image/png",
+					"color": null,
+					"width": 15,
+					"height": 9,
+					"angle": 0,
+					"xoffset": 0,
+					"yoffset": 0
+				}
+			},
+			{
+				"value": "Graffiti Complaint - Public Property",
+				"label": "Graffiti Complaint",
+				"description": "",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "B2E6E7A0",
+					"imageData": "iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAg==",
+					"contentType": "image/png",
+					"color": null,
+					"width": 19,
+					"height": 19,
+					"angle": 0,
+					"xoffset": 0,
+					"yoffset": 0
+				}
+			},
+			{
+				"value": "Graffiti Complaint � Private Property",
+				"label": "Graffiti Complaint",
+				"description": "",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "B2E6E7A0",
+					"imageData": "iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAAg==",
+					"contentType": "image/png",
+					"color": null,
+					"width": 19,
+					"height": 19,
+					"angle": 0,
+					"xoffset": 0,
+					"yoffset": 0
+				}
+			},
+			{
+				"value": "Sewer Issues",
+				"label": "Sewer Issues",
+				"description": "",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "80DC11A7",
+					"imageData": "iVBORw0KGgoAAAANSUhEUgAAABYAAAAaCAYAAACzdqxAAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAAg==",
+					"contentType": "image/png",
+					"color": null,
+					"width": 16,
+					"height": 19,
+					"angle": 0,
+					"xoffset": 0,
+					"yoffset": 0
+				}
+			},
+			{
+				"value": "Sidewalk and Curb Issues",
+				"label": "Sidewalk and Curb Issues",
+				"description": "",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "19213DC2",
+					"imageData": "iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAAII=",
+					"contentType": "image/png",
+					"color": null,
+					"width": 19,
+					"height": 19,
+					"angle": 0,
+					"xoffset": 0,
+					"yoffset": 0
+				}
+			},
+			{
+				"value": "Tree Maintenance or Damage",
+				"label": "Tree Maintenance or Damage",
+				"description": "",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "37B62A6C",
+					"imageData": "iVBORw0KGgoAAAANSUhEUgAAABcAAAAaCAYAAABctMd+AAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAACC",
+					"contentType": "image/png",
+					"color": null,
+					"width": 17,
+					"height": 19,
+					"angle": 0,
+					"xoffset": 0,
+					"yoffset": 0
+				}
+			}
+		]
+	},
+	"transparency": 0,
+	"labelingInfo": null
+}
+```
+
 > **Tip**: the fastest way to create a drawing info object is by using the [Web Map Viewer](https://esri-es.github.io/awesome-arcgis/arcgis/products/web-map-viewer/) or [Web Scene Viewer](https://esri-es.github.io/awesome-arcgis/arcgis/products/web-scene-viewer/) to authorize a [web map](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) or [web scene](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-scene/) and afterwards copying the drawingInfo object from there.
 
 
 ## Unique ID field Object
+
+```js
+{
+    "name": "<fieldName>",
+    "isSystemMaintained": <true | false>
+}
+```
+
+Example:
 
 ```js
 {
@@ -307,7 +579,7 @@ This object defines the bounding geometry given the lower-left and upper-right c
 }
 ```
 
-## Field model object
+## Field model Object
 
 > [What's New in 10.6 - New Properties Exposed on the Feature Layer](https://www.esri.com/arcgis-blog/products/announcements/announcements/whats-new-in-10-6-new-properties-exposed-on-the-feature-layer/)
 
@@ -317,15 +589,45 @@ This object defines the bounding geometry given the lower-left and upper-right c
     "type": "<fieldType1>",
     "alias": "<fieldAlias1>",
     "domain": < domain1 > ,
-    "editable": "<true | false>",
-    "nullable": "<true | false>",
+    "editable": <true | false>,
+    "nullable": <true | false>,
     "length": "<length1>",
     "defaultValue": "<defaultValue1>",
     "modelName": "<modelName1>"
 }
 ```
 
+Example:
+
+```js
+{
+    "name": "objectid",
+    "type": "esriFieldTypeOID",
+    "alias": "Object ID",
+    "editable": false,
+    "nullable": true,
+    "domain": null,
+    "defaultValue": null,
+    "modelName": "OBJECTID"
+}
+```
+
 > While defining the "fields" property in a layer it might include a "sqlType" property. [Find more "sqlType" values](https://developers.arcgis.com/rest/services-reference/layer-feature-service-.htm#UL_01B2204C60864812A6E013ACD589E881)
+
+Example 2:
+
+```js
+{
+    "name" : "Shape__Area",
+    "type" : "esriFieldTypeDouble",
+    "alias" : "Shape__Area",
+    "sqlType" : "sqlTypeDouble",
+    "nullable" : true,
+    "editable" : false,
+    "domain" : null,
+    "defaultValue" : null
+}
+```
 
 ## Time info Object
 
@@ -354,6 +656,30 @@ This object defines the bounding geometry given the lower-left and upper-right c
 }
 ```
 
+Example ([from this item](https://www.arcgis.com/home/item.html?id=66226c920b7d432f99730d9ab007c63b)):
+
+```js
+{
+    "startTimeField": "DATE_START",
+    "endTimeField": "DATE_END",
+    "trackIdField": "",
+    "timeExtent": [631238400000, 1609372800000],
+    "timeReference": {
+        "timeZone": "UTC",
+        "respectsDaylightSaving": false
+    },
+    "timeInterval": 5,
+    "timeIntervalUnits": "esriTimeUnitsYears",
+    "exportOptions": {
+        "useTime": false,
+        "timeDataCumulative": false,
+        "TimeOffset": 0,
+        "timeOffsetUnits": "esriTimeUnitsCenturies"
+    },
+    "hasLiveData": false
+}
+```
+
 ## Type Object
 
 ```js
@@ -379,6 +705,31 @@ This object defines the bounding geometry given the lower-left and upper-right c
 }
 ```
 
+Example:
+
+```js
+{
+    "id": "Graffiti Complaint - Private Property",
+    "name": "Graffiti Complaint",
+    "domains": {
+        "description": null
+    },
+    "templates": [{
+        "name": "Graffiti Complaint",
+        "description": "",
+        "drawingTool": "esriFeatureEditToolPoint",
+        "prototype": {
+            "attributes": {
+                "status": 1,
+                "req_id": null,
+                "req_type": "Graffiti Complaint - Private Property",
+                "req_date": null,
+            }
+        }
+    }]
+}
+```
+
 ## Template object
 
 > More info at [Web map specification > Template](https://developers.arcgis.com/web-map-specification/objects/template/)
@@ -391,6 +742,25 @@ This object defines the bounding geometry given the lower-left and upper-right c
     "drawingTool": "esriFeatureEditToolPoint"
 }
 ```
+
+Example:
+
+```js
+{
+    "name": "Graffiti Complaint",
+    "description": "",
+    "drawingTool": "esriFeatureEditToolPoint",
+    "prototype": {
+        "attributes": {
+            "status": 1,
+            "req_id": null,
+            "req_type": "Graffiti Complaint - Private Property",
+            "req_date": null,
+        }
+    }
+}
+```
+
 
 ## Subtypes object
 
@@ -409,13 +779,79 @@ This object defines the bounding geometry given the lower-left and upper-right c
 }
 ```
 
-## Admin layer info Object
+Example:
 
 ```js
 {
+    "code": 1,
+    "name": "subtype1",
+    "defaultValues": {
+        "FLD0_SUBT_FC2": 1,
+        "FLD1_LONG_FC2": 25,
+        "FLD2_DBL_FC2": null,
+        "FLD3_DBL_FC2": 1000.1,
+        "FLD4_TEXT_FC2": "code 200"
+    },
+    "domains": {
+        "FLD1_LONG_FC2": {
+            "type": "inherited"
+        },
+        "FLD3_DBL_FC2": {
+            "type": "codedValue",
+            "name": "CDOM_4",
+            "codedValues": [{
+                "name": "coded 1000.1 desc",
+                "code": 1000.1
+            },
+            {
+                "name": "coded 2000.1 desc",
+                "code": 2000.2
+            },
+            {
+                "name": "coded 3000.1 desc",
+                "code": 3000.3
+            }
+        ],
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue"
+    },
+    "FLD4_TEXT_FC2": {
+        "type": "inherited"
+    }
+    }
+}
+```
+
+## Admin layer info Object
+
+More information at [Feature Service Object](http://resources.arcgis.com/en/help/sds/rest/featureServiceObject.html)
+
+```js
+{
+    "tableName": "<tableName>",
+    "geometryField": <Field model Object>,
+    "tableExtent": <Extent Object>
+}
+```
+
+Example:
+
+```js
+{
+    "tableName": "demo.dbo.WorldCities",
     "geometryField": {
-        "name": "Shape",
-        "srid": 102100
+        "name": "Shape"
+    },
+    "tableExtent": {
+        "xmin": -179.270004272,
+        "ymin": -79.150001526,
+        "xmax": 177.130187988,
+        "ymax": 78.199996948,
+        "spatialReference": {
+            "wkid": 4326,
+            "wkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]",
+            "sdesrid": 4326
+        }
     }
 }
 ```
@@ -430,7 +866,7 @@ Property `geometryType` needs to be assigned to `esriGeometryPoint`.
 
 ```js
 {
-	"layers": [{
+    "layers": [{
 		"currentVersion": 10.51,
 		"id": 0,
 		"name": "Point layer",
