@@ -64,17 +64,15 @@ It looks like this:
 |displayField|String|The name of the layer's primary display field. The value of this property matches the name of one of the fields of the layer.
 |description|String|String value of the layer as defined in the map service.
 |copyrightText|String|It can be set to empty string
-|subtypeField|String| A layer property that is set to the name of the subtype field. If the layer does not have subtypes, it is set to empty string ("subtypeField": "") // Added at 10.5
-|defaultSubtypeCode|Int| A layer property that is set to the default subtype code if the layer has subtypes // Added at 10.5
 |defaultVisibility|Boolean|Boolean value indicating whether the layer's visibility is turned on. // Added at 10.1
 |editingInfo|\<[Edit fields info Object](#edit-fields-info-object)\>| If present, specifies information about editing .Ex. `{"lastEditDate": null},` **lastEditDate** indicates the last time a layer was edited. This value gets updated every time the layer data is edited or when any of the layer properties change. // Added at 10.1
-|ownershipBasedAccessControlForFeatures|\<[Access control Object](#access-control-object)\>|`null`|Object describing how can update, delete and query. // Added at 10.1
+|ownershipBasedAccessControlForFeatures|\<[Access control Object](#access-control-object)\>\|`null`|Object describing how can update, delete and query. // Added at 10.1
+|relationships|Array[\<[Relationship Object](#relationship-object)\>]|The Layer resource returns `relatedTableId`, `cardinality`, `role`, `keyField`, and `composite` for all relationships. In addition, the `relationshiptableId` and `keyFieldInRelationshipTable` properties are returned for attributed relationships only. [Benefits of relationship classes](http://desktop.arcgis.com/en/arcmap/10.3/manage-data/relationships/benefits-of-relationship-classes.htm)
+|isDataVersioned|Boolean|Boolean value indicating whether the data is versioned. [Overview of versioning](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/overview-of-versioning-in-arcgis-pro.htm) // Added at 10.1
 |syncCanReturnChanges|Boolean|Will be true if the data is versioned and has global IDs; this indicates the server has the ability to return changes only. If syncCanReturnChanges is false, the server will include all data for each layer in the response.
-|relationships|Array[\<[Relationship Object](#relationship-object)\>]|The Layer resource returns `relatedTableId`, `cardinality`, `role`, `keyField`, and `composite` for all relationships. In addition, the `relationshiptableId` and `keyFieldInRelationshipTable` properties are returned for attributed relationships only.
-|isDataVersioned|Boolean|Boolean value indicating whether the data is versioned. // Added at 10.1
-|isDataArchived|Boolean|Is true if a layer is archive enabled which allows it to support query with historicMoment. // Added at 10.6
+|isDataArchived|Boolean|Is true if a layer is archive enabled which allows it to support query with historicMoment. [What is archiving?](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/what-is-archiving-.htm) // Added at 10.6
 |isDataBranchVersioned|Boolean|Is true when a layer references a feature class or table in an enterprise geodatabase that is branch-versioned. See [branch versioning](http://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/data-management-strategies.htm#ESRI_SECTION1_6FA2CFB5F9484FF096740D653C674B5D) in enterprise geodatabases. // Added at 10.7
-|isCoGoEnabled|Boolean|Is true if a layer has coordinate geometry enabled. // Added at 10.6
+|isCoGoEnabled|Boolean|Is true if a layer has coordinate geometry enabled. [CoGo overview](http://desktop.arcgis.com/en/arcmap/10.3/manage-data/creating-new-features/an-overview-of-cogo.htm) // Added at 10.6
 |supportsRollbackOnFailureParameter|Boolean|Will be `true` to indicate the support for the `rollbackOnFailure` parameter in edit operations (for example, apply edits, add features, update features, and delete features). The `supportsRollbackOnFailureParameter` will be true if the data is simple and non-versioned. If `supportsRollbackOnFailureParameter` is `false` , `rollbackOnFailure` will be true during edit operations such as `applyEdits`. // Added at 10.1
 |archivingInfo|\<[Archiving info object](#archiving-info-object)\>| // Added at 10.5
 |supportsAppend|Boolean|
@@ -106,14 +104,16 @@ It looks like this:
 |allowGeometryUpdates|Boolean|Allows the service owner or administrator to control whether or not non-owner/non-administrator users can make geometry updates. Owners or administrators can make geometry updates even when allowGeometryUpdates is false as long as the geometry field is editable// Added at 10.1
 |timeInfo|\<[Time info Object](#time-info-Object)\>|The time info metadata of the layer. May be set for feature layers inside a feature collection item.
 |hasAttachments|Boolean|If the layer / table has attachments, the hasAttachments property will be true
-|htmlPopupType|String|\<`esriServerHTMLPopupTypeNone` \| `esriServerHTMLPopupTypeAsURL` \| `esriServerHTMLPopupTypeAsHTMLText`\> //from 10 onward - indicates whether the layer / table has htmlPopups
-|objectIdField|String|Indicates the name of the object ID field in the dataset.
+|htmlPopupType|String|\<`esriServerHTMLPopupTypeNone` \| `esriServerHTMLPopupTypeAsURL` \| `esriServerHTMLPopupTypeAsHTMLText`\> // from 10 onward - indicates whether the layer / table has htmlPopups
+|objectIdField|String|Indicates the name of the object ID field in the dataset. The ObjectID field is maintained by ArcGIS and guarantees a unique ID for each row in the table. More about: [Object Identifiers](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/arcgis-field-data-types.htm#GUID-3C98DA8B-8D97-4E9F-AA34-F69C737A9871)
 |uniqueIdField|\<[Unique ID field Object](#unique-id-field-object)\>|Unique numeric field in the polygon feature service.
-|globalIdField|String|It can be set to empty string
-|typeIdField|String|Contains the name of the field holding the type ID for the features. It can be set to empty string
+|globalIdField|String|A Global ID uniquely identify a feature or table row within a geodatabase and across geodatabases. It can be set to empty string. [Global Identifiers](https://pro.arcgis.com/en/pro-app/help/data/geodatabases/overview/arcgis-field-data-types.htm#GUID-97064FAE-B42E-4DC3-A5C9-9A6F12D053A8)
+|typeIdField|String|A string containing the name of the field holding the type ID for the features, if types exist for the dataset. Each available type has an ID, and each feature's typeIdField can be read to determine the type for each feature. It can be set to empty string
 |fields|Array[\<[Field model object](#field-model-object)]\>|Layer / table fields
 |geometryField|[Field model object](#field-model-object)|Describes settings of the geometry field itself and includes the name, nullable, and editable sub-properties. Other sub-properties such as modelName may or may not be provided. It is possible to have a geometry field that is not editable. For features in layers where editable = false, the geometry values are system maintained and cannot be edited directly even by the data owner or administrator (e.g. utility network dirty area layers). This is different from the allowGeometryUpdates property, which allows the service owner or administrator to control whether or not non-owner/non-administrator users can make geometry updates. Owners or administrators can make geometry updates even when allowGeometryUpdates is false as long as the geometry field is editable
 |types|Array[\<[Type Object](#type-object)\>]|Layer / table sub-types. Can be an empty array. // Added at 10.0 - if the layer has sub-types, they'll be included
+|subtypeField|String| Is set to the name of the subtype field. If the layer does not have subtypes, it is set to empty string ("subtypeField": "") // Added at 10.5
+|defaultSubtypeCode|Int| A layer property that is set to the default subtype code if the layer has subtypes // Added at 10.5
 |templates|Array[\<[Template object](#template-object)\>]|Layer / table templates - usually present when the layer / table has no types
 |subtypes|Array[\<[Subtypes object](#subtypes-object)\>]|Is an array that describes the subtypes in a layer and is always included if the layer has subtypes. The domains in the types array will match the domains in the subtype array for layers that have a unique value renderer based on the subtype column.
 |maxRecordCount|Int|Maximum number of records that will be returned at once for a query // Added at 10.1
