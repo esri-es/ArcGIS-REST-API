@@ -134,16 +134,16 @@ It looks like this:
 
 ```js
 {
-	"creationDateField": "<creationDateField>",
-	"creatorField": "<creatorField>",
-	"editDateField": "<editDateField>",
-	"editorField": "<editorField>",
-	"realm": "<realm>",
-	//Added at 10.7
-	"dateFieldsTimeReference": {
-		"timeZone": "<timeZone>",
-		"respectsDaylightSaving": < true | false >
-	}
+    "creationDateField": "<creationDateField>",
+    "creatorField": "<creatorField>",
+    "editDateField": "<editDateField>",
+    "editorField": "<editorField>",
+    "realm": "<realm>",
+    //Added at 10.7
+    "dateFieldsTimeReference": {
+        "timeZone": "<timeZone>",
+        "respectsDaylightSaving": < true | false >
+    }
 }
 ```
 
@@ -161,15 +161,15 @@ It looks like this:
 
 ```js
 {
-	"id": < relationshipId1 > ,
-	"name": "<relationshipName1>",
-	"relatedTableId": < relatedTableId1 > ,
-	"cardinality": "<esriRelCardinalityOneToOne>|<esriRelCardinalityOneToMany>|<esriRelCardinalityManyToMany>";, //Added at 10.1
-	"role": "<esriRelRoleOrigin>|<esriRelRoleDestination>";, //Added at 10.1
-	"keyField": "<keyFieldName2>", //Added at 10.1
-	"composite": < true > | < false > , //Added at 10.1
-	"relationshipTableId": < attributedRelationshipClassTableId > , //Added in 10.1. Returned only for attributed relationships
-	"keyFieldInRelationshipTable": "<key field in AttributedRelationshipClass table that matches keyField>" //Added in 10.1. Returned only for attributed relationships
+    "id": < relationshipId1 > ,
+    "name": "<relationshipName1>",
+    "relatedTableId": < relatedTableId1 > ,
+    "cardinality": "<esriRelCardinalityOneToOne>|<esriRelCardinalityOneToMany>|<esriRelCardinalityManyToMany>";, //Added at 10.1
+    "role": "<esriRelRoleOrigin>|<esriRelRoleDestination>";, //Added at 10.1
+    "keyField": "<keyFieldName2>", //Added at 10.1
+    "composite": < true > | < false > , //Added at 10.1
+    "relationshipTableId": < attributedRelationshipClassTableId > , //Added in 10.1. Returned only for attributed relationships
+    "keyFieldInRelationshipTable": "<key field in AttributedRelationshipClass table that matches keyField>" //Added in 10.1. Returned only for attributed relationships
 }
 ```
 
@@ -180,8 +180,8 @@ It looks like this:
 
 ```js
 {
-	"supportsQueryWithHistoricMoment": < true | false > ,
-	"startArchivingMoment": < startArchivingMoment >
+    "supportsQueryWithHistoricMoment": < true | false > ,
+    "startArchivingMoment": < startArchivingMoment >
 }
 ```
 
@@ -225,9 +225,9 @@ It looks like this:
 
 ```js
 {
-	"shapeAreaFieldName": "<shapeAreaFieldName>",
-	"shapeLengthFieldName": "<shapeLengthFieldName>",
-	"units": "<units>"
+    "shapeAreaFieldName": "<shapeAreaFieldName>",
+    "shapeLengthFieldName": "<shapeLengthFieldName>",
+    "units": "<units>"
 }
 ```
 
@@ -237,11 +237,11 @@ This object defines the bounding geometry given the lower-left and upper-right c
 
 ```js
 {
-	"xmin": < xmin > ,
-	"ymin": < ymin > ,
-	"xmax": < xmax > ,
-	"ymax": < ymax > ,
-	"spatialReference": <Spatial reference object>
+    "xmin": < xmin > ,
+    "ymin": < ymin > ,
+    "xmax": < xmax > ,
+    "ymax": < ymax > ,
+    "spatialReference": <Spatial reference object>
 }
 ```
 
@@ -274,9 +274,9 @@ This object defines the bounding geometry given the lower-left and upper-right c
 
 ```js
 {
-	"heightModel": "<ellipsoidal|gravity_related_height>",
-	"vertCRS": "<vertCRS>",
-	"heightUnit": "<150-kilometers | 50-kilometers | benoit-1895-b-chain | clarke-foot | clarke-link | clarke-yard | foot | gold-coast-foot | indian-1937-yard | indian-yard | meter | sears-1922-truncated-chain | sears-chain | sears-foot | sears-yard | us-foot>"
+    "heightModel": "<ellipsoidal|gravity_related_height>",
+    "vertCRS": "<vertCRS>",
+    "heightUnit": "<150-kilometers | 50-kilometers | benoit-1895-b-chain | clarke-foot | clarke-link | clarke-yard | foot | gold-coast-foot | indian-1937-yard | indian-yard | meter | sears-1922-truncated-chain | sears-chain | sears-foot | sears-yard | us-foot>"
 }
 ```
 
@@ -290,8 +290,8 @@ This object defines the bounding geometry given the lower-left and upper-right c
 ```js
 {
     "renderer": < renderer > ,
-	"transparency": < transparency > ,
-	"labelingInfo": < labelingInfo >
+    "transparency": < transparency > ,
+    "labelingInfo": < labelingInfo >
 }
 ```
 
@@ -314,14 +314,14 @@ This object defines the bounding geometry given the lower-left and upper-right c
 ```js
 {
     "name": "<fieldName1>",
-	"type": "<fieldType1>",
-	"alias": "<fieldAlias1>",
-	"domain": < domain1 > ,
-	"editable": "<true | false>",
-	"nullable": "<true | false>",
-	"length": "<length1>",
-	"defaultValue": "<defaultValue1>",
-	"modelName": "<modelName1>"
+    "type": "<fieldType1>",
+    "alias": "<fieldAlias1>",
+    "domain": < domain1 > ,
+    "editable": "<true | false>",
+    "nullable": "<true | false>",
+    "length": "<length1>",
+    "defaultValue": "<defaultValue1>",
+    "modelName": "<modelName1>"
 }
 ```
 
@@ -341,16 +341,16 @@ This object defines the bounding geometry given the lower-left and upper-right c
 
 ```js
 {
-	"startTimeField": "<startTimeFieldName>",
-	"endTimeField": "<endTimeFieldName>",
-	"trackIdField": "<trackIdFieldName>",
-	"timeExtent": [ < startTime > , < endTime > ],
-	"timeReference": {
-		"timeZone": "<timeZone>",
-		"respectsDaylightSaving": < true | false >
-	},
-	"timeInterval": < timeInterval > ,
-	"timeIntervalUnits": "<esriTimeUnitsUnknown | esriTimeUnitsCenturies | esriTimeUnitsDays | esriTimeUnitsDecades | esriTimeUnitsHours | esriTimeUnitsMilliseconds | esriTimeUnitsMinutes | esriTimeUnitsMonths | esriTimeUnitsSeconds | esriTimeUnitsWeeks | esriTimeUnitsYears>"
+    "startTimeField": "<startTimeFieldName>",
+    "endTimeField": "<endTimeFieldName>",
+    "trackIdField": "<trackIdFieldName>",
+    "timeExtent": [ < startTime > , < endTime > ],
+    "timeReference": {
+    	"timeZone": "<timeZone>",
+    	"respectsDaylightSaving": < true | false >
+    },
+    "timeInterval": < timeInterval > ,
+    "timeIntervalUnits": "<esriTimeUnitsUnknown | esriTimeUnitsCenturies | esriTimeUnitsDays | esriTimeUnitsDecades | esriTimeUnitsHours | esriTimeUnitsMilliseconds | esriTimeUnitsMinutes | esriTimeUnitsMonths | esriTimeUnitsSeconds | esriTimeUnitsWeeks | esriTimeUnitsYears>"
 }
 ```
 
@@ -358,24 +358,24 @@ This object defines the bounding geometry given the lower-left and upper-right c
 
 ```js
 {
-	"id": < typeId1 > ,
-	"name": "<typeName1>",
-	"domains": {
-		"<domainField11>": < domain11 > ,
-		"<domainField12>": < domain12 > ,
-		"description": "<domainDescription>" //Added in 10.6
-	},
-	"templates": [{
-			"name": "<templateName11>",
-			"description": "<templateDescription11>",
-			"prototype": < prototypicalFeature11 >
-		},
-		{
-			"name": "<templateName12>",
-			"description": "<templateDescription12>",
-			"prototype": < prototypicalFeature12 >
-		}
-	]
+    "id": < typeId1 > ,
+    "name": "<typeName1>",
+    "domains": {
+        "<domainField11>": < domain11 > ,
+        "<domainField12>": < domain12 > ,
+        "description": "<domainDescription>" //Added in 10.6
+    },
+    "templates": [{
+            "name": "<templateName11>",
+            "description": "<templateDescription11>",
+            "prototype": < prototypicalFeature11 >
+        },
+        {
+            "name": "<templateName12>",
+            "description": "<templateDescription12>",
+            "prototype": < prototypicalFeature12 >
+        }
+    ]
 }
 ```
 
@@ -385,9 +385,9 @@ This object defines the bounding geometry given the lower-left and upper-right c
 
 ```js
 {
-	"name": "<templateName1>",
-	"description": "<templateDescription1>",
-	"prototype": < prototypicalFeature1 >,
+    "name": "<templateName1>",
+    "description": "<templateDescription1>",
+    "prototype": < prototypicalFeature1 >,
     "drawingTool": "esriFeatureEditToolPoint"
 }
 ```
@@ -396,16 +396,16 @@ This object defines the bounding geometry given the lower-left and upper-right c
 
 ```js
 {
-	"code": < SubtypeCode1 > ,
-	"name": "<SubtypeDescription1>",
-	"defaultValues": {
-		"<fieldName1>": < default1 > ,
-		"<fieldName2>": "<default2>"
-	},
-	"domains": {
-		"<fieldName1>": < domain11 > ,
-		"<fieldName2>": < domain12 >
-	}
+    "code": < SubtypeCode1 > ,
+    "name": "<SubtypeDescription1>",
+    "defaultValues": {
+        "<fieldName1>": < default1 > ,
+        "<fieldName2>": "<default2>"
+    },
+    "domains": {
+        "<fieldName1>": < domain11 > ,
+        "<fieldName2>": < domain12 >
+    }
 }
 ```
 
