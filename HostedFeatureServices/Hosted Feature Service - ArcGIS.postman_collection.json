@@ -557,7 +557,7 @@
 						"delete"
 					]
 				},
-				"description": "This operation removes both the item and its link from the user's folder by default. For example, you can use it to remove a database.\n\nThis operation is available to the user and to the administrator of the organization to which the user belongs | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#hosted-feature-service---services-reference)"
+				"description": "This operation removes both the item and its link from the user's folder by default. For example, you can use it to remove a database.\n\nThis operation is available to the user and to the administrator of the organization to which the user belongs | [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#how-to-remove-a-database)"
 			},
 			"response": []
 		},
@@ -654,7 +654,7 @@
 						"addToDefinition"
 					]
 				},
-				"description": "This operation allows us to add a table to a database (`<serviceName>` param). The result of this operation is a response indicating success or failure with error code and description.\n\nIn the `addToDefinition` param you have to define which layer type you want to create.\n\n* [Example of point layer](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#example-of-point-layer)\n* [Example of polyline layer](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#example-of-polyline-layer)\n* [Example of polygon layer](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#example-of-polygon-layer)\n* [Example of standalone table](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#example-of-table)\n \n[Learn More](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#create-a-table)"
+				"description": "This operation allows us to add a table to a database (`<serviceName>` param). The result of this operation is a response indicating success or failure with error code and description.\n\nIn the `addToDefinition` param you have to define which layer type you want to create.\n\n* [Example of point layer](https://github.com/esri-es/ArcGIS-REST-API/blob/master/HostedFeatureServices/serviceDefinition.md#point-layer)\n* [Example of polyline layer](https://github.com/esri-es/ArcGIS-REST-API/blob/master/HostedFeatureServices/serviceDefinition.md#polyline-layer)\n* [Example of polygon layer](https://github.com/esri-es/ArcGIS-REST-API/blob/master/HostedFeatureServices/serviceDefinition.md#polygon-layer)\n* [Example of standalone table](https://github.com/esri-es/ArcGIS-REST-API/blob/master/HostedFeatureServices/serviceDefinition.md#table)\n \nLearn more about:\n\n* [How to create a table](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#create-a-table)\n* [The service definition specification](https://github.com/esri-es/ArcGIS-REST-API/blob/master/HostedFeatureServices/serviceDefinition.md#service-definition-specification)"
 			},
 			"response": []
 		},
@@ -957,7 +957,108 @@
 						"addToDefinition"
 					]
 				},
-				"description": "This operation supports adding a definition property in a hosted feature service layer, for example add a new field. The result of this operation is a response indicating success or a response indicating failure with an error code and description. [Read full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)."
+				"description": "This operation supports adding a definition property in a hosted feature service layer, for example add a new field. The result of this operation is a response indicating success or a response indicating failure with an error code and description. [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#add-fields-to-a-table)."
+			},
+			"response": []
+		},
+		{
+			"name": "<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/deleteFromDefinition",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "74262687-cf39-4070-a40f-2bb0ce07136d",
+						"exec": [
+							"var protocol = pm.environment.get(\"protocol\");",
+							"var portalHost = pm.environment.get(\"portalHost\");",
+							"var portalPort = pm.environment.get(\"portalPort\");",
+							"var username = pm.environment.get(\"username\");",
+							"var password = pm.environment.get(\"password\");",
+							"",
+							"const echoPostRequest = {",
+							"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': 'application/json',",
+							"        'Content-Type': 'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: {",
+							"        mode: 'urlencoded',",
+							"        urlencoded: [",
+							"            {key: \"f\", value: \"json\", disabled: false},",
+							"            {key: \"username\", value: username, disabled: false},",
+							"            {key: \"password\", value: password, disabled: false},",
+							"            {key: \"client\", value: \"referer\", disabled: false},",
+							"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+							"            {key: \"expiration\", value: 21600, disabled: false},",
+							"        ]",
+							"        ",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(echoPostRequest, function (err, response) {",
+							"    if (err && err.code) { ",
+							"        console.log(\"Request error: \", err);",
+							"    }else{",
+							"        try{",
+							"            var res = response.json();",
+							"            var token = res.token;",
+							"            ",
+							"            if(token) {",
+							"                pm.environment.set(\"token\", token);",
+							"            }",
+							"        }catch(e){",
+							"            console.log(`Catch error: ${e.message}`);",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "deleteFromDefinition",
+							"value": "{\"fields\":[{\"name\":\"NewField\"}]}",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "f",
+							"value": "json",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/admin/services/{{serviceName}}/FeatureServer/{{layerId}}/deleteFromDefinition",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{instance}}",
+						"arcgis",
+						"rest",
+						"admin",
+						"services",
+						"{{serviceName}}",
+						"FeatureServer",
+						"{{layerId}}",
+						"deleteFromDefinition"
+					]
+				},
+				"description": "This operation supports deleting a definition property in a hosted feature service layer, for example remove a field. The result of this operation is a response indicating success or a response indicating failure with an error code and description. [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#remove-fields-from-a-table)."
 			},
 			"response": []
 		},
