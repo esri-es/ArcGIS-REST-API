@@ -174,9 +174,9 @@ For this reason we believe that the most useful thing in order to get the most o
 
 ArcGIS online is **much more** than hosted feature services, that's we we encourage you to take a look to this [ArcGIS Online resource page](https://esri-es.github.io/awesome-arcgis/arcgis/products/arcgis-online/) and this simplified diagram of the ArcGIS Online Architecture to have better understanding on how it works:
 
-[![ArcGIS Online Architecture](https://esri-es.github.io/awesome-arcgis/arcgis/products/product-thumbnails/arcgis-online.png)](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)
+[![ArcGIS Online Architecture](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&h=2405)](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)
 
-If you want an overview about the Esri product offering to work with ArcGIS online this is another nice diagram:
+If you want an **overview about the Esri product offering to work with ArcGIS Online deployment** this is another nice diagram:
 
 [![ArcGIS Online deployment](https://docs.google.com/drawings/d/e/2PACX-1vSqd_TTJABumrhzMKS64-G9SIRxhJ-vVAufeTKI-c8Nrwc0clDQBpU83_Sv6-GbuPwbrdrwsVHqynPY/pub?w=1650&amp;h=928)](https://docs.google.com/drawings/d/1fTgq1he-RmjQwqcV_lBfeMRAo8w5TzmMomfMxfRxUiY/edit?usp=sharing)
 
@@ -188,7 +188,7 @@ If you want an overview about the Esri product offering to work with ArcGIS onli
 |`<admin-catalog-url>`|`https://<servicesX>.arcgis.com/<instance>/arcgis/rest/admin/services/`|Root folder to admin a hosted feature service
 |`<catalog-url>`|`https://<servicesX>.arcgis.com/<instance>/arcgis/rest/services/`|Root folder to manage a hosted feature service
 
-> **Note**: an `<instance>` is equivalent to an `<organizationId>` and looks like this: `rF1wdZICHfgsvter`
+> **Note**: an `<instance>` is equivalent to an `<organizationId>` and looks like this: `rF1wdZICHfgsvter`. And the subdomain `<servicesX>` will be returned by the API when you create a new service, and as you'll see, all your services will share the same subdomain, and looks like this: `services6`, `services7`, `services8`, ...
 
 ### Quick reference
 
@@ -206,8 +206,6 @@ If you want an overview about the Esri product offering to work with ArcGIS onli
 |`<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/updateDefinition`|POST|[Change a table or layer name, update drawing info, allow attachments, time settings, ...](#change-table-properties)
 |`<catalog-url>/<serviceName>/FeatureServer`|GET|[Get database info](#how-to-get-database-info)
 |`<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures`|POST|[Add records to a table or layer](#add-records)
-
-
 
 ## Working with Databases (Feature Services)
 
