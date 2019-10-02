@@ -519,7 +519,7 @@ Example:
 }
 ```
 
-Example:
+Example (type: `esriFieldTypeOID`):
 
 ```js
 {
@@ -536,7 +536,7 @@ Example:
 
 > While defining the "fields" property in a layer it might include a "sqlType" property. [Find more "sqlType" values](https://developers.arcgis.com/rest/services-reference/layer-feature-service-.htm#UL_01B2204C60864812A6E013ACD589E881)
 
-Example 2:
+Example 2 (type: `esriFieldTypeDouble`):
 
 ```js
 {
@@ -550,6 +550,38 @@ Example 2:
     "defaultValue" : null
 }
 ```
+
+Example 3 (type: `esriFieldTypeString` with a [coded value domain](https://developers.arcgis.com/web-map-specification/objects/domain/)):
+
+```js
+{
+	"fields": [{
+		"name": "NewField",
+		"type": "esriFieldTypeString",
+		"alias": "New Field",
+		"length": 256,
+		"editable": true,
+		"nullable": true,
+		"defaultValue": null,
+		"description": null,
+		"domain": {
+			"name": "Point layer_NewField3",
+			"type": "codedValue",
+			"codedValues": [{
+				"code": "1",
+				"name": "Value 1"
+			}, {
+				"code": "2",
+				"name": "Value 2"
+			}, {
+				"code": "3",
+				"name": "Value 3"
+			}]
+		}
+	}]
+}
+```
+
 
 ## Time info Object
 
