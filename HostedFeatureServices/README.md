@@ -213,7 +213,7 @@ If you want an **overview about the Esri product offering to work with ArcGIS On
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<root-url\>/portals/\<instance\>/isServiceNameAvailable](https://developers.arcgis.com/rest/users-groups-and-items/check-service-name.htm)<br>
+> **Postman request name**: `<root-url>/portals/<instance>/isServiceNameAvailable`<br>
 > **Example**:
 [https://www.arcgis.com/sharing/rest/portals/rF1wdZICHfgsvter/isServiceNameAvailable?name=Testing_purposes_POSTMAN_Collection&f=json&token=...&type=Feature%20Service](https://www.arcgis.com/sharing/rest/portals/rF1wdZICHfgsvter/isServiceNameAvailable?name=Testing_purposes_POSTMAN_Collection&f=json&token=...&type=Feature20Service)
 
@@ -230,7 +230,7 @@ Checks whether a given service name and type are available for publishing a new 
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<root-url\>/content/users/\<username\>/createService](https://developers.arcgis.com/rest/users-groups-and-items/create-service.htm) <br>
+> **Postman request name**: `<root-url>/content/users/<username>/createService` <br>
 > **Example**: https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/createService
 
 The Create Service operation allows users to create a hosted feature service. You can use the API to create an empty hosted feature service from a feature service metadata JSON.
@@ -268,7 +268,7 @@ The API REST endpoints to manage the Item and the Hosted Feature Service are dif
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<catalog-url\>/\<serviceName\>/FeatureServer](https://developers.arcgis.com/rest/services-reference/feature-service.htm)<br>
+> **Postman request name**: `<catalog-url>/<serviceName>/FeatureServer`<br>
 > **Example**: [
 https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer?f=json](
 https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer?f=json)
@@ -285,7 +285,7 @@ This resource provides basic information about the feature service, including th
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<root-url\>/content/users/\<username\>/items/\<itemId\>/update](https://developers.arcgis.com/rest/services-reference/feature-service.htm)<br>
+> **Postman request name**: `<root-url>/content/users/<username>/items/<itemId>/update`<br>
 > **Example**: [
 https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update](
 https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update)
@@ -308,7 +308,7 @@ All parameters for this operation are optional.
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<root-url\>/content/users/\<username\>/shareItems](https://developers.arcgis.com/rest/users-groups-and-items/share-items.htm)<br>
+> **Postman request name**: `<root-url>/content/users/<username>/shareItems`<br>
 > **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems](https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/shareItems)
 
 This operation allows to share a database (including all contained tables) with:
@@ -328,7 +328,7 @@ This operation allows to share a database (including all contained tables) with:
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Endpoint**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/updateDefinition](https://developers.arcgis.com/rest/services-reference/update-definition-feature-service-.htm)
+> **Endpoint**: `<admin-catalog-url>/<serviceName>/FeatureServer/updateDefinition`<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/updateDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/updateDefinition)
 
 This operation allows us to change who is able to edit the service, who can do what, if we want to keep track of who created and updated records and when, manage spatial indexes, enable cache (CDN), and manage if export data is publicly for everyone. The result of this operation is a response indicating success or failure with error code and description.
@@ -343,7 +343,7 @@ This operation allows us to change who is able to edit the service, who can do w
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Endpoint**: [\<root-url\>/content/users/\<username\>/items/\<itemId\>/delete](https://developers.arcgis.com/rest/users-groups-and-items/delete-item.htm)
+> **Endpoint**: `<root-url>/content/users/<username>/items/<itemId>/delete`<br>
 > **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/ae4a188ab58c4cf9b5247d20cdb40206/delete](https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/ae4a188ab58c4cf9b5247d20cdb40206/delete)
 
 This operation removes both the item and its link from the user's folder by default. For example, you can use it to remove a database.
@@ -358,8 +358,6 @@ https://doc.arcgis.com/en/arcgis-online/administer/manage-items.htm
     * ["My content > Check > Share" section and the "Item details page > Settings > Delete item"](https://doc.arcgis.com/en/arcgis-online/administer/manage-items.htm)
 
 ## Working with tables (Feature Layers and Tables)
-
-> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 First we are going to explain the different ways to store information in an ArcGIS hosted (cloud) database.
 
@@ -383,7 +381,7 @@ So, if you are planning to store spatial information **we strongly encourage you
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/addToDefinition](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-service-.htm)<br>
+> **Postman request name**: `<admin-catalog-url>/<serviceName>/FeatureServer/addToDefinition`<br>
 > **Example**: [
 https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/addToDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/addToDefinition)
 
@@ -409,7 +407,7 @@ You can learn more about the [serviceDefiniton here](./serviceDefinition.md).
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/updateDefinition](https://developers.arcgis.com/rest/services-reference/update-definition-feature-layer-.htm)<br>
+> **Postman request name**: `<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/updateDefinition`<br>
 > **Example**: [https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update](
 https://www.arcgis.com/sharing/rest/content/users/awesome_arcgis/items/08fe7baa579e4661a2291f25c4c1e05b/update)
 
@@ -432,7 +430,7 @@ The result of this operation is a response indicating success or failure with er
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/addToDefinition](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)<br>
+> **Postman request name**: `<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/addToDefinition`<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/addToDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/addToDefinition)
 
 This operation supports adding a definition property in a hosted feature service layer, for example add a new field. The result of this operation is a response indicating success or a response indicating failure with an error code and description.
@@ -442,14 +440,17 @@ This operation supports adding a definition property in a hosted feature service
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)
 * Sample GUIs using this endpoint:
     * [Item details page > Data > Fields](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)
-    * [Web map editor](https://www.esri.com/arcgis-blog/products/arcgis-online/sharing-collaboration/how-to-create-a-hosted-feature-service/)
 
 #### Remove fields from a table
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-*PENDING*
+> **Postman request name**: `<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>/deleteFromDefinition`<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/deleteFromDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/0/deleteFromDefinition)
 
+This operation supports deleting a definition property in a hosted feature service layer, for example remove a field. The result of this operation is a response indicating success or a response indicating failure with an error code and description. [Learn more](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#remove-fields-from-a-table).
+
+* [Full documentation](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-layer-.htm)
 * Sample GUIs using this endpoint:
     * [Item details page > Data > Fields](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)
 
@@ -465,32 +466,24 @@ This operation supports deleting a definition property from a hosted feature ser
 **Resources:**
 
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-service-.htm)
+* Sample GUIs using this endpoint:
+    * [Organization content page](https://www.arcgis.com/home/content.html): Check the item a click "Delete"
+    * [Item details page > Settings > Delete item](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)
 
 ### How to manage records in a table
-
-#### Query records
-
-> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
-
-*PENDING*
-
-**Resources**:
-
-* [Query a feature layer](https://developers.arcgis.com/labs/rest/query-a-feature-layer/) (tutorial)
-* [Using the ArcGIS REST Query Page](https://www.youtube.com/watch?v=LsYgtjkm69Y) (video)
-* Sample GUIs using this endpoint:
-
 
 #### Add records
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<catalog-url\>/\<serviceName\>/FeatureServer/\<layerId\>/addFeatures](https://developers.arcgis.com/rest/services-reference/add-features.htm)<br>
+> **Postman request name**: `<catalog-url>/<serviceName>/FeatureServer/<layerId>/addFeatures`<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures)
 
 This operation adds records to the associated feature layer or table.
 
-If you are adding a record to a layer you will have to specify a geometry. Example:
+If you are adding a record to a layer you will have to specify a geometry.
+
+Example:
 
 ```js
 [{
@@ -534,6 +527,19 @@ If you are adding a record to a table you will omit the `geometry` property. Exa
 
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/add-features.htm).
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
+* Sample GUIs using this endpoint:
+    * [Web map viewer > Edit > Add features](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (just for layers, not for tables)
+
+#### Query records
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
+
+*PENDING*
+
+**Resources**:
+
+* [Query a feature layer](https://developers.arcgis.com/labs/rest/query-a-feature-layer/) (tutorial)
+* [Using the ArcGIS REST Query Page](https://www.youtube.com/watch?v=LsYgtjkm69Y) (video)
 * Sample GUIs using this endpoint:
 
 #### Update records
@@ -644,7 +650,7 @@ Yes, there are two, so if you are a JavaScript or a Python developer you might w
 * [ArcGIS API for Python](https://github.com/Esri/arcgis-python-api)
 * [ArcGIS REST JS](https://esri.github.io/arcgis-rest-js/api/)
 
-**Note**: *none of them have support to every capability of the REST API, that's why we still think it's worth learning how to use it directly.*ss
+> **Note**: *none of them have support to every capability of the REST API, that's why we still think it's worth learning how to use it directly.*
 
 ## Additional resources
 
