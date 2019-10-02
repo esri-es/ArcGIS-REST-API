@@ -653,7 +653,18 @@ This operation deletes records in a feature layer or table. A list of objectIds 
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-*PENDING*
+> **Postman request name**: `<catalog-url>/<serviceName>/FeatureServer/<layerId>/<featureId>/addAttachment`<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/1/addAttachment](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/1/addAttachment)
+
+This operation adds an attachment to the associated feature and is available only if the layer has advertised that it has attachments. A layer has attachments if its hasAttachments property is true.
+
+See the [Limiting upload file size and file types](https://developers.arcgis.com/rest/services-reference/uploads.htm) section under Uploads to learn more about default file size and file type limitations imposed on attachments.
+
+* [Full documentation](https://developers.arcgis.com/rest/services-reference/add-attachment.htm).
+* Sample GUIs using this endpoint:
+    * [Web map viewer > Edit > Choose File > Close](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (just for layers, not for tables)
+    * [Item details page > Data > Add](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
+    * [ArcGIS REST Service Page > Layer > (add an id to the URL) > Add attachment](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/NewFeatureService/FeatureServer/0/1/addAttachment)
 
 ### How to manager layer views (filter / extend tables)
 
