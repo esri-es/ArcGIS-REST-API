@@ -18,7 +18,7 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
 - [Previous concepts](#previous-concepts)
   - [ArcGIS Online items (ArcGIS geoinformation model)](#arcgis-online-items-arcgis-geoinformation-model)
   - [Applications using the REST API & Reverse engineering](#applications-using-the-rest-api--reverse-engineering)
-  - [ArcGIS Online Architecture](#arcgis-online-architecture)
+  - [ArcGIS Online Architecture and Deployment](#arcgis-online-architecture-and-deployment)
 - [Cheatsheet](#cheatsheet)
   - [Quick reference](#quick-reference)
 - [Working with Databases (Feature Services)](#working-with-databases-feature-services)
@@ -69,43 +69,43 @@ Now, please download [Postman](https://www.getpostman.com/downloads/) and import
 
 Next [set up some variables](https://developers.onelogin.com/api-docs/1/getting-started/postman-collections) like: `username` and `password`.
 
-You are ready to go, feel free to explore. This documentation is written by describing common use cases, so if you want to create an empty database:
+You are ready to go, feel free to explore. This documentation is written by describing [common use cases](https://github.com/esri-es/ArcGIS-REST-API/tree/master/HostedFeatureServices#table-of-contents), but we highly encourage you to read the "Previous concepts" first. But in case you are already familiar with the ArcGIS platform and just want to know how to create an empty database using the REST API:
 
-1. Go to [the respective section](#how-to-create-an-empty-database)
+1. Go to **"[How to create an empty database](#how-to-create-an-empty-database)"** section.
 2. Read the documentation
-3. Go to Postman and find the `Endpoint name` and test it,
+3. Find in Postman the ***Endpoint name*** and test it
 
-If you have any other questions please use the [repository issues](https://github.com/esri-es/ArcGIS-REST-API/issues).
+> If you have any other questions please use the [repository issues](https://github.com/esri-es/ArcGIS-REST-API/issues).
 
 ## Previous concepts
 
-When working with hosted feature services is better to be familiar with the ArcGIS [geoinformation model](https://doc.arcgis.com/en/arcgis-online/reference/geo-info.htm) and the [ArcGIS Online Architecture](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405) in order to better understand why the endpoints are designed the way they are.
+When working with hosted feature services is better to be familiar with the ArcGIS [geoinformation model](https://doc.arcgis.com/en/arcgis-online/reference/geo-info.htm) and the [ArcGIS Online Architecture](#arcgis-online-architecture-and-deployment) in order to better understand why the endpoints are designed the way they are.
 
 ### ArcGIS Online items (ArcGIS geoinformation model)
 
 > **Note**: items ArcGIS Enterprise works the same way
 
-An `Item` is the core unit of the geoinformation model. To better understand the concept of an `Item`, it is necessary to bear in mind that ArcGIS Online is designed from its base to be used for organizations with multiple users (not just developers), and so that any user of an organization (especially those without programming skills) can create, share, find and manage with other users all kinds of geolocalized information::
+An `Item` is the core unit of the geoinformation model. To better understand the concept of an `Item`, it is necessary to bear in mind that ArcGIS Online is designed from its base to be used for organizations with multiple users (not just developers), and so that any user of an organization (especially those without programming skills) can create, share, find and manage with other users all kinds of geolocalized information:
 
-* Data through: databases and static files (CSV, GeoJSON, Excels, ...)
-* Static files: PDFs, ZIPs, etc
-* Astonishing 2D and 3D maps (possible thank to ths ArcGIS map specifications like [Web Maps](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) and [Web Scenes](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/))
-* Configuration files for apps
+* **Data through**: databases and static files (CSV, GeoJSON, Excels, ...)
+* **Static files**: PDFs, ZIPs, etc
+* **Astonishing 2D and 3D maps**: possible thanks to the ArcGIS map specifications like [Web Maps](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/) and [Web Scenes](https://esri-es.github.io/awesome-arcgis/esri/open-vision/open-specifications/web-map/)
+* **Configuration files for apps**
 * And much more
 
 Bearing this in mind, when we create a free developer account we are assigned an organizational account that can only have a single user, so there are some capabilities such as sharing an item with a group that will not be very useful, as there are no more users in our organization.
 
 > The only exception is that we want to group several public items in a public group for reasons of organization and visibility of the items.
 
-So an `Item` is just a JSON plain object stored in ArcGIS Online which contains information about the resource (database, static file, etc) but also permissions and other properties.
+So, to keep it simple: an `Item` is just a JSON plain object stored in ArcGIS which contains information about a resource (database, static file, etc) like permissions and other properties.
 
-As a first approach, imagine each user in ArcGIS Online has a item table associated with it, something like this:
+As a first approach, imagine each user in ArcGIS Online has an item table associated with it, something like this:
 
 [![Item table](https://user-images.githubusercontent.com/826965/65668230-a0fde280-e041-11e9-8d8b-8347483291be.png)](https://user-images.githubusercontent.com/826965/65668230-a0fde280-e041-11e9-8d8b-8347483291be.png)
 
-And this is a very basic example of the JSON that describes how a **Hosted Feature Service item**  looks like:
+> **Important** Note that the number and role of the properties of each element may vary depending on the `type` of element, for example, in the diagram above the property: URL.
 
-> **Note**: *some properties might differ based on the item type.*
+This is a very basic example of the JSON that describes how a **Hosted Feature Service item**  looks like:
 
 ```js
 {
@@ -155,7 +155,7 @@ And this is a very basic example of the JSON that describes how a **Hosted Featu
 }
 ```
 
-Additional resources:
+Knowing this is enough for now, although we leave you some additional resources in case you're curious:
 
 * [Supported item types](https://doc.arcgis.com/en/arcgis-online/reference/supported-items.htm)
 * [Items and item types](https://developers.arcgis.com/rest/users-groups-and-items/items-and-item-types.htm) (developer documentation)
@@ -164,17 +164,21 @@ Additional resources:
 
 ### Applications using the REST API & Reverse engineering
 
-The API is used by all [Esri products](https://docs.google.com/drawings/d/1w_tBCVPdPULUehfFBJaqyH7ywZyxZLBCeemWFa3o2Ho/edit?usp=sharing), [APIs and SDKs](https://developers.arcgis.com/documentation/#sdks). By this we mean that **everything that can be done through a client can also be done through the API**.
+The API is used by all [Esri products](https://docs.google.com/drawings/d/1w_tBCVPdPULUehfFBJaqyH7ywZyxZLBCeemWFa3o2Ho/edit?usp=sharing), [APIs and SDKs](https://developers.arcgis.com/documentation/#sdks), by this we mean that **everything that can be done through a client can also be done through the API**.
 
 For this reason we believe that the most useful thing in order to get the most out of the API is to know how to reverse engineer these interfaces/SDKs in order to replicate and debug any functionality that is implemented in these clients (as is shown in [this talk](https://youtu.be/uJvZ8MJA0t4?t=208)).
 
 > You can reverse engineer this interfaces using several free applications like: [Fiddler](https://www.telerik.com/fiddler), [Postman Interceptor](https://learning.getpostman.com/docs/postman/sending_api_requests/interceptor_extension/), the [Network tab at Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/network), etc
 
-### ArcGIS Online Architecture
+### ArcGIS Online Architecture and Deployment
 
 ArcGIS online is **much more** than hosted feature services, that's we we encourage you to take a look to this [ArcGIS Online resource page](https://esri-es.github.io/awesome-arcgis/arcgis/products/arcgis-online/) and this simplified diagram of the ArcGIS Online Architecture to have better understanding on how it works:
 
 [![ArcGIS Online Architecture](https://esri-es.github.io/awesome-arcgis/arcgis/products/product-thumbnails/arcgis-online.png)](https://docs.google.com/drawings/d/e/2PACX-1vRbMbrSXgE8fGdsIz5RBgGNpixoPPgJ6swlk9vT3lUyW8cOffUxmb3Oludm7yF44BzwRoTPtZ5jvwGx/pub?w=3870&amp;h=2405)
+
+If you want an overview about the Esri product offering to work with ArcGIS online this is another nice diagram:
+
+[![ArcGIS Online deployment](https://docs.google.com/drawings/d/e/2PACX-1vSqd_TTJABumrhzMKS64-G9SIRxhJ-vVAufeTKI-c8Nrwc0clDQBpU83_Sv6-GbuPwbrdrwsVHqynPY/pub?w=1650&amp;h=928)](https://docs.google.com/drawings/d/1fTgq1he-RmjQwqcV_lBfeMRAo8w5TzmMomfMxfRxUiY/edit?usp=sharing)
 
 ## Cheatsheet
 
