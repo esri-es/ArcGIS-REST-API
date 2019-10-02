@@ -403,6 +403,8 @@ You can learn more about the [serviceDefiniton here](./serviceDefinition.md).
 * Sample GUIs using this endpoint:
     * [Add > New Layer @ developers.arcgis.com](https://developers.arcgis.com/layers/new)
     * [Create feature Layer from My Content @ arcgis.com/home/content.html](https://www.esri.com/arcgis-blog/products/arcgis-online/announcements/creating-an-empty-feature-layer-for-data-collection/)
+    * [ArcGIS REST Admin Service Page > Add To Definition](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/admin/services/NewFeatureService/FeatureServer/addToDefinition)
+
 
 #### Get table info
 
@@ -422,6 +424,7 @@ For feature layers, in addition to the table information above, it provides info
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/feature-layer.htm)
 * Sample GUIs using this endpoint:
     * [Item details page > Data](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
+    * [ArcGIS REST Admin Service Page > Layer](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/NewFeatureService/FeatureServer/0)
 
 
 #### Change table properties
@@ -446,6 +449,7 @@ The result of this operation is a response indicating success or failure with er
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/update-definition-feature-layer-.htm)
 * Sample GUIs using this endpoint:
     * [Item details page > Layers > Edit](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)
+    * [ArcGIS REST Admin Service Page > Layer > Update Definition](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/admin/services/NewFeatureService/FeatureServer/0/updateDefinition)
 
 #### Add fields to a table
 
@@ -486,6 +490,7 @@ More about the [field spec](https://github.com/esri-es/ArcGIS-REST-API/blob/mast
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)
 * Sample GUIs using this endpoint:
     * [Item details page > Data > Fields](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)
+    * [ArcGIS REST Admin Service Page > Layer > Add To Definition](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/admin/services/NewFeatureService/FeatureServer/0/addToDefinition)
 
 #### Remove fields from a table
 
@@ -499,6 +504,7 @@ This operation supports deleting a definition property in a hosted feature servi
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-layer-.htm)
 * Sample GUIs using this endpoint:
     * [Item details page > Data > Fields](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)
+    * [ArcGIS REST Admin Service Page > Layer > Delete From Definition](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/admin/services/NewFeatureService/FeatureServer/0/deleteFromDefinition)
 
 #### Remove a table
 
@@ -515,6 +521,7 @@ This operation supports deleting a definition property from a hosted feature ser
 * Sample GUIs using this endpoint:
     * [Organization content page](https://www.arcgis.com/home/content.html): Check the item a click "Delete"
     * [Item details page > Settings > Delete item](https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)
+    * [ArcGIS REST Admin Service Page > Delete From Definition](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/admin/services/NewFeatureService/FeatureServer/deleteFromDefinition)
 
 ### How to manage records in a table
 
@@ -575,6 +582,7 @@ If you are adding a record to a table you will omit the `geometry` property. Exa
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
 * Sample GUIs using this endpoint:
     * [Web map viewer > Edit > Add features](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (just for layers, not for tables)
+    * [ArcGIS REST Service Page > Layer > Add features](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures)
 
 #### Query records
 
@@ -598,6 +606,7 @@ While there is a limit to the number of features included in the feature set res
     * [Item details page > Data](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
     * [Item details page > Visualization](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#visualize) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
     * [Web map viewer](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (just for layers, not for tables)
+    * [ArcGIS REST Service Page > Layer > Query](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/query)
 
 #### Add, update and delete multiple records with a single call
 
@@ -614,7 +623,6 @@ Featured parameters ([view all](https://developers.arcgis.com/rest/services-refe
 * `updates`: The array of features ([JSON Feature Objects](https://developers.arcgis.com/documentation/common-data-types/feature-object.htm)) to be updated
 * `deletes`: Comma separated values of object IDs of the features/records to be deleted.
 
-
 **Resources**:
 
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/apply-edits-feature-service-layer-.htm).
@@ -622,18 +630,24 @@ Featured parameters ([view all](https://developers.arcgis.com/rest/services-refe
 * Sample GUIs using this endpoint:
     * [Item details page > Data](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
     * [Web map viewer](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (Click on any feature > click edit > edit any field > click close)
+    * [ArcGIS REST Service Page > Layer > Apply Edits](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0//applyEdits)
+
 
 #### Delete records
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-*PENDING*
+> **Postman request name**: `<catalog-url>/<serviceName>/FeatureServer/<layerId>/deleteFeatures`<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/deleteFeatures](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/deleteFeatures)
+
+This operation deletes records in a feature layer or table. A list of objectIds or a `where` clause can be used to specify which records we want to delete. We can also specify a spatial filter and much more
 
 **Resources**:
 
-* [Full documentation](#).
+* [Full documentation](https://developers.arcgis.com/rest/services-reference/delete-features.htm).
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
 * Sample GUIs using this endpoint:
+    * [ArcGIS REST Service Page > Layer > Delete Features](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0//deleteFeatures)
 
 #### Add attachments to a record
 
