@@ -33,13 +33,14 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
 - [Working with tables (Feature Layers and Tables)](#working-with-tables-feature-layers-and-tables)
   - [How to manage tables](#how-to-manage-tables)
     - [Create a table](#create-a-table)
+    - [Get table info](#get-table-info)
     - [Change table properties](#change-table-properties)
     - [Add fields to a table](#add-fields-to-a-table)
     - [Remove fields from a table](#remove-fields-from-a-table)
     - [Remove a table](#remove-a-table)
   - [How to manage records in a table](#how-to-manage-records-in-a-table)
-    - [Query records](#query-records)
     - [Add records](#add-records)
+    - [Query records](#query-records)
     - [Update records](#update-records)
     - [Delete records](#delete-records)
     - [Add attachments to a record](#add-attachments-to-a-record)
@@ -403,6 +404,26 @@ You can learn more about the [serviceDefiniton here](./serviceDefinition.md).
     * [Add > New Layer @ developers.arcgis.com](https://developers.arcgis.com/layers/new)
     * [Create feature Layer from My Content @ arcgis.com/home/content.html](https://www.esri.com/arcgis-blog/products/arcgis-online/announcements/creating-an-empty-feature-layer-for-data-collection/)
 
+#### Get table info
+
+> **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
+
+> **Postman request name**: `<admin-catalog-url>/<serviceName>/FeatureServer/<layerId>`<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer/0?&f=pjson](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer/0?&f=pjson)
+
+The layer resource represents a single feature layer or a non-spatial table in a feature service. A feature layer is a table or view with at least one spatial column.
+
+For tables, it provides basic information about the table such as its ID, name, fields, types and templates.
+
+For feature layers, in addition to the table information above, it provides information such as its geometry type, min and max scales, and spatial reference.
+
+**Resources**:
+
+* [Full documentation](https://developers.arcgis.com/rest/services-reference/feature-layer.htm)
+* Sample GUIs using this endpoint:
+    * [Item details page > Data](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
+
+
 #### Change table properties
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
@@ -435,6 +456,31 @@ The result of this operation is a response indicating success or failure with er
 
 This operation supports adding a definition property in a hosted feature service layer, for example add a new field. The result of this operation is a response indicating success or a response indicating failure with an error code and description.
 
+When adding a new field the API expects in the `addToDefinition` something like this:
+
+```js
+{
+	"fields": [{
+		"name": "NewField1",
+		"type": "esriFieldTypeString",
+		"alias": "New Field1",
+		"nullable": true,
+		"editable": true,
+		"length": 256
+	}, {
+		"name": "NewField2",
+		"type": "esriFieldTypeDouble",
+		"alias": "New Field2",
+		"nullable": true,
+		"editable": true
+	}]
+}
+```
+
+More about the [field spec](https://github.com/esri-es/ArcGIS-REST-API/blob/master/HostedFeatureServices/serviceDefinition.md#field-model-object)
+
+> **Supported types**: esriFieldTypeBlob | esriFieldTypeDate | esriFieldTypeDouble | esriFieldTypeGeometry | esriFieldTypeGlobalID | esriFieldTypeGUID | esriFieldTypeInteger | esriFieldTypeOID | esriFieldTypeRaster | esriFieldTypeSingle | esriFieldTypeSmallInteger | esriFieldTypeString | esriFieldTypeXML. More at: [Supported data types](https://developers.arcgis.com/documentation/common-data-types/field.htm) | [correspondence between **type** and **database column type**](https://developers.arcgis.com/rest/services-reference/layer-feature-service-.htm#UL_01B2204C60864812A6E013ACD589E881)
+
 **Resources:**
 
 * [Full documentation](https://developers.arcgis.com/rest/services-reference/add-to-definition-feature-layer-.htm)
@@ -458,7 +504,7 @@ This operation supports deleting a definition property in a hosted feature servi
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-> **Postman request name**: [\<admin-catalog-url\>/\<serviceName\>/FeatureServer/deleteFromDefinition](https://developers.arcgis.com/rest/services-reference/delete-from-definition-feature-service-.htm)<br>
+> **Postman request name**: `<admin-catalog-url>/<serviceName>/FeatureServer/deleteFromDefinition`<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/deleteFromDefinition](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/admin/services/NewFeatureService/FeatureServer/deleteFromDefinition)
 
 This operation supports deleting a definition property from a hosted feature service. For example we can remove a table from the database. The result of this operation is a response indicating success or failure with error code and description.
@@ -488,8 +534,8 @@ Example:
 ```js
 [{
 	"attributes": {
-		"field1": "value1",
-		"field2": "value2"
+		"NewField1": "value1",
+		"NewField2": 1.1
 	},
 	"geometry": {
 		"x": "-3.80704",
@@ -497,8 +543,8 @@ Example:
 	}
 }, {
 	"attributes": {
-		"field1": "value1",
-		"field2": "value2"
+		"NewField1": "value3",
+		"NewField2": 1.2
 	},
 	"geometry": {
 		"x": "-3.80549",
@@ -512,13 +558,13 @@ If you are adding a record to a table you will omit the `geometry` property. Exa
 ```js
 [{
 	"attributes": {
-		"field1": "value1",
-		"field2": "value2"
+		"NewField1": "value1",
+		"NewField2": 1.1
 	}
 }, {
 	"attributes": {
-		"field1": "value1",
-		"field2": "value2"
+		"NewField1": "value3",
+		"NewField2": 1.2
 	}
 }]
 ```
@@ -534,13 +580,24 @@ If you are adding a record to a table you will omit the `geometry` property. Exa
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-*PENDING*
+> **Postman request name**: `<catalog-url>/<serviceName>/FeatureServer/<layerId>/query`<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/query?f=pjson&where=1=1&outFields=*](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/query?f=pjson&where=1=1&outFields=*)
+
+The result of this operation is either a feature set or an array of feature IDs (if `returnIdsOnly` is set to `truev) and/or a result extent (if `returnExtentOnly` is set to `true`).
+
+While there is a limit to the number of features included in the feature set response, there is no limit to the number of object IDs returned in the ID array response. Clients can exploit this to get all the query conforming object IDs by specifying returnIdsOnly=true and subsequently requesting feature sets for subsets of object IDs.
+
+> **Note**: A table/layer use to paginate results (default limit is 2000 records per query), but you can [check the property `maxRecordCount` from your table metadata](#get-table-info). In case you need to recover more pages you can use the parameter `resultOffset`.
 
 **Resources**:
 
+* [Full documentation](https://developers.arcgis.com/rest/services-reference/query-feature-service-layer-.htm).
 * [Query a feature layer](https://developers.arcgis.com/labs/rest/query-a-feature-layer/) (tutorial)
 * [Using the ArcGIS REST Query Page](https://www.youtube.com/watch?v=LsYgtjkm69Y) (video)
 * Sample GUIs using this endpoint:
+    * [Item details page > Data](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
+    * [Item details page > Visualization](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#visualize) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
+    * [Web map viewer](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (just for layers, not for tables)
 
 #### Update records
 
