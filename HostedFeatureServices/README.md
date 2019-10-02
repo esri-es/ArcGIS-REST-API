@@ -603,13 +603,18 @@ While there is a limit to the number of features included in the feature set res
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-*PENDING*
+> **Postman request name**: `<catalog-url>/<serviceName>/FeatureServer/<layerId>/applyEdits`<br>
+> **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/applyEdits](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/applyEdits)
+
+This operation adds, updates, and deletes features to the associated feature layer or table in a single call. 
 
 **Resources**:
 
-* [Full documentation](#).
+* [Full documentation](https://developers.arcgis.com/rest/services-reference/apply-edits-feature-service-layer-.htm).
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
 * Sample GUIs using this endpoint:
+    * [Item details page > Data](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
+    * [Web map viewer](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (Click on any feature > click edit > edit any field > click close)
 
 #### Delete records
 
