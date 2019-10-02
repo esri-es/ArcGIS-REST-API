@@ -41,7 +41,7 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
   - [How to manage records in a table](#how-to-manage-records-in-a-table)
     - [Add records](#add-records)
     - [Query records](#query-records)
-    - [Update records](#update-records)
+    - [Add, Update, Delete multiple records (with a single call)](#add-update-delete-multiple-records-with-a-single-call)
     - [Delete records](#delete-records)
     - [Add attachments to a record](#add-attachments-to-a-record)
   - [How to manager layer views (filter / extend tables)](#how-to-manager-layer-views-filter--extend-tables)
@@ -599,14 +599,21 @@ While there is a limit to the number of features included in the feature set res
     * [Item details page > Visualization](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#visualize) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
     * [Web map viewer](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (just for layers, not for tables)
 
-#### Update records
+#### Add, update & delete multiple records (with a single call)
 
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
 > **Postman request name**: `<catalog-url>/<serviceName>/FeatureServer/<layerId>/applyEdits`<br>
 > **Example**: [https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/applyEdits](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/applyEdits)
 
-This operation adds, updates, and deletes features to the associated feature layer or table in a single call. 
+This operation adds, updates, and deletes features to the associated feature layer or table in a single call.
+
+Some params ([view all](https://developers.arcgis.com/rest/services-reference/apply-edits-feature-service-layer-.htm)):
+
+* `adds`: The array of features ([JSON Feature Objects](https://developers.arcgis.com/documentation/common-data-types/feature-object.htm)) to be added.
+* `updates`: The array of features ([JSON Feature Objects](https://developers.arcgis.com/documentation/common-data-types/feature-object.htm)) to be updated
+* `deletes`: Comma separated values of object IDs of the features/records to be deleted.
+
 
 **Resources**:
 
