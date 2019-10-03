@@ -129,13 +129,13 @@ It looks like this:
 |indexes|Array|Can be an empty array. [Manage hosted feature layers > Rebuild the spatial index](https://doc.arcgis.com/en/arcgis-online/manage-data/manage-hosted-feature-layers.htm#ESRI_SECTION1_C0E9631E20E245CA96784EC95393BD7D) | [Add Attribute Index using ArcGIS Pro](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/add-attribute-index.htm)
 |syncEnabled|Boolean|When the Sync capability is listed, the feature service is sync-enabled, and all layers and tables in the service can be used in sync workflows. [Sync-enabled feature services](https://developers.arcgis.com/rest/services-reference/sync-enabled-feature-services.htm) \| [Manage hosted feature layers](https://doc.arcgis.com/en/arcgis-online/manage-data/manage-hosted-feature-layers.htm)
 |adminLayerInfo|\<[Admin layer info Object](#admin-layer-info-object)\>|If name property of the layer is the not the name of the table in the database, the tableName property is used to define the fully qualified table name in the database.
-|attachmentProperties|Array[\<...\>]
-|url|String|If the service is a layer view, this is the URL to the original service
+|attachmentProperties|Array[\<...\>]|n.a.
+|url|String|If the service is a layer view, this is the URL to the original feature service (not item)
 |attributes|Array[String]|Something like: `["is-hosted", "has-no-dateTime", "can-appendData", "can-renameLayer"]`
 |layerMetadataUrl|String|n.a.
-|mapViewerUrl|String|Layer view only. Link to the layer it is referencing, something like `./webmap/viewer.html?layers=<originalItemId>&useExisting=1&&layerId=0`
-|mapViewerUrlWithGeocode|String|Layer view only. Link to the layer it is referencing, something like `./webmap/viewer.html?layers=<originalItemId>&review=true&layerId=0`
-|sceneViewerUrl|String|Layer view only. `/webscene/viewer.html?layers=<originalItemId>&layerId=0`
+|mapViewerUrl|String|Layer view only. Link to the layer it is referencing, something like `./webmap/viewer.html?layers=<originalItemId>&useExisting=1&&layerId=0`. The layerId can be any of the possible ones.
+|mapViewerUrlWithGeocode|String|Layer view only. Link to the layer it is referencing, something like `./webmap/viewer.html?layers=<originalItemId>&review=true&layerId=0`. The layerId can be any of the possible ones.
+|sceneViewerUrl|String|Layer view only. `/webscene/viewer.html?layers=<originalItemId>&layerId=0`. The layerId can be any of the possible ones.
 
 
 ## Edit fields info Object
