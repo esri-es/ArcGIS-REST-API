@@ -585,7 +585,7 @@ If you are adding a record to a table you will omit the `geometry` property. Exa
 * [Add, edit, and remove features](https://developers.arcgis.com/labs/rest/add-edit-and-remove-features/) (tutorial)
 * Sample GUIs using this endpoint:
     * [Web map viewer > Edit > Add features](https://www.arcgis.com/home/webmap/viewer.html?url=https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/Testing_purposes_POSTMAN_Collection/FeatureServer&source=sd) (just for layers, not for tables)
-    * [ArcGIS REST Service Page > Layer > Add features](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures)
+    * [ArcGIS REST Service Page > Layer/Table > Add features](https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0/addFeatures)
 
 #### Query records
 
@@ -895,10 +895,21 @@ As notice for **each layer and table** we will have to specify some special prop
 
 Transfer attributes from one layer or table to another based on spatial and attribute relationships. Optionally, statistics can be calculated for the joined features.
 
+The best way to understand how to do this is by checking the folder "Join two tables" within the Postman collection. But to summarize these are the steps:
+
+1. Create empty service specifying `isView: true`
+2. Update a feature service definition by adding a new layer with `adminLayerInfo.viewLayerDefinition.table.relatedTables` specifying information about the query parameters.
+
+Optionals:
+
+3. Update de item to add information to the `properties` field about the processing job `analysis.arcgis.com/.../tasks/GPServer/JoinFeatures`
+4. Add a JSON to the item's static resources with the tool and parameters used (in this case [Join features](https://developers.arcgis.com/rest/services-reference/join-features.htm))
+5. Update de item to add information to the `properties` field about the completed job
+
 **Resources**:
 
 * Sample GUIs using this endpoint:
-    * [Map viewer > Analysis > Summarize > Join features > Create results as hosted feature layer view](https://doc.arcgis.com/en/arcgis-online/analyze/join-features.htm)
+    * Map viewer > Analysis > Summarize > Join features: Check the "Create results as hosted feature layer view" ([documentation](](https://doc.arcgis.com/en/arcgis-online/analyze/join-features.htm)))
 
 #### Filter information in a layer view
 
