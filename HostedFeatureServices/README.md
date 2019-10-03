@@ -46,6 +46,9 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
     - [Add attachments to a record](#add-attachments-to-a-record)
   - [How to manager layer views (filter / extend tables)](#how-to-manager-layer-views-filter--extend-tables)
     - [Create a layer view](#create-a-layer-view)
+      - [Content from individual layers](#content-from-individual-layers)
+      - [Content from joined layers](#content-from-joined-layers)
+    - [Filter information in a layer view](#filter-information-in-a-layer-view)
     - [Delete a layer view](#delete-a-layer-view)
   - [How to manage a relationship](#how-to-manage-a-relationship)
     - [Create a relationship](#create-a-relationship)
@@ -888,7 +891,7 @@ As notice for **each layer and table** we will have to specify some special prop
 * Sample GUIs using this endpoint:
     * [Item details page > Create View Layer](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm))) (only the owner of a hosted feature service)
 
-##### Content from individual layers
+##### Content from joined layers
 
 Transfer attributes from one layer or table to another based on spatial and attribute relationships. Optionally, statistics can be calculated for the joined features.
 
