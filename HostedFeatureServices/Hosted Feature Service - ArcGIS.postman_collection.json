@@ -12,6 +12,189 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Join two layers",
+			"item": [
+				{
+					"name": "<root-url>/content/users/<username>/createService",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "01bd595f-a39a-49ce-9af8-6857ed870bf2",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Feature service created\"] = responseBody.has(\"encodedServiceURL\");",
+									"",
+									"function extractSubdomain(iCalContent) {",
+									"  var rx = /^(?:https?:\\/\\/)?(?:[^@\\/\\n]+@)?(?:www\\.)?([^:\\/\\n]+)/igm;",
+									"  var arr = rx.exec(iCalContent);",
+									"",
+									"  return arr[1]; ",
+									"}",
+									"",
+									"var host = extractSubdomain(jsonData.encodedServiceURL);",
+									"postman.setEnvironmentVariable(\"host\", host);",
+									"",
+									"var instance = jsonData.encodedServiceURL.split(\"/\")[3];",
+									"postman.setEnvironmentVariable(\"instance\", instance);",
+									"",
+									"var itemId = jsonData.serviceItemId;",
+									"postman.setEnvironmentVariable(\"itemId\", itemId);",
+									"",
+									"var serviceName = jsonData.name;",
+									"postman.setEnvironmentVariable(\"serviceName\", serviceName);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "df83841d-2ab5-4857-b6a1-7f14b18b458c",
+								"exec": [
+									"var protocol = pm.environment.get(\"protocol\");",
+									"var portalHost = pm.environment.get(\"portalHost\");",
+									"var portalPort = pm.environment.get(\"portalPort\");",
+									"var username = pm.environment.get(\"username\");",
+									"var password = pm.environment.get(\"password\");",
+									"",
+									"const echoPostRequest = {",
+									"    url:  `${protocol}://${portalHost}:${portalPort}/sharing/rest/generateToken`,",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/x-www-form-urlencoded'",
+									"    },",
+									"    body: {",
+									"        mode: 'urlencoded',",
+									"        urlencoded: [",
+									"            {key: \"f\", value: \"json\", disabled: false},",
+									"            {key: \"username\", value: username, disabled: false},",
+									"            {key: \"password\", value: password, disabled: false},",
+									"            {key: \"client\", value: \"referer\", disabled: false},",
+									"            {key: \"referer\", value: \"arcgis.com\", disabled: false},",
+									"            {key: \"expiration\", value: 21600, disabled: false},",
+									"        ]",
+									"        ",
+									"    }",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    if (err && err.code) { ",
+									"        console.log(\"Request error: \", err);",
+									"    }else{",
+									"        try{",
+									"            var res = response.json();",
+									"            var token = res.token;",
+									"            ",
+									"            if(token) {",
+									"                pm.environment.set(\"token\", token);",
+									"            }",
+									"        }catch(e){",
+									"            console.log(`Catch error: ${e.message}`);",
+									"        }",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "createParameters",
+									"value": "{\"currentVersion\":10.2,\"serviceDescription\":\"\",\"hasVersionedData\":false,\"supportsDisconnectedEditing\":false,\"hasStaticData\":true,\"maxRecordCount\":2000,\"supportedQueryFormats\":\"JSON\",\"capabilities\":\"Query\",\"description\":\"\",\"copyrightText\":\"\",\"allowGeometryUpdates\":false,\"syncEnabled\":false,\"editorTrackingInfo\":{\"enableEditorTracking\":false,\"enableOwnershipAccessControl\":false,\"allowOthersToUpdate\":true,\"allowOthersToDelete\":true},\"xssPreventionInfo\":{\"xssPreventionEnabled\":true,\"xssPreventionRule\":\"InputOnly\",\"xssInputRule\":\"rejectInvalid\"},\"tables\":[],\"name\":\"Join_Features_FeaturerLayerName_AND_TableName_2\"}"
+								},
+								{
+									"key": "f",
+									"value": "json"
+								},
+								{
+									"key": "isView",
+									"value": "true"
+								},
+								{
+									"key": "outputType",
+									"value": "featureService"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{protocol}}://{{portalHost}}:{{portalPort}}/sharing/rest/content/users/{{username}}/createService",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{portalHost}}"
+							],
+							"port": "{{portalPort}}",
+							"path": [
+								"sharing",
+								"rest",
+								"content",
+								"users",
+								"{{username}}",
+								"createService"
+							]
+						},
+						"description": "First, create an empty database"
+					},
+					"response": []
+				},
+				{
+					"name": "<admin-catalog-url>/<serviceName>/FeatureServer/addToDefinition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "addToDefinition",
+									"value": "{\"layers\":[{\"name\":\"Join_Features_FeaturerLayerName_AND_TableName\",\"displayField\":\"\",\"description\":\"AttributeJoin\",\"adminLayerInfo\":{\"viewLayerDefinition\":{\"table\":{\"name\":\"Testing_purposes_POSTMAN_Collection_1570094204565_target\",\"sourceServiceName\":\"Testing_purposes_POSTMAN_Collection\",\"sourceLayerId\":0,\"sourceLayerFields\":[{\"name\":\"GlobalID\",\"alias\":\"\",\"source\":\"GlobalID\"},{\"name\":\"CreationDate\",\"alias\":\"CreationDate\",\"source\":\"CreationDate\"},{\"name\":\"Creator\",\"alias\":\"Creator\",\"source\":\"Creator\"},{\"name\":\"EditDate\",\"alias\":\"EditDate\",\"source\":\"EditDate\"},{\"name\":\"Editor\",\"alias\":\"Editor\",\"source\":\"Editor\"},{\"name\":\"Name\",\"alias\":\"Beach Name\",\"source\":\"Name\"},{\"name\":\"SandType\",\"alias\":\"Sand type\",\"source\":\"SandType\"}],\"relatedTables\":[{\"name\":\"Testing_purposes_POSTMAN_Collection_1570094204566_join\",\"sourceServiceName\":\"Testing_purposes_POSTMAN_Collection\",\"sourceLayerId\":3,\"sourceLayerFields\":[{\"name\":\"Start_Date\",\"alias\":\"Start Date\",\"source\":\"Start_Date\"},{\"name\":\"Start_Time\",\"alias\":\"Start Time\",\"source\":\"Start_Time\"},{\"name\":\"End_Date\",\"alias\":\"End Date\",\"source\":\"End_Date\"},{\"name\":\"End_Time\",\"alias\":\"End Time\",\"source\":\"End_Time\"},{\"name\":\"Event_Title\",\"alias\":\"Event Title\",\"source\":\"Event_Title\"},{\"name\":\"All_Day_Event\",\"alias\":\"All Day Event\",\"source\":\"All_Day_Event\"},{\"name\":\"No_End_Time\",\"alias\":\"No End Time\",\"source\":\"No_End_Time\"},{\"name\":\"Event_Description\",\"alias\":\"Event Description\",\"source\":\"Event_Description\"},{\"name\":\"Contact\",\"alias\":\"Contact\",\"source\":\"Contact\"},{\"name\":\"Contact_Email\",\"alias\":\"Contact Email\",\"source\":\"Contact_Email\"},{\"name\":\"Contact_Phone\",\"alias\":\"Contact Phone\",\"source\":\"Contact_Phone\"},{\"name\":\"Location\",\"alias\":\"Location\",\"source\":\"Location\"},{\"name\":\"Category\",\"alias\":\"Category\",\"source\":\"Category\"},{\"name\":\"Mandatory\",\"alias\":\"Mandatory\",\"source\":\"Mandatory\"},{\"name\":\"Registration\",\"alias\":\"Registration\",\"source\":\"Registration\"},{\"name\":\"Maximum\",\"alias\":\"Maximum\",\"source\":\"Maximum\"},{\"name\":\"Last_Date_To_Register\",\"alias\":\"Last Date To Register\",\"source\":\"Last_Date_To_Register\"},{\"name\":\"GlobalID_1570094204566\",\"alias\":\"\",\"source\":\"GlobalID\"}],\"type\":\"INNER\",\"parentKeyFields\":[\"Name\"],\"keyFields\":[\"Event_Title\"],\"topFilter\":{\"groupByFields\":\"Event_Title\",\"orderByFields\":\"ObjectId ASC\",\"topCount\":1}}],\"materialized\":false}},\"geometryField\":{\"name\":\"Testing_purposes_POSTMAN_Collection_1570094204565_target.Shape\"}}}]}"
+								},
+								{
+									"key": "f",
+									"value": "json"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}/{{instance}}/arcgis/rest/admin/services/{{serviceName}}/FeatureServer/addToDefinition",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{instance}}",
+								"arcgis",
+								"rest",
+								"admin",
+								"services",
+								"{{serviceName}}",
+								"FeatureServer",
+								"addToDefinition"
+							]
+						},
+						"description": "Add a layer with **just adminLayerInfo**. With this structure:\n\n```\n{\n\t\"layers\": [{\n\t\t\"name\": \"Join_Features_FeaturerLayerName_AND_TableName\",\n\t\t\"displayField\": \"\",\n\t\t\"description\": \"AttributeJoin\",\n\t\t\"adminLayerInfo\": {\n\t\t\t\"viewLayerDefinition\": {\n\t\t\t\t\"table\": {\n\t\t\t\t\t\"name\": \"Testing_purposes_POSTMAN_Collection_1570094204565_target\",\n\t\t\t\t\t\"sourceServiceName\": \"Testing_purposes_POSTMAN_Collection\",\n\t\t\t\t\t\"sourceLayerId\": 0,\n\t\t\t\t\t\"sourceLayerFields\": [...],\n\t\t\t\t\t\"relatedTables\": [{\n\t\t\t\t\t\t\"name\": \"Testing_purposes_POSTMAN_Collection_1570094204566_join\",\n\t\t\t\t\t\t\"sourceServiceName\": \"Testing_purposes_POSTMAN_Collection\",\n\t\t\t\t\t\t\"sourceLayerId\": 3,\n\t\t\t\t\t\t\"sourceLayerFields\": [...],\n\t\t\t\t\t\t\"type\": \"INNER\",\n\t\t\t\t\t\t\"parentKeyFields\": [\"Name\"],\n\t\t\t\t\t\t\"keyFields\": [\"Event_Title\"],\n\t\t\t\t\t\t\"topFilter\": {\n\t\t\t\t\t\t\t\"groupByFields\": \"Event_Title\",\n\t\t\t\t\t\t\t\"orderByFields\": \"ObjectId ASC\",\n\t\t\t\t\t\t\t\"topCount\": 1\n\t\t\t\t\t\t}\n\t\t\t\t\t}],\n\t\t\t\t\t\"materialized\": false\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"geometryField\": {\n\t\t\t\t\"name\": \"Testing_purposes_POSTMAN_Collection_1570094204565_target.Shape\"\n\t\t\t}\n\t\t}\n\t}]\n}\n```\n\nWhere `òbj.layers[0].adminLayerInfo.viewLayerDefinition.table.relatedTables` define the information about the join: `sourceServiceName`, `type`, `parentKeyFields`, `keyFields`, ..."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "<root-url>/portals/<instance>/isServiceNameAvailable",
 			"event": [
 				{
