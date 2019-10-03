@@ -670,14 +670,238 @@ See the [Limiting upload file size and file types](https://developers.arcgis.com
 
 #### Create a layer view
 
+##### Content from individual layers
+
 > **Go to**: [TOC](#table-of-contents) | [Quick reference](#quick-reference)
 
-*PENDING*
+> **Note**: this operation does not requires any specific endpoint, it will use the existing ones.
+
+If you need a different view of the data represented by a hosted feature layer—for example, you want to apply different editor settings, styles or filters—create a hosted feature layer view of that hosted feature layer. Once you have a view, you can [define which features or fields are available in the hosted feature layer view](https://doc.arcgis.com/en/arcgis-online/manage-data/set-view-definition.htm) and share the view to groups whose members need access to that view of the data.
+
+When you create a feature layer view, a new hosted feature layer item is added to Content. This new layer is a view of the data in the hosted feature layer, which means updates made to the data appear in the hosted feature layer and all of its hosted feature layer views. However, since the view is a separate layer, you can change properties and settings on this item separately from the hosted feature layer from which it is created. For example, you can allow members of your organization to edit the hosted feature layer but share a read-only feature layer view with the public.
+
+**Only the owner of a hosted feature layer can create a hosted feature layer view from the original layer**. This is different than copying a layer, which can be done by non-owners and even public users.
+
+
+**Step 1) [Create an empty database](#how-to-create-an-empty-database)**
+
+> We will use the endpoint `<root-url>/content/users/<username>/createService`
+
+* `isView` = `true`
+* `outputType` = featureService
+* `createParameters`
+
+```js
+{
+	"name": "NewFeatureService_LayerView",
+	"isView": true,
+	"sourceSchemaChangesAllowed": true,
+	"isUpdatableView": true,
+	"spatialReference": {
+		"wkid": 102100,
+		"latestWkid": 3857
+	},
+	"initialExtent": {
+		"xmin": -20037507.0671618,
+		"ymin": -30240971.9583862,
+		"xmax": 20037507.0671618,
+		"ymax": 18398924.324645,
+		"spatialReference": {
+			"wkid": 102100,
+			"latestWkid": 3857
+		}
+	},
+	"capabilities": "Query",
+	"preserveLayerIds": false
+}
+```
+
+**Step 2) Link to the source layer(s) and/or table(s) (add the new service definition)**
+
+Now we are going to link it to the layer we want.
+
+> **Note**: we will use the endpoint `<admin-catalog-url>/<serviceName>/FeatureServer/updateDefinition`
+
+Example of an `addToDefinition` param:
+
+```js
+{
+	"layers": [{
+		"currentVersion": 10.7,
+		"id": 0,
+		"name": "Point layer",
+		"type": "Feature Layer",
+		"displayField": "",
+		"description": "",
+		"copyrightText": "",
+		"defaultVisibility": true,
+		"editingInfo": {
+			"lastEditDate": 1570034310767
+		},
+		"isDataVersioned": false,
+		"supportsAppend": true,
+		"supportsCalculate": true,
+		"supportsASyncCalculate": true,
+		"supportsTruncate": false,
+		"supportsAttachmentsByUploadId": true,
+		"supportsAttachmentsResizing": true,
+		"supportsRollbackOnFailureParameter": true,
+		"supportsStatistics": true,
+		"supportsExceedsLimitStatistics": true,
+		"supportsAdvancedQueries": true,
+		"supportsValidateSql": true,
+		"supportsCoordinatesQuantization": true,
+		"supportsFieldDescriptionProperty": true,
+		"supportsQuantizationEditMode": true,
+		"supportsApplyEditsWithGlobalIds": false,
+		"supportsReturningQueryGeometry": true,
+		"advancedQueryCapabilities": {
+			"supportsPagination": true,
+			"supportsPaginationOnAggregatedQueries": true,
+			"supportsQueryRelatedPagination": true,
+			"supportsQueryWithDistance": true,
+			"supportsReturningQueryExtent": true,
+			"supportsStatistics": true,
+			"supportsOrderBy": true,
+			"supportsDistinct": true,
+			"supportsQueryWithResultType": true,
+			"supportsSqlExpression": true,
+			"supportsAdvancedQueryRelated": true,
+			"supportsCountDistinct": true,
+			"supportsPercentileStatistics": true,
+			"supportsQueryAttachments": true,
+			"supportsLod": true,
+			"supportsQueryWithLodSR": false,
+			"supportedLodTypes": ["geohash"],
+			"supportsReturningGeometryCentroid": false,
+			"supportsQueryWithDatumTransformation": true,
+			"supportsHavingClause": true,
+			"supportsOutFieldSQLExpression": true,
+			"supportsMaxRecordCountFactor": true,
+			"supportsTopFeaturesQuery": true,
+			"supportsDisjointSpatialRel": true,
+			"supportsQueryWithCacheHint": true,
+			"supportsQueryAttachmentsWithReturnUrl": true
+		},
+		"useStandardizedQueries": true,
+		"geometryType": "esriGeometryPoint",
+		"minScale": 0,
+		"maxScale": 0,
+		"extent": {
+			"xmin": -20037508.342788905,
+			"ymin": -8175201.3721496435,
+			"xmax": -3.805489,
+			"ymax": 12175461.54272524,
+			"spatialReference": {
+				"wkid": 102100,
+				"latestWkid": 3857
+			}
+		},
+		"drawingInfo": {
+			"renderer": {
+				"type": "simple",
+				"symbol": {
+					"type": "esriPMS",
+					"url": "RedSphere.png",
+					"imageData": "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",
+					"contentType": "image/png",
+					"width": 15,
+					"height": 15
+				}
+			}
+		},
+		"allowGeometryUpdates": true,
+		"hasAttachments": true,
+		"attachmentProperties": [{
+			"name": "name",
+			"isEnabled": true
+		}, {
+			"name": "size",
+			"isEnabled": true
+		}, {
+			"name": "contentType",
+			"isEnabled": true
+		}, {
+			"name": "keywords",
+			"isEnabled": true
+		}, {
+			"name": "exifInfo",
+			"isEnabled": true
+		}],
+		"htmlPopupType": "esriServerHTMLPopupTypeNone",
+		"hasM": false,
+		"hasZ": false,
+		"objectIdField": "OBJECTID",
+		"uniqueIdField": {
+			"name": "OBJECTID",
+			"isSystemMaintained": true
+		},
+		"globalIdField": "",
+		"typeIdField": "",
+		"types": [],
+		"templates": [{
+			"name": "New Feature",
+			"description": "",
+			"drawingTool": "esriFeatureEditToolPoint",
+			"prototype": {
+				"attributes": {
+					"NewField3": null
+				}
+			}
+		}],
+		"supportedQueryFormats": "JSON, geoJSON",
+		"hasStaticData": false,
+		"maxRecordCount": 2000,
+		"standardMaxRecordCount": 32000,
+		"tileMaxRecordCount": 8000,
+		"maxRecordCountFactor": 1,
+		"capabilities": "Create,Delete,Query,Update,Editing",
+		"url": "https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0?token=QVaUAApYTUCCYslHwWKJ1_8rDKdprv6v8Q2hFVD4t-L8Krsr0WzQIO95xnj9kjNLJ6U-3aTcBnbPq8XZNntRzasjbOBosHc4FYiydVtWQUrbJ1UUrZJoc3KOwvf-SMUHNCrqLikIrqr8sj3hTRJexRMY_Wd0u4RrdowoyYJC1QGBoCiDVhRZQ6HHcK-FRjH4BaU1OV37nQwVYqRvzg8Ds0tD-F114bIFpjtcwkScxNM7KZvk_JetLEa-6yaEAY9i",
+		"attributes": ["is-hosted", "has-no-dateTime", "can-appendData", "can-renameLayer"],
+		"layerMetadataUrl": "",
+		"mapViewerUrl": "https://awesome-arcgis.maps.arcgis.com/home/webmap/viewer.html?layers=0e3e6432498c4ef091cd58b1cffa064b&layerId=0",
+		"mapViewerUrlWithGeocode": "./webmap/viewer.html?layers=0e3e6432498c4ef091cd58b1cffa064b&review=true&layerId=0",
+		"sceneViewerUrl": "./webscene/viewer.html?layers=0e3e6432498c4ef091cd58b1cffa064b&layerId=0",
+		"adminLayerInfo": {
+			"viewLayerDefinition": {
+				"sourceServiceName": "NewFeatureService",
+				"sourceLayerId": 0,
+				"sourceLayerFields": "*"
+			}
+		}
+	}],
+	"tables": []
+}
+```
+
+As notice for **each layer and table** we will have to specify some special properties:
+
+* `viewLayerDefinition`: specifying the unique sourceServiceName (e.g. `"NewFeatureService"`) each layer and table is referencing.
+* `url`: URL to the original feature service (not item), notice is contains the sourceServiceName (`https://services7.arcgis.com/rF1wdZICHfgsvter/arcgis/rest/services/NewFeatureService/FeatureServer/0`)
+* `mapViewerUrl`: link to the map viewer loading the original item
+* `mapViewerUrlWithGeocode`: link to the map viewer loading the original item
+* `sceneViewerUrl`: link to the scene viewer loading the original item
 
 **Resources**:
 
-* [Full documentation](#).
+* [Create hosted feature layer views](https://doc.arcgis.com/en/arcgis-online/manage-data/create-hosted-views.htm)
 * Sample GUIs using this endpoint:
+    * [Item details page > Create View Layer](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm))) (only the owner of a hosted feature service)
+
+##### Content from individual layers
+
+Transfer attributes from one layer or table to another based on spatial and attribute relationships. Optionally, statistics can be calculated for the joined features.
+
+**Resources**:
+
+* Sample GUIs using this endpoint:
+    * [Map viewer > Analysis > Summarize > Join features > Create results as hosted feature layer view](https://doc.arcgis.com/en/arcgis-online/analyze/join-features.htm)
+
+#### Filter information in a layer view
+
+To control what data users see, the owner of a hosted feature layer view, or an administrator, can define what fields or features are available in the view. You can also limit the hosted feature layer view to a specific area by defining a spatial extent. These definitions are saved with the hosted feature layer view and allow you more control over what content people see. [More info](https://doc.arcgis.com/en/arcgis-online/manage-data/set-view-definition.htm).
+
+**PENDING**
 
 #### Delete a layer view
 
