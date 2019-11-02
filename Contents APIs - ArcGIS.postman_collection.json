@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "74052bd1-02d2-402f-b295-959fe40585d3",
+		"name": "Contents APIs - ArcGIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Living Atlas",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Search API",
+			"item": [
+				{
+					"name": "Configurable apps",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://www.arcgis.com"
+							},
+							{
+								"key": "X-DevTools-Emulate-Network-Conditions-Client-Id",
+								"value": "81def7c6-989d-454f-81c0-70809a73f630"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Referer",
+								"value": "http://www.arcgis.com/home/group.html?id=4e77441f172242b18b5e456cfc1ff97e&focus=layers"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.8,es;q=0.6,gl;q=0.4"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=1ux1h3esbifxzq3nvtxgg5wo8; rclg0=en; fbm_276669785846752=base_domain=.arcgis.com; s_fid=5F44E0F7D81D648B-12184D5FDE31EFE5; ago_shield_token=home_X6h7ruI8opPKl; AMCVS_ED8D65E655FAC7797F000101%40AdobeOrg=1; contentModePrefs=%7B%22contentMode%22%3A%22Web%22%7D; __utma=193530365.317676849.1470720881.1490781048.1491222897.8; __utmc=193530365; __utmz=193530365.1490689988.4.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _ga=GA1.2.317676849.1470720881; AMCV_ED8D65E655FAC7797F000101%40AdobeOrg=-1176276602%7CMCIDTS%7C17260%7CMCMID%7C92026342283076295008717065445087246659%7CMCAAMLH-1491549035%7C6%7CMCAAMB-1491827840%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1491230240s%7CNONE%7CMCAID%7CNONE; s_cc=true; gpv_c6=doc.arcgis.com%3A%20en%3A%20arcgis-online%3A%20create-maps%3A%20change-style.htm; s_nr=1491230396732-Repeat; s_vnum=1508826913657%26vn%3D55; s_invisit=true; tp=7184; s_ppv=doc.arcgis.com%253A%2520en%253A%2520arcgis-online%253A%2520create-maps%253A%2520change-style.htm%2C14%2C14%2C1036; JSESSIONID=1ux1h3esbifxzq3nvtxgg5wo8; rclg0=en; fbm_276669785846752=base_domain=.arcgis.com; s_fid=5F44E0F7D81D648B-12184D5FDE31EFE5; ago_shield_token=home_X6h7ruI8opPKl; AMCVS_ED8D65E655FAC7797F000101%40AdobeOrg=1; contentModePrefs=%7B%22contentMode%22%3A%22Web%22%7D; __utma=193530365.317676849.1470720881.1490781048.1491222897.8; __utmc=193530365; __utmz=193530365.1490689988.4.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _ga=GA1.2.317676849.1470720881; AMCV_ED8D65E655FAC7797F000101%40AdobeOrg=-1176276602%7CMCIDTS%7C17260%7CMCMID%7C92026342283076295008717065445087246659%7CMCAAMLH-1491549035%7C6%7CMCAAMB-1491827840%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1491230240s%7CNONE%7CMCAID%7CNONE; s_cc=true; s_nr=1491230396732-Repeat; s_vnum=1508826913657%26vn%3D55; tp=7184; s_ppv=doc.arcgis.com%253A%2520en%253A%2520arcgis-online%253A%2520create-maps%253A%2520change-style.htm%2C14%2C14%2C1036; esri_search=%7B%7D"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "f",
+									"value": "json"
+								},
+								{
+									"key": "num",
+									"value": "200"
+								},
+								{
+									"key": "q",
+									"value": "type:\"web mapping application\" typekeywords:\"Configurable\" -typekeywords:\"Ready To Use\""
+								},
+								{
+									"key": "sortField",
+									"value": "modified"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://www.arcgis.com/sharing/rest/search",
+							"protocol": "http",
+							"host": [
+								"www",
+								"arcgis",
+								"com"
+							],
+							"path": [
+								"sharing",
+								"rest",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Search selfConfigured notReady to use",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "http://www.arcgis.com"
+					},
+					{
+						"key": "X-DevTools-Emulate-Network-Conditions-Client-Id",
+						"value": "81def7c6-989d-454f-81c0-70809a73f630"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Referer",
+						"value": "http://www.arcgis.com/home/group.html?id=4e77441f172242b18b5e456cfc1ff97e&focus=layers"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.8,es;q=0.6,gl;q=0.4"
+					},
+					{
+						"key": "Cookie",
+						"value": "JSESSIONID=1ux1h3esbifxzq3nvtxgg5wo8; rclg0=en; fbm_276669785846752=base_domain=.arcgis.com; s_fid=5F44E0F7D81D648B-12184D5FDE31EFE5; ago_shield_token=home_X6h7ruI8opPKl; AMCVS_ED8D65E655FAC7797F000101%40AdobeOrg=1; contentModePrefs=%7B%22contentMode%22%3A%22Web%22%7D; __utma=193530365.317676849.1470720881.1490781048.1491222897.8; __utmc=193530365; __utmz=193530365.1490689988.4.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _ga=GA1.2.317676849.1470720881; AMCV_ED8D65E655FAC7797F000101%40AdobeOrg=-1176276602%7CMCIDTS%7C17260%7CMCMID%7C92026342283076295008717065445087246659%7CMCAAMLH-1491549035%7C6%7CMCAAMB-1491827840%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1491230240s%7CNONE%7CMCAID%7CNONE; s_cc=true; gpv_c6=doc.arcgis.com%3A%20en%3A%20arcgis-online%3A%20create-maps%3A%20change-style.htm; s_nr=1491230396732-Repeat; s_vnum=1508826913657%26vn%3D55; s_invisit=true; tp=7184; s_ppv=doc.arcgis.com%253A%2520en%253A%2520arcgis-online%253A%2520create-maps%253A%2520change-style.htm%2C14%2C14%2C1036; JSESSIONID=1ux1h3esbifxzq3nvtxgg5wo8; rclg0=en; fbm_276669785846752=base_domain=.arcgis.com; s_fid=5F44E0F7D81D648B-12184D5FDE31EFE5; ago_shield_token=home_X6h7ruI8opPKl; AMCVS_ED8D65E655FAC7797F000101%40AdobeOrg=1; contentModePrefs=%7B%22contentMode%22%3A%22Web%22%7D; __utma=193530365.317676849.1470720881.1490781048.1491222897.8; __utmc=193530365; __utmz=193530365.1490689988.4.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _ga=GA1.2.317676849.1470720881; AMCV_ED8D65E655FAC7797F000101%40AdobeOrg=-1176276602%7CMCIDTS%7C17260%7CMCMID%7C92026342283076295008717065445087246659%7CMCAAMLH-1491549035%7C6%7CMCAAMB-1491827840%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1491230240s%7CNONE%7CMCAID%7CNONE; s_cc=true; s_nr=1491230396732-Repeat; s_vnum=1508826913657%26vn%3D55; tp=7184; s_ppv=doc.arcgis.com%253A%2520en%253A%2520arcgis-online%253A%2520create-maps%253A%2520change-style.htm%2C14%2C14%2C1036; esri_search=%7B%7D"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "f",
+							"value": "json"
+						},
+						{
+							"key": "num",
+							"value": "200"
+						},
+						{
+							"key": "q",
+							"value": "type:\"web mapping application\" typekeywords:\"selfConfigured\" -typekeywords:\"Ready To Use\""
+						},
+						{
+							"key": "sortField",
+							"value": "modified"
+						},
+						{
+							"key": "sortOrder",
+							"value": "desc"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.arcgis.com/sharing/rest/search",
+					"protocol": "http",
+					"host": [
+						"www",
+						"arcgis",
+						"com"
+					],
+					"path": [
+						"sharing",
+						"rest",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
