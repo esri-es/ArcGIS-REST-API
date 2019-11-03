@@ -44,7 +44,7 @@ The [Postman collection included](./Hosted%20Feature%20Service%20-%20ArcGIS.post
     - [Add, update and delete multiple records with a single call](#add-update-and-delete-multiple-records-with-a-single-call)
     - [Delete records](#delete-records)
     - [Add attachments to a record](#add-attachments-to-a-record)
-  - [How to manager layer views (filter / extend tables)](#how-to-manager-layer-views-filter--extend-tables)
+  - [How to manage layer views (filter / extend tables)](#how-to-manage-layer-views-filter--extend-tables)
     - [Create a layer view](#create-a-layer-view)
       - [Content from individual layers](#content-from-individual-layers)
       - [Content from joined layers](#content-from-joined-layers)
@@ -669,7 +669,7 @@ See the [Limiting upload file size and file types](https://developers.arcgis.com
     * [Item details page > Data > Add](https://awesome-arcgis.maps.arcgis.com/home/item.html?id=09d51c9fdd474d208b6c2f5fb523d1d1#data) ([Documentation]((https://doc.arcgis.com/en/arcgis-online/manage-data/item-details.htm)))
     * [ArcGIS REST Service Page > Layer > (add an id to the URL) > Add attachment](https://services7.arcgis.com/rF1wdZICHfgsvter/ArcGIS/rest/services/NewFeatureService/FeatureServer/0/1/addAttachment)
 
-### How to manager layer views (filter / extend tables)
+### How to manage layer views (filter / extend tables)
 
 #### Create a layer view
 
