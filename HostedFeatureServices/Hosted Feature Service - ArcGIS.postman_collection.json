@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b25537a4-49dd-47b8-bfb6-9d27b6e332e3",
+		"_postman_id": "2af6ef45-a37d-426c-b922-c70d9ff87fa1",
 		"name": "Hosted Feature Service - ArcGIS",
 		"description": "A feature service can contain datasets (for example, tables and views) with or without a spatial column. Datasets with a spatial column are considered layers; those without a spatial column are considered tables. A feature service allows clients to query and edit feature geometry and attributes.\n\n[More info](https://developers.arcgis.com/rest/services-reference/get-started-with-the-services-directory.htm)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -384,7 +384,7 @@
 					"urlencoded": [
 						{
 							"key": "createParameters",
-							"value": "{     \"name\": \"NewFeatureService\",     \"serviceDescription\": \"Description text\",     \"hasStaticData\": false,     \"maxRecordCount\": 1000,     \"supportedQueryFormats\": \"JSON\",     \"capabilities\": \"Create,Delete,Query,Update,Editing\",     \"description\": \"\",     \"copyrightText\": \"\",     \"spatialReference\": {         \"wkid\": 102100     },     \"initialExtent\": {         \"xmin\": -20037507.0671618,         \"ymin\": -30240971.9583862,         \"xmax\": 20037507.0671618,         \"ymax\": 18398924.324645,         \"spatialReference\": {             \"wkid\": 102100,             \"latestWkid\": 3857         }     },     \"allowGeometryUpdates\": true,     \"units\": \"esriMeters\",     \"xssPreventionInfo\": {         \"xssPreventionEnabled\": true,         \"xssPreventionRule\": \"InputOnly\",         \"xssInputRule\": \"rejectInvalid\"     } }",
+							"value": "{\"name\":\"NewFeatureService\",\"serviceDescription\":\"Description text\",\"hasStaticData\":false,\"maxRecordCount\":1000,\"supportedQueryFormats\":\"JSON\",\"capabilities\":\"Create,Delete,Query,Update,Editing\",\"description\":\"\",\"copyrightText\":\"\",\"spatialReference\":{\"wkid\":102100},\"initialExtent\":{\"xmin\":-0.000004988163709640503,\"ymin\":2504688.542852979,\"xmax\":2504688.542843003,\"ymax\":5009377.085700966,\"spatialReference\":{\"wkid\":102100}},\"allowGeometryUpdates\":true,\"units\":\"esriMeters\",\"xssPreventionInfo\":{\"xssPreventionEnabled\":true,\"xssPreventionRule\":\"InputOnly\",\"xssInputRule\":\"rejectInvalid\"}}",
 							"type": "text"
 						},
 						{
