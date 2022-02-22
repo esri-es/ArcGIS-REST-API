@@ -1,4 +1,7 @@
+> **NOTE**: this repository has been deprecated in favor of the [ArcGIS Location Services workspace](https://www.postman.com/arcgis-developer/workspace/arcgis-location-services)
+
 # ArcGIS-REST-API
+
 [Postman](https://www.getpostman.com/apps) collection for [ArcGIS REST API](https://developers.arcgis.com/rest/)
 
 **Requirements**: [Postman](https://www.getpostman.com/apps)
